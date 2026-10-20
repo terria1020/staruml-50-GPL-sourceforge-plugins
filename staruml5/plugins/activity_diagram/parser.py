@@ -5,6 +5,7 @@ activity diagrams. Shape mapping:
 
     A[text] A(text) A([text]) A{{text}} A[/text/] ...   action state
     A{text}                                             decision (merge if no text)
+    A{ }   A@{ shape: f-circ }                          merge
     A[[text]]                                           subactivity state
     A((text))                                           initial (no incoming) / final (no outgoing)
     A(((text)))                                         final state
@@ -40,7 +41,8 @@ _NEW_SHAPE = {
     "fork": "fork", "join": "join", "hourglass": "fork",
     "circle": "circle", "circ": "circle", "sm-circ": "initial", "small-circle": "initial", "start": "initial",
     "stop": "final", "fr-circ": "final", "framed-circle": "final", "dbl-circ": "final", "double-circle": "final",
-    "f-circ": "join", "filled-circle": "join",
+    # Mermaid's "Junction" (filled circle) is a merge/branch point, not a fork/join bar
+    "f-circ": "rhombus", "filled-circle": "rhombus", "junction": "rhombus",
     "diam": "rhombus", "diamond": "rhombus", "decision": "rhombus", "question": "rhombus",
     "subproc": "subroutine", "subprocess": "subroutine", "fr-rect": "subroutine", "subroutine": "subroutine",
     "cross-circ": "flowfinal", "summary": "flowfinal",

@@ -63,11 +63,14 @@ Message numbers ('1 : ') and '()' after call names are added by StarUML.""",
     A --> B{decision?}            %% {text} = decision (text shown next to the diamond)
     B -->|yes| C[[sub activity]]  %% [[x]] = subactivity
     B -->|no| D
-    C --> F@{ shape: fork }       %% fork / join bars
+    D --> M{ }                    %% MERGE node: decision with an EMPTY label { } (or @{ shape: f-circ })
+    C --> M                       %%   do not use sm-circ/((x)) for merges: they become initial/final nodes
+    M --> F@{ shape: fork }       %% fork / join bars
     F --> G & H
     G --> J@{ shape: join }
     H --> J
-    J --> stop(((종료)))          %% (((x))) or ((x)) without outgoing edge = final node
+    J --> stop(((종료)))          %% (((x))), @{ shape: fr-circ } or ((x)) without outgoing edge = final node
+                                  %% @{ shape: sm-circ } = initial node (never a merge)
     subgraph 사용자 ... end        %% subgraph = swimlane (vertical partitions)
     [*] --> A                     %% [*] also works as initial/final""",
 }

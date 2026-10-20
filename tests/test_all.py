@@ -220,6 +220,30 @@ class ParserTests(unittest.TestCase):
                                  "c": "action", "j": "join", "e": "final", "sub": "subactivity"})
         self.assertIn(("d", "sub", "no"), [(e.source, e.target, e.label) for e in ir.edges])
 
+    def test_flowchart_merge_nodes(self):
+        ir = plugins.get("activity").parse("""flowchart TD
+            s@{ shape: sm-circ } --> d{ok?}
+            d -->|y| a[A]
+            d -->|n| b[B]
+            a --> m{ }
+            b --> m
+            m --> c[C] --> j@{ shape: f-circ }
+            a --> j
+            j --> e@{ shape: fr-circ }""")
+        kinds = {k: n.kind for k, n in ir.nodes.items()}
+        self.assertEqual((kinds["s"], kinds["m"], kinds["j"], kinds["e"]), ("initial", "merge", "merge", "final"))
+
+    def test_syntax_help_documents_merge(self):
+        from staruml5.mcp_server import SYNTAX_HELP
+        help_text = SYNTAX_HELP["activity"]
+        self.assertIn("{ }", help_text)
+        self.assertIn("MERGE", help_text)
+        # the documented example itself must parse, merge included
+        example = "\n".join(l.split("%%")[0].rstrip() for l in help_text.splitlines()
+                            if "subgraph" not in l and l.split("%%")[0].strip())
+        kinds = {k: n.kind for k, n in plugins.get("activity").parse(example).nodes.items()}
+        self.assertEqual(kinds["M"], "merge")
+
 
 class McpTests(unittest.TestCase):
     def test_handshake_and_call(self):

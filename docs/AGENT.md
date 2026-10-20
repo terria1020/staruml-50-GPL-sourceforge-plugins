@@ -23,6 +23,8 @@ You can draw StarUML 5.0 diagrams by writing **Mermaid** and calling the
 - Participant labels may contain spaces or Korean: `participant DB as 주문 데이터베이스`.
 - Class names with spaces: wrap them in backticks, for example `` class `주문 서비스` ``.
 - Activity: one `subgraph` per swimlane, `{question}` for decisions, edge labels `-->|guard|`.
+  A **merge** node is a decision with an empty label, `M{ }` (or `M@{ shape: f-circ }`).
+  `@{ shape: sm-circ }` and circles `((x))` are start/end nodes, never merges.
 
 ## CLI equivalents
 

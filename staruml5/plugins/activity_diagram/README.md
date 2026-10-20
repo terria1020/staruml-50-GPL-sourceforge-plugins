@@ -7,7 +7,7 @@ type, so flowcharts are drawn as activity diagrams.
 |---|---|
 | `A[text]`, `A(text)`, `A{{text}}`, `A[/text/]` ... | `UMLActionState` |
 | `A{question}` | decision `UMLPseudostate pkDecision` + question as `UMLTextView` |
-| `A{ }` with one outgoing edge | merge (decision diamond without text) |
+| `A{ }` (empty label), `A@{ shape: f-circ }` | **merge** (decision diamond without text). Do not use `sm-circ`/`((x))` for a merge: those become initial/final nodes |
 | `A[[text]]` | `UMLSubactivityState` |
 | `A((x))` without incoming edges, `A@{shape: sm-circ}`, `[*] -->` | initial state |
 | `A((x))` without outgoing edges, `A(((x)))`, `A@{shape: fr-circ}`, `--> [*]` | final state |
