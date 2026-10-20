@@ -130,4 +130,7 @@ def export_class(prj: Project, diagram: Obj) -> str:
                 if lv.type == "UMLNoteLinkView" and lv.get_ref("Tail") == v.guid:
                     target = name_of(lv.get_ref("Head"))
             lines.append('    note for %s "%s"' % (target, txt) if target else '    note "%s"' % txt)
+    if len(lines) == 1:
+        # Mermaid rejects a bare `classDiagram`; a direction statement keeps an empty diagram valid
+        lines.append("    direction TB")
     return "\n".join(lines) + "\n"

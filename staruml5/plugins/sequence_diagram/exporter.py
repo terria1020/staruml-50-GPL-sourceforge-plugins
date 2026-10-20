@@ -11,6 +11,10 @@ OPERATOR = {"iokSeq": "seq", "iokAlt": "alt", "iokOpt": "opt", "iokBreak": "brea
             "iokStrict": "strict", "iokLoop": "loop", "iokRegion": "critical", "iokNeg": "neg",
             "iokAssert": "assert", "iokIgnore": "ignore", "iokConsider": "consider"}
 NEXT_KW = {"alt": "else", "par": "and", "critical": "option"}
+# Block keywords Mermaid accepts. Other UML operators (neg, strict, ...) are written as
+# `opt` preceded by a `%% staruml:operator <op>` comment, which our parser reads back.
+MERMAID_BLOCKS = {"alt", "opt", "loop", "par", "critical", "break"}
+OPERATOR_DIRECTIVE = "%% staruml:operator "
 
 
 def _first_y(points: str) -> int:
@@ -94,9 +98,8 @@ def export_sequence(prj: Project, diagram: Obj) -> str:
         operands.sort()
         if not operands:
             operands = [(top, "")]
-        if len(operands) == 1 and not operands[0][1] and cf is not None:
-            operands[0] = (operands[0][0], cf.name or "")
-        frags.append({"top": top, "bottom": top + h, "op": op, "operands": operands})
+        name = (cf.name or "") if cf is not None else ""
+        frags.append({"top": top, "bottom": top + h, "op": op, "operands": operands, "name": name})
 
     def emit(lo, hi, indent, out, depth=0):
         inner = sorted([f for f in frags if lo <= f["top"] and f["bottom"] <= hi and f.get("_lvl") is None],
@@ -114,13 +117,30 @@ def export_sequence(prj: Project, diagram: Obj) -> str:
                 continue
             f = p
             f["_lvl"] = depth
+            op = f["op"]
+            pad = " " * indent
+            if op not in MERMAID_BLOCKS:
+                out.append(pad + OPERATOR_DIRECTIVE + op)
+                op = "opt"
             ops = f["operands"]
+            nxt = NEXT_KW.get(op)
             for i, (otop, guard) in enumerate(ops):
                 obot = ops[i + 1][0] if i + 1 < len(ops) else f["bottom"]
-                kw = f["op"] if i == 0 else NEXT_KW.get(f["op"], "else")
-                out.append(" " * indent + ("%s %s" % (kw, guard)).rstrip())
+                # the fragment's Name is its label when an operand has no guard
+                label = guard or (f["name"] if i == 0 or not nxt else "")
+                if i == 0:
+                    kw = op
+                elif nxt:
+                    kw = nxt
+                else:
+                    # Mermaid has no `else` for opt/loop/break: continue as another block
+                    out.append(pad + "end")
+                    if f["op"] != op:
+                        out.append(pad + OPERATOR_DIRECTIVE + f["op"])
+                    kw = op
+                out.append(pad + ("%s %s" % (kw, label)).rstrip())
                 emit(otop if i else f["top"], obot, indent + 4, out, depth + 1)
-            out.append(" " * indent + "end")
+            out.append(pad + "end")
 
     body = []
     emit(-10 ** 9, 10 ** 9, 4, body)

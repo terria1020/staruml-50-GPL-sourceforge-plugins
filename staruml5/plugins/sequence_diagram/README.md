@@ -18,6 +18,12 @@ Mermaid `sequenceDiagram` -> StarUML 5 Sequence Diagram (instance level: `UMLObj
 | `Note right of A: text` | `UMLNoteView` |
 | `rect`, `box`, `autonumber` | ignored (StarUML always numbers messages) |
 
+Export to Mermaid (`exporter.py`) only emits blocks the Mermaid parser accepts:
+`opt`/`loop`/`break` fragments with several operands become consecutive blocks (Mermaid has
+no `else` there), the fragment `Name` is used when an operand has no guard, and operators
+Mermaid lacks (`neg`, `strict`, `seq`, `assert`, `ignore`, `consider`) are written as `opt`
+after a `%% staruml:operator <op>` comment, which the parser reads back.
+
 Activations follow call/return semantics, like PlantUML's auto-activation: a call opens
 an activation on the receiver, a return or a later message from an outer caller closes it.
 Each operand of `alt`/`par` starts from the activation state at the fragment start.

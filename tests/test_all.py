@@ -89,6 +89,59 @@ class ConvertTests(unittest.TestCase):
         self.assertEqual(prj.root.type, "UMLPackage")
 
 
+class ExportMermaidValidityTests(unittest.TestCase):
+    """Issue #2: exported Mermaid must stay within what the Mermaid parser accepts."""
+
+    def _project(self):
+        from staruml5.core import views as V
+        from staruml5.core.ir import ActivityDiagram, Fragment, Message, Operand, SequenceDiagram
+        prj = Project.new("T")
+        m = prj.find_package("Design Model")
+        d = SequenceDiagram()
+        d.part("A")
+        d.part("B")
+        d.items = [
+            Fragment("opt", [Operand("", [Message("A", "A", "one")]), Operand("", [Message("A", "B", "two")])]),
+            Fragment("neg", [Operand("never", [Message("B", "A", "bad")])]),
+            Fragment("alt", [Operand("ok", [Message("A", "B", "x")]), Operand("", [Message("B", "A", "y")])]),
+        ]
+        plugins.get("sequence").build(m, d, "S", api.get_style())
+        for o in prj.root.walk():  # StarUML GUI style: name on the fragment, no guard
+            if o.type == "UMLCombinedFragment" and o.get("InteractionOperator") == "iokOpt":
+                o.set("Name", "X case")
+        V.new_diagram(m, "UMLClassDiagram", "EmptyClass")
+        plugins.get("activity").build(m, ActivityDiagram(), "EmptyActivity", api.get_style())
+        return prj
+
+    def test_opt_with_two_operands_has_no_else(self):
+        text = api.to_mermaid(self._project(), "S")
+        lines = [l.strip() for l in text.splitlines()]
+        alt_at = lines.index("alt ok")
+        self.assertNotIn("else", lines[:alt_at])            # no `else` inside opt
+        self.assertEqual(lines.count("opt X case"), 2)       # one block per operand, Name as label
+        self.assertIn("else", lines[alt_at:])                 # alt keeps its else
+
+    def test_unsupported_operator_round_trips_via_directive(self):
+        text = api.to_mermaid(self._project(), "S")
+        self.assertNotIn("\n    neg", text)
+        self.assertIn("%% staruml:operator neg", text)
+        ir = plugins.detect(text).parse(text)
+        self.assertEqual([i.operator for i in ir.items if hasattr(i, "operands")], ["opt", "opt", "neg", "alt"])
+
+    def test_empty_diagrams_are_not_bare_headers(self):
+        prj = self._project()
+        self.assertEqual(api.to_mermaid(prj, "EmptyClass").split(), ["classDiagram", "direction", "TB"])
+        for name in ("EmptyClass", "EmptyActivity"):
+            text = api.to_mermaid(prj, name)
+            plugins.detect(text).parse(text)    # our own parser accepts it too
+
+    def test_export_from_memory_matches_export_from_file(self):
+        prj = self._project()
+        out = os.path.join(tempfile.mkdtemp(), "m.uml")
+        prj.save(out)
+        self.assertEqual(api.to_mermaid(prj, "S"), api.to_mermaid(Project.load(out), "S"))
+
+
 class ParserTests(unittest.TestCase):
     def test_sequence_fragments(self):
         ir = plugins.get("sequence").parse("""sequenceDiagram

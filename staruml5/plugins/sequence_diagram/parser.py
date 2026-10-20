@@ -35,8 +35,13 @@ def parse_sequence_diagram(src: str) -> SequenceDiagram:
     def emit(item):
         stack[-1].items.append(item)
 
+    pending_op = None            # from a `%% staruml:operator <op>` comment (see exporter)
     for raw in src.splitlines():
         line = raw.strip()
+        m = re.match(r"^%%\s*staruml:operator\s+(\w+)\s*$", line)
+        if m:
+            pending_op = _FRAG_OPEN.get(m.group(1).lower())
+            continue
         if not line or line.startswith("%%"):
             continue
         low = line.lower()
@@ -90,7 +95,8 @@ def parse_sequence_diagram(src: str) -> SequenceDiagram:
                 emit(SeqNote(_text(m.group(3)), parts, pos))
                 continue
         if first in _FRAG_OPEN and not _looks_like_message(line):
-            op = _FRAG_OPEN[first]
+            op = pending_op or _FRAG_OPEN[first]
+            pending_op = None
             guard = line[len(first):].strip()
             fr = Fragment(op, [Operand(guard)])
             emit(fr)

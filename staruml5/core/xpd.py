@@ -126,9 +126,10 @@ class Obj:
             self.items.append(Ref(name, target))
         return self
 
-    def get_ref(self, name: str):
+    def get_ref(self, name: str) -> Optional[str]:
+        """GUID of a reference, whether it was loaded from a file or built in memory."""
         it = self._find(Ref, name)
-        return it.target if it else None
+        return it.guid if it else None
 
     def child(self, name: str, obj: "Obj") -> "Obj":
         """Attach a single owned sub-object (e.g. NameLabel, DiagramView)."""
