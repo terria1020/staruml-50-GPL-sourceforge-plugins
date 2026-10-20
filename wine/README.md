@@ -34,10 +34,29 @@ python3 -m staruml5 com import-fragment /tmp/x.mfj "Design Model"
 
 브리지는 `wine cscript`로 `staruml5/bridge/staruml_bridge.js`를 실행합니다. Wine 콘솔은 긴 비ASCII 출력에서 크래시하는 문제가 있어서, 결과는 `\uXXXX`로 이스케이프한 ASCII JSON으로 주고받습니다.
 
-## macOS (실험적, 미검증)
+## macOS (Apple Silicon: 잠정 불가, Intel: 미검증)
+
+Apple Silicon에서는 설치(`install.sh`)는 끝나지만 StarUML이 시작하지 못합니다 ([#1](https://github.com/terria1020/staruml-50-GPL-sourceforge-plugins/issues/1)).
+
+| Wine | 결과 |
+|---|---|
+| wine-stable 11.0 (Homebrew) | 스플래시 화면에서 멈춤 (CPU 100%) |
+| wine-devel 11.18 ([Gcenx 빌드](https://github.com/Gcenx/macOS_Wine_builds)) | 시작 중 크래시 |
+
+확인 환경: macOS 27.2, Apple M4, Rosetta 2, wow64 프리픽스.
+
+따라서 macOS에서 **쓸 수 없는 것**은 실행 중인 StarUML이 필요한 기능뿐입니다.
+
+- `python3 -m staruml5 com ...` (open, reload, layout, export, import-fragment 등)
+- MCP 도구 `staruml_com`
+- 메뉴 애드인 (Tools > Mermaid)
+
+`convert`, `export`, `fragment`, `list`, `remove`, `validate`와 나머지 MCP 도구는 `.uml` 파일만 다루므로 macOS에서도 그대로 동작합니다. 만든 `.uml`은 Windows나 Linux(Wine)의 StarUML에서 열어 확인하면 됩니다.
+
+시도해 보려면 다음 순서로 합니다. Intel Mac과 CrossOver는 아직 확인하지 않았습니다.
 
 ```bash
-brew install --cask --no-quarantine wine-stable     # 또는 gcenx/wine 의 wine-crossover
+brew install --cask --no-quarantine wine-stable
 brew install innoextract
 # Apple Silicon: Rosetta 2 필요 (softwareupdate --install-rosetta)
 ./install.sh --download --addin
@@ -46,7 +65,7 @@ brew install innoextract
 
 - 최신 macOS용 Wine은 32비트 프리픽스를 만들 수 없습니다. 그래서 64비트(wow64) 프리픽스의 `C:\Program Files (x86)`에 설치합니다.
 - 한글 폰트는 `Apple SD Gothic Neo`로 매핑합니다.
-- 잘 안 되면 CrossOver(상용)에서 "Windows XP 32-bit" bottle을 만들고, 같은 순서(파일 복사, 레지스트리, `StarUML.exe /regserver`)로 설치하는 방법이 가장 확실합니다.
+- 다른 Wine 빌드는 `PATH`에 그 빌드의 `bin`을 앞에 두고 실행합니다. COM 브리지는 `STARUML5_WINE`으로 wine 실행 파일을 지정할 수 있습니다.
 
 ## 알려진 제약
 

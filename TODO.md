@@ -5,8 +5,10 @@
 - [ ] `com export` fails under Wine with `E_NOTIMPL` (0x80004001) for JPEG/BMP/EMF.
       Candidates: GDI+/OLE picture APIs missing in Wine; try `winetricks gdiplus`
       or native `oleaut32`, or fall back to a window screenshot (xdotool + import).
-- [ ] Verify macOS (Intel and Apple Silicon) with `wine/install.sh`: wow64 prefix, `/reg:32`
-      registry view, `Program Files (x86)` path, Apple SD Gothic Neo font mapping.
+- [ ] macOS Apple Silicon: StarUML hangs/crashes on start under wine-stable 11.0 and
+      wine-devel 11.18, so COM bridge and add-in are unavailable (#1).
+      Not tried yet: CrossOver, wine-staging, Windows 11 ARM VM.
+- [ ] Verify macOS Intel with `wine/install.sh`.
 - [ ] Menu add-in inside Wine: document or script installing a Windows Python
       (embeddable zip) in the prefix and writing `config.ini`.
 - [ ] Auto-dismiss the *New Project* dialog on start (registry option for the default approach).
