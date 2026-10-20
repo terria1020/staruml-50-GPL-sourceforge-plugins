@@ -245,6 +245,52 @@ class ParserTests(unittest.TestCase):
         self.assertEqual(kinds["M"], "merge")
 
 
+def _activity_routes(path, diagram):
+    """(edges, nodes) of an activity diagram in a .uml file, for core.route.check_edges."""
+    prj = Project.load(path)
+    dv = api.find_diagram(prj, diagram).get_child("DiagramView")
+    node_types = ("UMLActionStateView", "UMLSubactivityStateView", "UMLPseudostateView", "UMLFinalStateView")
+    nodes, edges = {}, []
+    for v in dv.items_of("OwnedViews"):
+        if v.type in node_types:
+            nodes[v.guid] = tuple(int(v.get(k)) for k in ("Left", "Top", "Width", "Height"))
+        elif v.type == "UMLTransitionView":
+            pts = [tuple(int(c) for c in xy.split(",")) for xy in v.get("Points").split(";")]
+            edges.append((v.get_ref("Tail"), v.get_ref("Head"), pts))
+    return edges, nodes
+
+
+class RoutingTests(unittest.TestCase):
+    """Activity edges are right-angle routes that never run through another box."""
+
+    def test_two_phase_commit_has_no_box_crossings(self):
+        from staruml5.core.route import check_edges
+        out = os.path.join(tempfile.mkdtemp(), "2pc.uml")
+        api.convert(read(os.path.join(ROOT, "tests", "fixtures", "two_phase_commit.mmd")), out)
+        edges, nodes = _activity_routes(out, "이중 쓰기 2PC 적재")
+        self.assertEqual(len(edges), 31)
+        hits, overlap = check_edges(edges, nodes)
+        self.assertEqual(hits, [])            # was 25 before obstacle-aware routing
+        self.assertEqual(overlap, 0)          # was 1631 px of edges drawn on top of each other
+        for _s, _t, pts in edges:             # every segment is horizontal or vertical
+            for (x1, y1), (x2, y2) in zip(pts, pts[1:]):
+                self.assertTrue(x1 == x2 or y1 == y2, pts)
+
+    def test_examples_have_no_box_crossings(self):
+        from staruml5.core.route import check_edges
+        for name in ("activity_swimlane", "flowchart_basic"):
+            out = os.path.join(tempfile.mkdtemp(), name + ".uml")
+            api.convert(read(os.path.join(ROOT, "examples", name + ".mmd")), out, names=[name])
+            hits, overlap = check_edges(*_activity_routes(out, name))
+            self.assertEqual((hits, overlap), ([], 0), name)
+
+    def test_checker_detects_a_crossing(self):
+        from staruml5.core.route import check_edges
+        nodes = {"a": (0, 0, 40, 20), "b": (0, 100, 40, 20), "c": (0, 200, 40, 20)}
+        hits, _ = check_edges([("a", "c", [(20, 20), (20, 200)])], nodes)
+        self.assertEqual(hits, [("a", "c", "b")])
+
+
 class McpTests(unittest.TestCase):
     def test_handshake_and_call(self):
         tmp = tempfile.mkdtemp()

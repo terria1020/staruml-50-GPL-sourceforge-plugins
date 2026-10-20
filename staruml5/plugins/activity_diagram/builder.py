@@ -4,6 +4,7 @@ from __future__ import annotations
 from ...core import views as V
 from ...core.ir import ActivityDiagram, FlowNode
 from ...core.layout import layered
+from ...core.route import Router
 from ...core.xpd import Obj
 
 PSEUDO = {"initial": "pkInitial", "decision": "pkDecision", "merge": "pkDecision",
@@ -186,7 +187,12 @@ def build_activity_diagram(owner: Obj, diag: ActivityDiagram, name: str, style: 
 
     # ---- transitions
     right_x = max([pos[k][0] + sizes[k][0] for k in nodes] + [0]) + 30
-    order = {k: i for i, k in enumerate(nodes)}
+    vertical_flow = bool(lanes) or diag.direction in ("TB", "BT")
+    router = None
+    if rectilinear and vertical_flow:
+        soft = [V.rect(v) for v in dv.items_of("OwnedViews") if v.type == "UMLTextView"]
+        walls = sorted({x for _l, lx, lw in lane_rects for x in (lx, lx + lw)})
+        router = Router({k: V.rect(v) for k, v in nviews.items()}, soft=soft, walls=walls)
     for e in diag.edges:
         if e.source not in models or e.target not in models:
             continue
@@ -200,7 +206,10 @@ def build_activity_diagram(owner: Obj, diag: ActivityDiagram, name: str, style: 
         models[e.source].add_ref("Outgoings", t)
         models[e.target].add_ref("Incomings", t)
         sv, tv = nviews[e.source], nviews[e.target]
-        if rectilinear:
+        if router is not None:
+            # right-angle routes that detour around boxes instead of running through them
+            pts = router.route(e.source, e.target, decision=nodes[e.source].kind in ("decision", "merge"))
+        elif rectilinear:
             sy, ty = pos[e.source][1], pos[e.target][1]
             sx, tx = pos[e.source][0], pos[e.target][0]
             back = (ty < sy) if not horizontal else (tx < sx)

@@ -18,4 +18,13 @@ type, so flowcharts are drawn as activity diagrams.
 | `subgraph Lane ... end`, `subgraph L1["Lane"] ... end` | `UMLPartition` + vertical `UMLSwimlaneView` (lanes are keyed by id, so two lanes may share a name) |
 | `TD`, `LR` | layout direction (lanes are always vertical) |
 
-Edges are drawn orthogonally (`lsRectilinear`). Loops go back up along the right margin.
+Edges are drawn orthogonally (`lsRectilinear`) by `core/route.py`: each edge tries a few
+right-angle shapes (straight, Z through a row gap, side exit from a decision, detour through
+a free vertical channel next to the boxes in the way) and keeps the cheapest. Running through
+a node box costs far more than any detour, edges already drawn are avoided so parallel edges
+get their own track, and swimlane borders are not used as tracks. Loops go back up through a
+free channel. `tests/fixtures/two_phase_commit.mmd` is the regression case (0 box crossings).
+
+Known limits: node positions come from `core/layout.py` and are not changed to make room
+for long edges (no Sugiyama dummy nodes), edges may still cross each other, and guard labels
+are placed by StarUML relative to the edge, so a label can still touch a box.
