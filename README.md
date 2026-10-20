@@ -28,6 +28,8 @@
 | `mcp` | AI 에이전트용 MCP 서버 (stdio) | `staruml_com` 도구만 필요 |
 | StarUML 애드인 | StarUML의 *Tools > Mermaid* 메뉴에서 가져오기와 내보내기 | 예 |
 
+"StarUML 필요: 아니요"인 기능은 Python만 있으면 Windows, Linux, macOS 어디서나 동작합니다. 실행 중인 StarUML이 필요한 것은 `com ...`, MCP `staruml_com`, 메뉴 애드인뿐입니다.
+
 지원 다이어그램(플러그인)은 다음과 같습니다.
 
 | Mermaid | StarUML 5.0 |
@@ -98,9 +100,11 @@ pywin32 없이 Windows에 기본으로 들어 있는 `cscript`(JScript)로 StarU
 ## AI 에이전트 연동 (MCP)
 
 ```bash
-# Claude Code
-claude mcp add staruml5 -- python -m staruml5 mcp
+# Claude Code (macOS/Linux는 python3, Windows는 python)
+claude mcp add staruml5 -s user -e PYTHONPATH=/path/to/staruml5-plugins -- python3 -m staruml5 mcp
 ```
+
+`PYTHONPATH`에는 이 레포의 경로를 넣습니다. 빠뜨리면 레포 밖의 프로젝트에서 `No module named 'staruml5'`로 서버가 시작되지 않습니다. `-s user`로 등록하면 모든 프로젝트에서 쓸 수 있습니다.
 
 Claude Desktop이나 기타 MCP 클라이언트(`claude_desktop_config.json` 등)에는 다음처럼 등록합니다.
 
@@ -131,6 +135,14 @@ Claude Desktop이나 기타 MCP 클라이언트(`claude_desktop_config.json` 등
 2. Mermaid를 수정합니다.
 3. `mermaid_to_staruml`의 `into_path`에 같은 이름으로 넣어 교체합니다.
 4. `staruml_com reload`로 StarUML 화면을 갱신합니다.
+
+역변환(`staruml_to_mermaid`, `export`) 결과는 Mermaid가 표현할 수 있는 형태로 바뀌므로, 원본과 표기가 다를 수 있습니다.
+
+- 시퀀스: 피연산자가 여럿인 `opt`/`loop`/`break`는 피연산자마다 블록을 나눠 씁니다. 이 결과를 다시 넣으면 프래그먼트도 블록 수만큼 나뉩니다. Mermaid에 없는 연산자(`neg`, `strict`, `seq` 등)는 `%% staruml:operator <op>` 주석과 `opt`로 씁니다.
+- 액티비티: StarUML은 fork와 join을 같은 동기화 바로 저장하므로 둘 다 `shape: fork`로 나옵니다. 병합 노드는 라벨 없는 판단 노드 `{ }`입니다.
+- 액티비티 연결선은 다른 박스를 피해 직각으로 우회합니다(`core/route.py`). 스윔레인이 없는 `LR`/`RL` 다이어그램은 아직 적용되지 않습니다.
+
+자세한 매핑은 각 플러그인의 README(`staruml5/plugins/*/README.md`)에 있습니다.
 
 ---
 
@@ -170,6 +182,7 @@ staruml5/
     xpd.py                 .uml/.mfj(XPD XML) 객체 모델, 무손실 읽기/쓰기, 삭제, 검증
     views.py               StarUML 뷰 구조 생성기 (라벨, 컴파트먼트, 양방향 참조)
     layout.py              계층형(Sugiyama) 자동 배치, 스윔레인 지원
+    route.py               액티비티 연결선 직각 라우팅 (박스 우회, 겹침 회피) + 검사기
     ir.py                  다이어그램 중간표현 (Mermaid <-> StarUML 공통)
   plugins/                 다이어그램별 플러그인 (parser + builder + exporter)
     class_diagram/
@@ -183,6 +196,7 @@ examples/                  예제 Mermaid
 docs/                      포맷 분석(FORMAT.md), COM API 덤프(com-api.txt), 에이전트 가이드
 tools/tlbdump.py           StarUML.exe 타입 라이브러리 덤프 도구
 tests/                     python -m unittest discover -s tests
+  fixtures/                회귀 테스트용 Mermaid (예: two_phase_commit.mmd 라우팅 검사)
 ```
 
 새 다이어그램 종류를 추가하려면 `staruml5/plugins/<name>/`에 `parser.py`, `builder.py`, `exporter.py`, `__init__.py`(`PLUGIN = DiagramPlugin(...)`)를 만들고 `plugins/__init__.py`의 `_PLUGIN_MODULES`에 등록하면 됩니다. 각 플러그인 폴더의 README에 매핑 표가 있습니다.
