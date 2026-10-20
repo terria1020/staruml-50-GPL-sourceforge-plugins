@@ -126,8 +126,9 @@ def export_sequence(prj: Project, diagram: Obj) -> str:
             nxt = NEXT_KW.get(op)
             for i, (otop, guard) in enumerate(ops):
                 obot = ops[i + 1][0] if i + 1 < len(ops) else f["bottom"]
-                # the fragment's Name is its label when an operand has no guard
-                label = guard or (f["name"] if i == 0 or not nxt else "")
+                # the fragment's Name labels the whole fragment, so it goes on the first block
+                # only; later operands carry just their own guard (never a borrowed condition)
+                label = guard or (f["name"] if i == 0 else "")
                 if i == 0:
                     kw = op
                 elif nxt:

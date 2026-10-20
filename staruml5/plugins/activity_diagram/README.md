@@ -15,7 +15,7 @@ type, so flowcharts are drawn as activity diagrams.
 | `A@{ shape: fork }`, `A@{ shape: join }` | `pkSynchronization` bar |
 | `A -->\|guard\| B`, `A -- guard --> B` | `UMLTransition.GuardCondition` (`[ guard ]`) |
 | `A --> B & C`, chains `A --> B --> C` | expanded into single transitions |
-| `subgraph Lane ... end` | `UMLPartition` + vertical `UMLSwimlaneView` |
+| `subgraph Lane ... end`, `subgraph L1["Lane"] ... end` | `UMLPartition` + vertical `UMLSwimlaneView` (lanes are keyed by id, so two lanes may share a name) |
 | `TD`, `LR` | layout direction (lanes are always vertical) |
 
 Edges are drawn orthogonally (`lsRectilinear`). Loops go back up along the right margin.

@@ -47,18 +47,17 @@ def export_activity(prj: Project, diagram: Obj) -> str:
         cx = int(v.get("Left", 0)) + int(v.get("Width", 0)) // 2
         for lv in lanes:
             if int(lv.get("Left", 0)) <= cx < int(lv.get("Left", 0)) + int(lv.get("Width", 0)):
-                lm = idx.get(lv.get_ref("Model"))
-                lane_nodes.setdefault(lm.name if lm is not None else "Lane", []).append(i)
+                # keyed by the swimlane view: several lanes may share one name
+                lane_nodes.setdefault(lv.guid, []).append(i)
                 break
 
     lines = ["flowchart TD"]
     in_lane = set()
-    for lv in lanes:
+    for k, lv in enumerate(lanes, 1):
         lm = idx.get(lv.get_ref("Model"))
-        ln = lm.name if lm is not None else "Lane"
-        ids = lane_nodes.get(ln, [])
-        lines.append("    subgraph %s" % _esc(ln))
-        for i in ids:
+        title = ((lm.name if lm is not None else "") or "Lane").replace('"', "'")
+        lines.append('    subgraph L%d["%s"]' % (k, title))
+        for i in lane_nodes.get(lv.guid, []):
             lines.append("        " + decl[i])
             in_lane.add(i)
         lines.append("    end")

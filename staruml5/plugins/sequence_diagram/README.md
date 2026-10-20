@@ -20,7 +20,8 @@ Mermaid `sequenceDiagram` -> StarUML 5 Sequence Diagram (instance level: `UMLObj
 
 Export to Mermaid (`exporter.py`) only emits blocks the Mermaid parser accepts:
 `opt`/`loop`/`break` fragments with several operands become consecutive blocks (Mermaid has
-no `else` there), the fragment `Name` is used when an operand has no guard, and operators
+no `else` there), the fragment `Name` labels the first block when its operand has no guard
+(later blocks carry only their own guard, so no condition is invented), and operators
 Mermaid lacks (`neg`, `strict`, `seq`, `assert`, `ignore`, `consider`) are written as `opt`
 after a `%% staruml:operator <op>` comment, which the parser reads back.
 

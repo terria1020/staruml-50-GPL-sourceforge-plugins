@@ -57,7 +57,8 @@ class ConvertTests(unittest.TestCase):
                     self.assertEqual(len(ir1.relations), len(ir2.relations))
                 else:
                     self.assertEqual(len(ir1.edges), len(ir2.edges))
-                    self.assertEqual(sorted(ir1.lanes), sorted(ir2.lanes))
+                    self.assertEqual(sorted(ir1.lane_title(k) for k in ir1.lanes),
+                                     sorted(ir2.lane_title(k) for k in ir2.lanes))
 
     def test_into_existing_and_replace(self):
         out = os.path.join(self.tmp, "p.uml")
@@ -118,7 +119,9 @@ class ExportMermaidValidityTests(unittest.TestCase):
         lines = [l.strip() for l in text.splitlines()]
         alt_at = lines.index("alt ok")
         self.assertNotIn("else", lines[:alt_at])            # no `else` inside opt
-        self.assertEqual(lines.count("opt X case"), 2)       # one block per operand, Name as label
+        # one block per operand; the Name labels only the first (it is not the 2nd's condition)
+        self.assertEqual(lines.count("opt X case"), 1)
+        self.assertEqual(lines.index("opt X case") + 3, lines.index("opt"))
         self.assertIn("else", lines[alt_at:])                 # alt keeps its else
 
     def test_unsupported_operator_round_trips_via_directive(self):
@@ -134,6 +137,28 @@ class ExportMermaidValidityTests(unittest.TestCase):
         for name in ("EmptyClass", "EmptyActivity"):
             text = api.to_mermaid(prj, name)
             plugins.detect(text).parse(text)    # our own parser accepts it too
+
+    def test_lanes_with_the_same_name_stay_separate(self):
+        src = """flowchart TD
+            subgraph A["Worker"]
+                a1[one] --> a2[two]
+            end
+            subgraph B["Worker"]
+                b1[three]
+            end
+            a2 --> b1"""
+        out = os.path.join(tempfile.mkdtemp(), "l.uml")
+        api.convert(src, out, names=["L"])
+        prj = Project.load(out)
+        lanes = [o for o in prj.root.walk() if o.type == "UMLPartition"]
+        self.assertEqual([l.name for l in lanes], ["Worker", "Worker"])
+        text = api.to_mermaid(prj, "L")
+        self.assertEqual(text.count('subgraph'), 2)
+        for n in ("[one]", "[two]", "[three]"):
+            self.assertEqual(text.count(n), 1, text)     # every node declared exactly once
+        ir = plugins.detect(text).parse(text)
+        self.assertEqual(len(ir.lanes), 2)
+        self.assertEqual([ir.lane_title(k) for k in ir.lanes], ["Worker", "Worker"])
 
     def test_export_from_memory_matches_export_from_file(self):
         prj = self._project()

@@ -169,8 +169,12 @@ class ActivityDiagram:
     direction: str = "TB"
     nodes: dict = field(default_factory=dict)     # id -> FlowNode
     edges: list = field(default_factory=list)
-    lanes: list = field(default_factory=list)     # ordered lane names
+    lanes: list = field(default_factory=list)     # ordered lane keys (subgraph ids; FlowNode.lane)
+    lane_titles: dict = field(default_factory=dict)   # lane key -> displayed name (default: the key)
     notes: list = field(default_factory=list)     # Note(text, target)
+
+    def lane_title(self, key: str) -> str:
+        return self.lane_titles.get(key, key)
 
     def node(self, nid: str) -> FlowNode:
         if nid not in self.nodes:

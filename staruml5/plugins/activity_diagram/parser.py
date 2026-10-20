@@ -182,10 +182,13 @@ def parse_flowchart(src: str) -> ActivityDiagram:
         if first == "subgraph":
             rest = line[8:].strip()
             m = re.match(r'^([\w\u0080-￿.-]+)\s*\[(.*)\]\s*$', rest)
-            name = _clean(m.group(2)) if m else _clean(rest)
-            lane_stack.append(name)
-            if len(lane_stack) == 1 and name not in d.lanes:
-                d.lanes.append(name)
+            # `subgraph id [title]`: lanes are keyed by id, so several lanes may share a title
+            key, title = (m.group(1), _clean(m.group(2))) if m else (_clean(rest), _clean(rest))
+            lane_stack.append(key)
+            if len(lane_stack) == 1 and key not in d.lanes:
+                d.lanes.append(key)
+                if title != key:
+                    d.lane_titles[key] = title
             continue
         if first == "end" and lane_stack and low == "end":
             lane_stack.pop()

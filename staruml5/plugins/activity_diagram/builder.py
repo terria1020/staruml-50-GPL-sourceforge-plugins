@@ -113,14 +113,15 @@ def build_activity_diagram(owner: Obj, diag: ActivityDiagram, name: str, style: 
     parts = {}
     if lanes:
         bottom = max(pos[k][1] + sizes[k][1] for k in nodes) + 40 if nodes else 300
-        for lname, lx, lw in lane_rects:
+        for lkey, lx, lw in lane_rects:
+            title = diag.lane_title(lkey)
             p = Obj("UMLPartition")
-            p.set("Name", lname)
+            p.set("Name", title)
             p.ref("ActivityGraph", ag)
             ag.add("Partitions", p)
-            parts[lname] = p
+            parts[lkey] = p
             sv = V.node_view("UMLSwimlaneView", p, lx, lane_top, lw, bottom - lane_top, style)
-            sv.child("NameLabel", V.label(lname))
+            sv.child("NameLabel", V.label(title))
             V.add_to_diagram(dv, sv)
 
     # ---- vertices
