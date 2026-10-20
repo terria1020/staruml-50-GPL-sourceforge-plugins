@@ -1,0 +1,21 @@
+sequenceDiagram
+    actor User
+    participant Web as 웹 서버
+    participant Auth as 인증 서비스
+    participant DB
+    User->>Web: login(id, pw)
+    Web->>Auth: authenticate(id, pw)
+    Auth->>DB: selectUser(id)
+    DB-->>Auth: userRow
+    alt 비밀번호 일치
+        Auth-->>Web: token
+        Web-->>User: 로그인 성공
+    else 불일치
+        Auth-->>Web: error
+        Web-->>User: 로그인 실패
+    end
+    loop 매 30초
+        User-)Web: heartbeat
+    end
+    Note right of Web: 세션 유지
+    Web->>Web: 감사 로그 기록

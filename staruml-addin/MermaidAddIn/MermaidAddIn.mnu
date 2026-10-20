@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ADDINMENU addInID="StarUML.MermaidAddIn">
+  <HEADER>
+    <NAME>Mermaid AddIn</NAME>
+    <VERSION>0.1.0</VERSION>
+    <DESCRIPTION>Import Mermaid (classDiagram / sequenceDiagram / flowchart) as StarUML diagrams and export diagrams back to Mermaid.</DESCRIPTION>
+    <COMPANY>staruml-50-GPL-sourceforge-plugins</COMPANY>
+    <COPYRIGHT>GPL-2.0-or-later</COPYRIGHT>
+  </HEADER>
+  <BODY>
+    <MAINMENU>
+      <MAINITEM base="TOOLS" caption="Mermaid" beginGroup="TRUE">
+        <MAINITEM caption="Import Mermaid file..." script="ImportMermaid.vbs"/>
+        <MAINITEM caption="Export selected diagram to Mermaid..." script="ExportMermaid.vbs"/>
+      </MAINITEM>
+    </MAINMENU>
+  </BODY>
+</ADDINMENU>

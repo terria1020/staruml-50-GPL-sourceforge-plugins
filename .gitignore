@@ -1,0 +1,11 @@
+__pycache__/
+*.pyc
+*.egg-info/
+build/
+dist/
+*.bak
+*.tmp
+# never commit private project files by accident
+*.uml
+*.mfj
+!examples/**/*.uml

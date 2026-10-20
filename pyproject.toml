@@ -1,0 +1,22 @@
+[build-system]
+requires = ["setuptools>=61"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "staruml5"
+version = "0.1.0"
+description = "Mermaid <-> StarUML 5.0 (.uml) converter, StarUML COM bridge, MCP server and add-in"
+readme = "README.md"
+license = { text = "GPL-2.0-or-later" }
+requires-python = ">=3.8"
+dependencies = []
+classifiers = ["License :: OSI Approved :: GNU General Public License v2 or later (GPLv2+)"]
+
+[project.scripts]
+staruml5 = "staruml5.cli:main"
+
+[tool.setuptools.packages.find]
+include = ["staruml5*"]
+
+[tool.setuptools.package-data]
+"staruml5.bridge" = ["*.js"]

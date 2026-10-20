@@ -1,0 +1,8 @@
+{
+  "mcpServers": {
+    "staruml5": {
+      "command": "python3",
+      "args": ["-m", "staruml5", "mcp"]
+    }
+  }
+}

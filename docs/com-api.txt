@@ -1,0 +1,2370 @@
+
+## dispatch IStarUMLApplication
+  get Visible(bool* Value) -> HRESULT
+  put Visible(bool ?) -> HRESULT
+  get Handle(long* Value) -> HRESULT
+  get UMLFactory(IUMLFactory** Value) -> HRESULT
+  get ProjectManager(IProjectManager** Value) -> HRESULT
+  get SelectionManager(ISelectionManager** Value) -> HRESULT
+  get ElementSelector(IElementSelector** Value) -> HRESULT
+  get MetaModel(IMetaModel** Value) -> HRESULT
+  get ExtensionManager(IExtensionManager** Value) -> HRESULT
+  get ElementListSelector(IElementListSelector** Value) -> HRESULT
+  get EventPublisher(IEventPublisher** Value) -> HRESULT
+  GetProject(IUMLProject** ReturnValue) -> HRESULT
+  FindByPathname(BSTR Pathname, IElement** ReturnValue) -> HRESULT
+  ClearHistory() -> HRESULT
+  Undo() -> HRESULT
+  Redo() -> HRESULT
+  CanUndo(bool* ReturnValue) -> HRESULT
+  CanRedo(bool* ReturnValue) -> HRESULT
+  Copy() -> HRESULT
+  Cut() -> HRESULT
+  Paste() -> HRESULT
+  DeleteModel(IModel* AModel) -> HRESULT
+  DeleteView(IView* AView) -> HRESULT
+  DeleteSelectedModels() -> HRESULT
+  DeleteSelectedViews() -> HRESULT
+  DeleteSelectedModelsAndViews() -> HRESULT
+  GetOptionValue(BSTR SchemaID, BSTR Key, VARIANT* ReturnValue) -> HRESULT
+  Log(BSTR Text) -> HRESULT
+  BeginUpdate() -> HRESULT
+  EndUpdate() -> HRESULT
+  EndUpdate2(bool CompletelyRebuild, bool UseUpdateLock) -> HRESULT
+  BeginGroupAction() -> HRESULT
+  EndGroupAction() -> HRESULT
+  EnableGeneralEditMenu() -> HRESULT
+  DisableGeneralEditMenu() -> HRESULT
+  OpenDiagram(IDiagram* ADiagram) -> HRESULT
+  CloseDiagram(IDiagram* ADiagram) -> HRESULT
+  CloseActiveDiagram() -> HRESULT
+  CloseAllDiagrams() -> HRESULT
+  GetOpenedDiagramAt(long Index, IDiagram** ReturnValue) -> HRESULT
+  GetOpenedDiagramCount(long* ReturnValue) -> HRESULT
+  SelectInModelExplorer(IModel* AModel) -> HRESULT
+  ClearAllMessages() -> HRESULT
+  ClearMessages(InformationMessageKind Kind) -> HRESULT
+  AddMessageItem(InformationMessageKind Kind, BSTR Text, IElement* ElementLink) -> HRESULT
+  NavigateWeb(BSTR URL) -> HRESULT
+  Exit() -> HRESULT
+
+## coclass StarUMLApplication
+
+## dispatch IUMLFactory
+  CreateModel(IUMLNamespace* AOwner, IUMLModel** ReturnValue) -> HRESULT
+  CreateSubsystem(IUMLNamespace* AOwner, IUMLSubsystem** ReturnValue) -> HRESULT
+  CreatePackage(IUMLNamespace* AOwner, IUMLPackage** ReturnValue) -> HRESULT
+  CreateClass(IUMLNamespace* AOwner, IUMLClass** ReturnValue) -> HRESULT
+  CreateInterface(IUMLNamespace* AOwner, IUMLInterface** ReturnValue) -> HRESULT
+  CreateEnumeration(IUMLNamespace* AOwner, IUMLEnumeration** ReturnValue) -> HRESULT
+  CreateSignal(IUMLNamespace* AOwner, IUMLSignal** ReturnValue) -> HRESULT
+  CreateException(IUMLNamespace* AOwner, IUMLException** ReturnValue) -> HRESULT
+  CreateComponent(IUMLNamespace* AOwner, IUMLComponent** ReturnValue) -> HRESULT
+  CreateComponentInstance(IUMLNamespace* AOwner, IUMLComponentInstance** ReturnValue) -> HRESULT
+  CreateNode(IUMLNamespace* AOwner, IUMLNode** ReturnValue) -> HRESULT
+  CreateNodeInstance(IUMLNamespace* AOwner, IUMLNodeInstance** ReturnValue) -> HRESULT
+  CreateUseCase(IUMLNamespace* AOwner, IUMLUseCase** ReturnValue) -> HRESULT
+  CreateActor(IUMLNamespace* AOwner, IUMLActor** ReturnValue) -> HRESULT
+  CreateActivityGraph(IUMLModelElement* AContext, IUMLActivityGraph** ReturnValue) -> HRESULT
+  CreateStateMachine(IUMLModelElement* AContext, IUMLStateMachine** ReturnValue) -> HRESULT
+  CreateCompositeState(IUMLCompositeState* AOwnerState, IUMLCompositeState** ReturnValue) -> HRESULT
+  CreateCollaboration(IUMLClassifier* AOwner, IUMLCollaboration** ReturnValue) -> HRESULT
+  CreateCollaboration2(IUMLOperation* AOwner, IUMLCollaboration** ReturnValue) -> HRESULT
+  CreateCollaborationInstanceSet(IUMLClassifier* AOwner, IUMLCollaborationInstanceSet** ReturnValue) -> HRESULT
+  CreateCollaborationInstanceSet2(IUMLOperation* AOwner, IUMLCollaborationInstanceSet** ReturnValue) -> HRESULT
+  CreateInteraction(IUMLCollaboration* ACollaboration, IUMLInteraction** ReturnValue) -> HRESULT
+  CreateInteractionInstanceSet(IUMLCollaborationInstanceSet* ACollaborationInstanceSet, IUMLInteractionInstanceSet** ReturnValue) -> HRESULT
+  CreateActionState(IUMLCompositeState* AOwnerState, IUMLActionState** ReturnValue) -> HRESULT
+  CreateSubactivityState(IUMLCompositeState* AOwnerState, IUMLSubactivityState** ReturnValue) -> HRESULT
+  CreatePseudostate(IUMLCompositeState* AOwnerState, IUMLPseudostate** ReturnValue) -> HRESULT
+  CreateFinalState(IUMLCompositeState* AOwnerState, IUMLFinalState** ReturnValue) -> HRESULT
+  CreatePartition(IUMLActivityGraph* AActivityGraph, IUMLPartition** ReturnValue) -> HRESULT
+  CreateSubmachineState(IUMLCompositeState* AOwnerState, IUMLSubmachineState** ReturnValue) -> HRESULT
+  CreateAttribute(IUMLClassifier* AClassifier, IUMLAttribute** ReturnValue) -> HRESULT
+  CreateQualifier(IUMLAssociationEnd* AAssociationEnd, IUMLAttribute** ReturnValue) -> HRESULT
+  CreateOperation(IUMLClassifier* AClassifier, IUMLOperation** ReturnValue) -> HRESULT
+  CreateParameter(IUMLBehavioralFeature* ABehavioralFeature, IUMLParameter** ReturnValue) -> HRESULT
+  CreateTemplateParameter(IUMLClass* AClass, IUMLTemplateParameter** ReturnValue) -> HRESULT
+  CreateTemplateParameter2(IUMLCollaboration* ACollaboration, IUMLTemplateParameter** ReturnValue) -> HRESULT
+  CreateEnumerationLiteral(IUMLEnumeration* AEnumeration, IUMLEnumerationLiteral** ReturnValue) -> HRESULT
+  CreateEntryAction(IUMLState* AState, IUMLUninterpretedAction** ReturnValue) -> HRESULT
+  CreateDoAction(IUMLState* AState, IUMLUninterpretedAction** ReturnValue) -> HRESULT
+  CreateExitAction(IUMLState* AState, IUMLUninterpretedAction** ReturnValue) -> HRESULT
+  CreateEffect(IUMLTransition* ATransition, IUMLUninterpretedAction** ReturnValue) -> HRESULT
+  CreateSignalEvent(IUMLTransition* ATransition, IUMLSignalEvent** ReturnValue) -> HRESULT
+  CreateCallEvent(IUMLTransition* ATransition, IUMLCallEvent** ReturnValue) -> HRESULT
+  CreateTimeEvent(IUMLTransition* ATransition, IUMLTimeEvent** ReturnValue) -> HRESULT
+  CreateChangeEvent(IUMLTransition* ATransition, IUMLChangeEvent** ReturnValue) -> HRESULT
+  CreateClassifierRole(IUMLCollaboration* ACollaboration, IUMLClassifierRole** ReturnValue) -> HRESULT
+  CreateObject(IUMLCollaborationInstanceSet* ACollaborationInstanceSet, IUMLObject** ReturnValue) -> HRESULT
+  CreateObject2(IUMLNamespace* AOwner, IUMLObject** ReturnValue) -> HRESULT
+  CreateTransition(IUMLStateMachine* AStateMachine, IUMLStateVertex* Source, IUMLStateVertex* Target, IUMLTransition** ReturnValue) -> HRESULT
+  CreateDependency(IUMLNamespace* AOwner, IUMLModelElement* Client, IUMLModelElement* Supplier, IUMLDependency** ReturnValue) -> HRESULT
+  CreateAssociation(IUMLNamespace* AOwner, IUMLClassifier* End1, IUMLClassifier* End2, IUMLAssociation** ReturnValue) -> HRESULT
+  CreateAssociationClass(IUMLNamespace* AOwner, IUMLAssociation* AAssociation, IUMLClass* AClass, IUMLAssociationClass** ReturnValue) -> HRESULT
+  CreateGeneralization(IUMLNamespace* AOwner, IUMLGeneralizableElement* Parent, IUMLGeneralizableElement* Child, IUMLGeneralization** ReturnValue) -> HRESULT
+  CreateLink(IUMLCollaborationInstanceSet* ACollaborationInstanceSet, IUMLInstance* End1, IUMLInstance* End2, IUMLLink** ReturnValue) -> HRESULT
+  CreateLink2(IUMLNamespace* ANamespace, IUMLInstance* End1, IUMLInstance* End2, IUMLLink** ReturnValue) -> HRESULT
+  CreateAssociationRole(IUMLCollaboration* ACollaboration, IUMLClassifierRole* End1, IUMLClassifierRole* End2, IUMLAssociationRole** ReturnValue) -> HRESULT
+  CreateStimulus(IUMLInteractionInstanceSet* AInteractionInstanceSet, IUMLInstance* Sender, IUMLInstance* Receiver, UMLFactoryMessageKind Kind, IUMLStimulus** ReturnValue) -> HRESULT
+  CreateStimulus2(IUMLInteractionInstanceSet* AInteractionInstanceSet, IUMLInstance* Sender, IUMLInstance* Receiver, IUMLLink* CommunicationLink, UMLFactoryMessageKind Kind, IUMLStimulus** ReturnValue) -> HRESULT
+  CreateMessage(IUMLInteraction* AInteraction, IUMLClassifierRole* Sender, IUMLClassifierRole* Receiver, UMLFactoryMessageKind Kind, IUMLMessage** ReturnValue) -> HRESULT
+  CreateMessage2(IUMLInteraction* AInteraction, IUMLClassifierRole* Sender, IUMLClassifierRole* Receiver, IUMLAssociationRole* CommunicationConnection, UMLFactoryMessageKind Kind, IUMLMessage** ReturnValue) -> HRESULT
+  CreateInclude(IUMLNamespace* AOwner, IUMLUseCase* Includer, IUMLUseCase* Includee, IUMLInclude** ReturnValue) -> HRESULT
+  CreateExtend(IUMLNamespace* AOwner, IUMLUseCase* Extender, IUMLUseCase* Extendee, IUMLExtend** ReturnValue) -> HRESULT
+  CreateRealization(IUMLNamespace* AOwner, IUMLModelElement* Client, IUMLModelElement* Supplier, IUMLRealization** ReturnValue) -> HRESULT
+  CreateClassDiagram(IModel* AOwner, IUMLClassDiagram** ReturnValue) -> HRESULT
+  CreateUseCaseDiagram(IModel* AOwner, IUMLUseCaseDiagram** ReturnValue) -> HRESULT
+  CreateSequenceDiagram(IUMLInteractionInstanceSet* AOwner, IUMLSequenceDiagram** ReturnValue) -> HRESULT
+  CreateSequenceRoleDiagram(IUMLInteraction* AOwner, IUMLSequenceRoleDiagram** ReturnValue) -> HRESULT
+  CreateCollaborationDiagram(IUMLInteractionInstanceSet* AOwner, IUMLCollaborationDiagram** ReturnValue) -> HRESULT
+  CreateCollaborationRoleDiagram(IUMLInteraction* AOwner, IUMLCollaborationRoleDiagram** ReturnValue) -> HRESULT
+  CreateStatechartDiagram(IUMLStateMachine* AOwner, IUMLStatechartDiagram** ReturnValue) -> HRESULT
+  CreateActivityDiagram(IUMLActivityGraph* AOwner, IUMLActivityDiagram** ReturnValue) -> HRESULT
+  CreateComponentDiagram(IModel* AOwner, IUMLComponentDiagram** ReturnValue) -> HRESULT
+  CreateDeploymentDiagram(IModel* AOwner, IUMLDeploymentDiagram** ReturnValue) -> HRESULT
+  CreateNoteView(IDiagramView* ADiagramView, IUMLNoteView** ReturnValue) -> HRESULT
+  CreateNoteLinkView(IDiagramView* ADiagramView, IUMLNoteView* ANote, IView* LinkTo, IUMLNoteLinkView** ReturnValue) -> HRESULT
+  CreateTextView(IDiagramView* ADiagramView, IUMLTextView** ReturnValue) -> HRESULT
+  CreateModelView(IDiagramView* ADiagramView, IUMLModel* AModel, IUMLModelView** ReturnValue) -> HRESULT
+  CreateSubsystemView(IDiagramView* ADiagramView, IUMLSubsystem* AModel, IUMLSubsystemView** ReturnValue) -> HRESULT
+  CreatePackageView(IDiagramView* ADiagramView, IUMLPackage* AModel, IUMLPackageView** ReturnValue) -> HRESULT
+  CreateClassView(IDiagramView* ADiagramView, IUMLClass* AModel, IUMLClassView** ReturnValue) -> HRESULT
+  CreateInterfaceView(IDiagramView* ADiagramView, IUMLInterface* AModel, IUMLInterfaceView** ReturnValue) -> HRESULT
+  CreateEnumerationView(IDiagramView* ADiagramView, IUMLEnumeration* AModel, IUMLEnumerationView** ReturnValue) -> HRESULT
+  CreateSignalView(IDiagramView* ADiagramView, IUMLSignal* AModel, IUMLSignalView** ReturnValue) -> HRESULT
+  CreateExceptionView(IDiagramView* ADiagramView, IUMLException* AModel, IUMLExceptionView** ReturnValue) -> HRESULT
+  CreateComponentView(IDiagramView* ADiagramView, IUMLComponent* AModel, IUMLComponentView** ReturnValue) -> HRESULT
+  CreateComponentInstanceView(IDiagramView* ADiagramView, IUMLComponentInstance* AModel, IUMLComponentInstanceView** ReturnValue) -> HRESULT
+  CreateNodeView(IDiagramView* ADiagramView, IUMLNode* AModel, IUMLNodeView** ReturnValue) -> HRESULT
+  CreateNodeInstanceView(IDiagramView* ADiagramView, IUMLNodeInstance* AModel, IUMLNodeInstanceView** ReturnValue) -> HRESULT
+  CreateActorView(IDiagramView* ADiagramView, IUMLActor* AModel, IUMLActorView** ReturnValue) -> HRESULT
+  CreateUseCaseView(IDiagramView* ADiagramView, IUMLUseCase* AModel, IUMLUseCaseView** ReturnValue) -> HRESULT
+  CreateCollaborationView(IDiagramView* ADiagramView, IUMLCollaboration* AModel, IUMLCollaborationView** ReturnValue) -> HRESULT
+  CreateCollaborationInstanceSetView(IDiagramView* ADiagramView, IUMLCollaborationInstanceSet* AModel, IUMLCollaborationInstanceSetView** ReturnValue) -> HRESULT
+  CreateGeneralizationView(IDiagramView* ADiagramView, IUMLGeneralization* AModel, IView* Parent, IView* Child, IUMLGeneralizationView** ReturnValue) -> HRESULT
+  CreateAssociationView(IDiagramView* ADiagramView, IUMLAssociation* AModel, IView* End1, IView* End2, IUMLAssociationView** ReturnValue) -> HRESULT
+  CreateAssociationClassView(IDiagramView* ADiagramView, IUMLAssociationClass* AModel, IView* AssociationView, IView* ClassView, IUMLAssociationClassView** ReturnValue) -> HRESULT
+  CreateDependencyView(IDiagramView* ADiagramView, IUMLDependency* AModel, IView* Client, IView* Supplier, IUMLDependencyView** ReturnValue) -> HRESULT
+  CreateRealizationView(IDiagramView* ADiagramView, IUMLRealization* AModel, IView* Client, IView* Supplier, IUMLRealizationView** ReturnValue) -> HRESULT
+  CreateIncludeView(IDiagramView* ADiagramView, IUMLInclude* AModel, IView* Base, IView* Addition, IUMLIncludeView** ReturnValue) -> HRESULT
+  CreateExtendView(IDiagramView* ADiagramView, IUMLExtend* AModel, IView* Base, IView* Extension, IUMLExtendView** ReturnValue) -> HRESULT
+  CreateObjectView(IDiagramView* ADiagramView, IUMLObject* AModel, IUMLColObjectView** ReturnValue) -> HRESULT
+  CreateSeqObjectView(IUMLSequenceDiagramView* ADiagramView, IUMLObject* AModel, IUMLSeqObjectView** ReturnValue) -> HRESULT
+  CreateClassifierRoleView(IDiagramView* ADiagramView, IUMLClassifierRole* AModel, IUMLColClassifierRoleView** ReturnValue) -> HRESULT
+  CreateSeqClassifierRoleView(IUMLSequenceRoleDiagramView* ADiagramView, IUMLClassifierRole* AModel, IUMLSeqClassifierRoleView** ReturnValue) -> HRESULT
+  CreateLinkView(IDiagramView* ADiagramView, IUMLLink* AModel, IView* End1, IView* End2, IUMLLinkView** ReturnValue) -> HRESULT
+  CreateAssociationRoleView(IDiagramView* ADiagramView, IUMLAssociationRole* AModel, IView* End1, IView* End2, IUMLAssociationRoleView** ReturnValue) -> HRESULT
+  CreateStimulusView(IUMLCollaborationDiagramView* ADiagramView, IUMLStimulus* AModel, IView* LinkView, IUMLColStimulusView** ReturnValue) -> HRESULT
+  CreateSeqStimulusView(IUMLSequenceDiagramView* ADiagramView, IUMLStimulus* AModel, IView* Sender, IView* Receiver, IUMLSeqStimulusView** ReturnValue) -> HRESULT
+  CreateMessageView(IUMLCollaborationRoleDiagramView* ADiagramView, IUMLMessage* AModel, IView* AssociationRoleView, IUMLColMessageView** ReturnValue) -> HRESULT
+  CreateSeqMessageView(IUMLSequenceRoleDiagramView* ADiagramView, IUMLMessage* AModel, IView* Sender, IView* Receiver, IUMLSeqMessageView** ReturnValue) -> HRESULT
+  CreateStateView(IUMLStatechartDiagramView* ADiagramView, IUMLCompositeState* AModel, IUMLStateView** ReturnValue) -> HRESULT
+  CreateSubmachineStateView(IUMLStatechartDiagramView* ADiagramView, IUMLSubmachineState* AModel, IUMLSubmachineStateView** ReturnValue) -> HRESULT
+  CreatePseudostateView(IDiagramView* ADiagramView, IUMLPseudostate* AModel, IUMLPseudostateView** ReturnValue) -> HRESULT
+  CreateFinalStateView(IDiagramView* ADiagramView, IUMLFinalState* AModel, IUMLFinalStateView** ReturnValue) -> HRESULT
+  CreateActionStateView(IUMLActivityDiagramView* ADiagramView, IUMLActionState* AModel, IUMLActionStateView** ReturnValue) -> HRESULT
+  CreateSubactivityStateView(IUMLActivityDiagramView* ADiagramView, IUMLSubactivityState* AModel, IUMLSubactivityStateView** ReturnValue) -> HRESULT
+  CreateSwimlaneView(IUMLActivityDiagramView* ADiagramView, IUMLPartition* AModel, IUMLSwimlaneView** ReturnValue) -> HRESULT
+  CreateTransitionView(IDiagramView* ADiagramView, IUMLTransition* AModel, IView* Source, IView* Target, IUMLTransitionView** ReturnValue) -> HRESULT
+
+## dispatch IElement
+  get Tag(BSTR* Value) -> HRESULT
+  put Tag(BSTR ?) -> HRESULT
+  GetGuid(BSTR* ReturnValue) -> HRESULT
+  GetMetaClass(IMetaClass** ReturnValue) -> HRESULT
+  GetContainingDocument(IDocument** ReturnValue) -> HRESULT
+  IsDocumentElement(bool* ReturnValue) -> HRESULT
+  IsReadOnly(bool* ReturnValue) -> HRESULT
+  GetClassName(BSTR* ReturnValue) -> HRESULT
+  IsKindOf(BSTR ClassName, bool* ReturnValue) -> HRESULT
+  MOF_GetAttribute(BSTR Name, BSTR* ReturnValue) -> HRESULT
+  MOF_GetReference(BSTR Name, IElement** ReturnValue) -> HRESULT
+  MOF_GetCollectionItem(BSTR Name, long Index, IElement** ReturnValue) -> HRESULT
+  MOF_GetCollectionCount(BSTR Name, long* ReturnValue) -> HRESULT
+
+## dispatch IModel
+  get Name(BSTR* Value) -> HRESULT
+  put Name(BSTR ?) -> HRESULT
+  get Documentation(BSTR* Value) -> HRESULT
+  put Documentation(BSTR ?) -> HRESULT
+  get Attachments(BSTR* Value) -> HRESULT
+  get Pathname(BSTR* Value) -> HRESULT
+  GetViewCount(long* Value) -> HRESULT
+  GetViewAt(long Index, IView** Value) -> HRESULT
+  GetOwnedDiagramCount(long* Value) -> HRESULT
+  GetOwnedDiagramAt(long Index, IDiagram** Value) -> HRESULT
+  FindByName(BSTR AName, IModel** ReturnValue) -> HRESULT
+  FindByRelativePathname(BSTR RelPath, IModel** ReturnValue) -> HRESULT
+  ContainsName(BSTR AName, bool* ReturnValue) -> HRESULT
+  CanContain(IModel* AModel, bool* ReturnValue) -> HRESULT
+  CanContainKind(BSTR Kind, bool* ReturnValue) -> HRESULT
+  CanContainDiagram(IDiagram* ADiagram, bool* ReturnValue) -> HRESULT
+  CanContainDiagramKind(BSTR Kind, bool* ReturnValue) -> HRESULT
+  CanRelocateTo(IModel* AModel, bool* ReturnValue) -> HRESULT
+  CanDelete(bool* ReturnValue) -> HRESULT
+  RelocateTo(IModel* AOwner) -> HRESULT
+  ClearAttachments() -> HRESULT
+  AddAttachment(BSTR Attach) -> HRESULT
+  InsertAttachment(long Index, BSTR Attach) -> HRESULT
+  DeleteAttachment(long Index) -> HRESULT
+  GetAttachmentAt(long Index, BSTR* ReturnValue) -> HRESULT
+  GetAttachmentCount(long* ReturnValue) -> HRESULT
+
+## dispatch IExtensibleModel
+  get StereotypeProfile(BSTR* Value) -> HRESULT
+  get StereotypeName(BSTR* Value) -> HRESULT
+  GetConstraintCount(long* Value) -> HRESULT
+  GetConstraintAt(long Index, IConstraint** Value) -> HRESULT
+  GetTaggedValueCount(long* Value) -> HRESULT
+  GetTaggedValueAt(long Index, ITaggedValue** Value) -> HRESULT
+  GetReferencingTagCount(long* Value) -> HRESULT
+  GetReferencingTagAt(long Index, ITaggedValue** Value) -> HRESULT
+  GetStereotype(IStereotype** ReturnValue) -> HRESULT
+  SetStereotype(BSTR Name) -> HRESULT
+  SetStereotype2(BSTR Profile, BSTR Name) -> HRESULT
+  AddConstraint(BSTR Name, BSTR Body, IConstraint** ReturnValue) -> HRESULT
+  DeleteConstraint(long Index) -> HRESULT
+  IndexOfConstraint(IConstraint* AConstraint, long* ReturnValue) -> HRESULT
+  MoveConstraint(IConstraint* AConstraint, long NewIndex) -> HRESULT
+  GetTaggedValueAsInteger(BSTR Profile, BSTR TagDefinitionSet, BSTR Name, long* ReturnValue) -> HRESULT
+  SetTaggedValueAsInteger(BSTR Profile, BSTR TagDefinitionSet, BSTR Name, long Value) -> HRESULT
+  GetTaggedValueAsBoolean(BSTR Profile, BSTR TagDefinitionSet, BSTR Name, bool* ReturnValue) -> HRESULT
+  SetTaggedValueAsBoolean(BSTR Profile, BSTR TagDefinitionSet, BSTR Name, bool Value) -> HRESULT
+  GetTaggedValueAsReal(BSTR Profile, BSTR TagDefinitionSet, BSTR Name, double* ReturnValue) -> HRESULT
+  SetTaggedValueAsReal(BSTR Profile, BSTR TagDefinitionSet, BSTR Name, double Value) -> HRESULT
+  GetTaggedValueAsString(BSTR Profile, BSTR TagDefinitionSet, BSTR Name, BSTR* ReturnValue) -> HRESULT
+  SetTaggedValueAsString(BSTR Profile, BSTR TagDefinitionSet, BSTR Name, BSTR Value) -> HRESULT
+  GetTaggedValueAsEnum(BSTR Profile, BSTR TagDefinitionSet, BSTR Name, BSTR* ReturnValue) -> HRESULT
+  SetTaggedValueAsEnum(BSTR Profile, BSTR TagDefinitionSet, BSTR Name, BSTR Value) -> HRESULT
+  GetTaggedValueAsReference(BSTR Profile, BSTR TagDefinitionSet, BSTR Name, IExtensibleModel** ReturnValue) -> HRESULT
+  GetTaggedValueAsReferenceAt(BSTR Profile, BSTR TagDefinitionSet, BSTR Name, long Index, IExtensibleModel** ReturnValue) -> HRESULT
+  GetTaggedValueAsReferenceCount(BSTR Profile, BSTR TagDefinitionSet, BSTR Name, long* ReturnValue) -> HRESULT
+  SetTaggedValueAsReference(BSTR Profile, BSTR TagDefinitionSet, BSTR Name, IExtensibleModel* Value) -> HRESULT
+  AddReferenceToTaggedValue(BSTR Profile, BSTR TagDefinitionSet, BSTR Name, IExtensibleModel* Value) -> HRESULT
+  RemoveReferenceFromTaggedValue(BSTR Profile, BSTR TagDefinitionSet, BSTR Name, IExtensibleModel* Value) -> HRESULT
+  InsertReferenceToTaggedValue(BSTR Profile, BSTR TagDefinitionSet, BSTR Name, long Index, IExtensibleModel* Value) -> HRESULT
+  DeleteReferenceFromTaggedValue(BSTR Profile, BSTR TagDefinitionSet, BSTR Name, long Index) -> HRESULT
+  IndexOfReferenceFromTaggedValue(BSTR Profile, BSTR TagDefinitionSet, BSTR Name, IExtensibleModel* Value, long* ReturnValue) -> HRESULT
+  SetTaggedValueAsDefault(BSTR Profile, BSTR TagDefinitionSet, BSTR Name) -> HRESULT
+  GetTaggedValue(BSTR Profile, BSTR TagDefinitionSet, BSTR Name, VARIANT* ReturnValue) -> HRESULT
+
+## dispatch IUMLElement
+
+## dispatch IUMLModelElement
+  get Visibility(UMLVisibilityKind* Value) -> HRESULT
+  put Visibility(UMLVisibilityKind ?) -> HRESULT
+  get IsSpecification(bool* Value) -> HRESULT
+  put IsSpecification(bool ?) -> HRESULT
+  AddElementImport(IUMLElementImport* Value) -> HRESULT
+  RemoveElementImport(IUMLElementImport* Value) -> HRESULT
+  InsertElementImport(long Index, IUMLElementImport* Value) -> HRESULT
+  DeleteElementImport(long Index) -> HRESULT
+  IndexOfElementImport(IUMLElementImport* Value, long* Index) -> HRESULT
+  GetElementImportCount(long* Value) -> HRESULT
+  GetElementImportAt(long Index, IUMLElementImport** Value) -> HRESULT
+  get Namespace(IUMLNamespace** Value) -> HRESULT
+  AddClientDependency(IUMLDependency* Value) -> HRESULT
+  RemoveClientDependency(IUMLDependency* Value) -> HRESULT
+  InsertClientDependency(long Index, IUMLDependency* Value) -> HRESULT
+  DeleteClientDependency(long Index) -> HRESULT
+  IndexOfClientDependency(IUMLDependency* Value, long* Index) -> HRESULT
+  GetClientDependencyCount(long* Value) -> HRESULT
+  GetClientDependencyAt(long Index, IUMLDependency** Value) -> HRESULT
+  AddSupplierDependency(IUMLDependency* Value) -> HRESULT
+  RemoveSupplierDependency(IUMLDependency* Value) -> HRESULT
+  InsertSupplierDependency(long Index, IUMLDependency* Value) -> HRESULT
+  DeleteSupplierDependency(long Index) -> HRESULT
+  IndexOfSupplierDependency(IUMLDependency* Value, long* Index) -> HRESULT
+  GetSupplierDependencyCount(long* Value) -> HRESULT
+  GetSupplierDependencyAt(long Index, IUMLDependency** Value) -> HRESULT
+  AddDefaultParameter(IUMLTemplateParameter* Value) -> HRESULT
+  RemoveDefaultParameter(IUMLTemplateParameter* Value) -> HRESULT
+  InsertDefaultParameter(long Index, IUMLTemplateParameter* Value) -> HRESULT
+  DeleteDefaultParameter(long Index) -> HRESULT
+  IndexOfDefaultParameter(IUMLTemplateParameter* Value, long* Index) -> HRESULT
+  GetDefaultParameterCount(long* Value) -> HRESULT
+  GetDefaultParameterAt(long Index, IUMLTemplateParameter** Value) -> HRESULT
+  AddComment(IUMLComment* Value) -> HRESULT
+  RemoveComment(IUMLComment* Value) -> HRESULT
+  InsertComment(long Index, IUMLComment* Value) -> HRESULT
+  DeleteComment(long Index) -> HRESULT
+  IndexOfComment(IUMLComment* Value, long* Index) -> HRESULT
+  GetCommentCount(long* Value) -> HRESULT
+  GetCommentAt(long Index, IUMLComment** Value) -> HRESULT
+  get Container(IUMLComponent** Value) -> HRESULT
+  put Container(IUMLComponent* ?) -> HRESULT
+  GetTemplateParameterCount(long* Value) -> HRESULT
+  GetTemplateParameterAt(long Index, IUMLTemplateParameter** Value) -> HRESULT
+  get ParameterOwner(IUMLTemplateParameter** Value) -> HRESULT
+  AddTemplateArgument(IUMLTemplateArgument* Value) -> HRESULT
+  RemoveTemplateArgument(IUMLTemplateArgument* Value) -> HRESULT
+  InsertTemplateArgument(long Index, IUMLTemplateArgument* Value) -> HRESULT
+  DeleteTemplateArgument(long Index) -> HRESULT
+  IndexOfTemplateArgument(IUMLTemplateArgument* Value, long* Index) -> HRESULT
+  GetTemplateArgumentCount(long* Value) -> HRESULT
+  GetTemplateArgumentAt(long Index, IUMLTemplateArgument** Value) -> HRESULT
+  GetBehaviorCount(long* Value) -> HRESULT
+  GetBehaviorAt(long Index, IUMLStateMachine** Value) -> HRESULT
+  AddContentRole(IUMLClassifierRole* Value) -> HRESULT
+  RemoveContentRole(IUMLClassifierRole* Value) -> HRESULT
+  InsertContentRole(long Index, IUMLClassifierRole* Value) -> HRESULT
+  DeleteContentRole(long Index) -> HRESULT
+  IndexOfContentRole(IUMLClassifierRole* Value, long* Index) -> HRESULT
+  GetContentRoleCount(long* Value) -> HRESULT
+  GetContentRoleAt(long Index, IUMLClassifierRole** Value) -> HRESULT
+  AddOwnerPartition(IUMLPartition* Value) -> HRESULT
+  RemoveOwnerPartition(IUMLPartition* Value) -> HRESULT
+  InsertOwnerPartition(long Index, IUMLPartition* Value) -> HRESULT
+  DeleteOwnerPartition(long Index) -> HRESULT
+  IndexOfOwnerPartition(IUMLPartition* Value, long* Index) -> HRESULT
+  GetOwnerPartitionCount(long* Value) -> HRESULT
+  GetOwnerPartitionAt(long Index, IUMLPartition** Value) -> HRESULT
+
+## dispatch IUMLGeneralizableElement
+  get IsRoot(bool* Value) -> HRESULT
+  put IsRoot(bool ?) -> HRESULT
+  get IsLeaf(bool* Value) -> HRESULT
+  put IsLeaf(bool ?) -> HRESULT
+  get IsAbstract(bool* Value) -> HRESULT
+  put IsAbstract(bool ?) -> HRESULT
+  AddGeneralization(IUMLGeneralization* Value) -> HRESULT
+  RemoveGeneralization(IUMLGeneralization* Value) -> HRESULT
+  InsertGeneralization(long Index, IUMLGeneralization* Value) -> HRESULT
+  DeleteGeneralization(long Index) -> HRESULT
+  IndexOfGeneralization(IUMLGeneralization* Value, long* Index) -> HRESULT
+  GetGeneralizationCount(long* Value) -> HRESULT
+  GetGeneralizationAt(long Index, IUMLGeneralization** Value) -> HRESULT
+  AddSpecialization(IUMLGeneralization* Value) -> HRESULT
+  RemoveSpecialization(IUMLGeneralization* Value) -> HRESULT
+  InsertSpecialization(long Index, IUMLGeneralization* Value) -> HRESULT
+  DeleteSpecialization(long Index) -> HRESULT
+  IndexOfSpecialization(IUMLGeneralization* Value, long* Index) -> HRESULT
+  GetSpecializationCount(long* Value) -> HRESULT
+  GetSpecializationAt(long Index, IUMLGeneralization** Value) -> HRESULT
+
+## dispatch IUMLNamespace
+  GetOwnedElementCount(long* Value) -> HRESULT
+  GetOwnedElementAt(long Index, IUMLModelElement** Value) -> HRESULT
+
+## dispatch IMetaElement
+  get Name(BSTR* Value) -> HRESULT
+  GetGuid(BSTR* ReturnValue) -> HRESULT
+
+## dispatch IMetaClassifier
+
+## dispatch IMetaClass
+  get IsAbstract(bool* Value) -> HRESULT
+  GetMetaAttributeCount(long* Value) -> HRESULT
+  GetMetaAttributeAt(long Index, IMetaAttribute** Value) -> HRESULT
+  GetMetaReferenceCount(long* Value) -> HRESULT
+  GetMetaReferenceAt(long Index, IMetaReference** Value) -> HRESULT
+  GetMetaCollectionCount(long* Value) -> HRESULT
+  GetMetaCollectionAt(long Index, IMetaCollection** Value) -> HRESULT
+  GetSubclassCount(long* Value) -> HRESULT
+  GetSubclassAt(long Index, IMetaClass** Value) -> HRESULT
+  get Superclass(IMetaClass** Value) -> HRESULT
+  FindInstanceByGuid(BSTR Guid, IElement** ReturnValue) -> HRESULT
+  FindInstanceByGuidRecurse(BSTR Guid, IElement** ReturnValue) -> HRESULT
+  IsKindOf(BSTR ClassName, bool* ReturnValue) -> HRESULT
+  ExistsAttribute(BSTR Name, bool* ReturnValue) -> HRESULT
+  ExistsReference(BSTR Name, bool* ReturnValue) -> HRESULT
+  ExistsCollection(BSTR Name, bool* ReturnValue) -> HRESULT
+  GetAttributeByName(BSTR Name, IMetaAttribute** ReturnValue) -> HRESULT
+  GetReferenceByName(BSTR Name, IMetaReference** ReturnValue) -> HRESULT
+  GetCollectionByName(BSTR Name, IMetaCollection** ReturnValue) -> HRESULT
+  GetContainerRelation(BSTR Container, IMetaReference** ReturnValue) -> HRESULT
+  GetInstanceAt(long Index, IElement** ReturnValue) -> HRESULT
+  GetInstanceCount(long* ReturnValue) -> HRESULT
+  GetInclusiveInstanceAt(long Index, IElement** ReturnValue) -> HRESULT
+  GetInclusiveInstanceCount(long* ReturnValue) -> HRESULT
+
+## dispatch IMetaSlot
+  get IsReadOnly(bool* Value) -> HRESULT
+  get IsDerived(bool* Value) -> HRESULT
+  get TypeRef(IMetaClassifier** Value) -> HRESULT
+
+## dispatch IMetaAttribute
+  get DefaultValue(BSTR* Value) -> HRESULT
+
+## dispatch IMetaAssociationEnd
+  get Kind(MetaAssociationEndKind* Value) -> HRESULT
+  get Aggregate(MetaAggregateKind* Value) -> HRESULT
+  get OtherSide(BSTR* Value) -> HRESULT
+  get OtherSideKind(MetaAssociationEndKind* Value) -> HRESULT
+  GetOtherSideEnd(IMetaAssociationEnd** ReturnValue) -> HRESULT
+
+## dispatch IMetaReference
+
+## enum tagMetaAssociationEndKind
+  maeReference = -1946157056
+  maeCollection = -1946157055
+
+## alias MetaAssociationEndKind
+
+## enum tagMetaAggregateKind
+  makNone = -1946157056
+  makAggregate = -1946157055
+  makComposite = -1946157054
+
+## alias MetaAggregateKind
+
+## dispatch IMetaCollection
+
+## dispatch IDocument
+  get FileName(BSTR* Value) -> HRESULT
+  get Version(BSTR* Value) -> HRESULT
+  get Modified(bool* Value) -> HRESULT
+  get ReadOnly(bool* Value) -> HRESULT
+  GetDocumentSymbol(BSTR* ReturnValue) -> HRESULT
+  GetDocumentElement(IElement** ReturnValue) -> HRESULT
+  Save() -> HRESULT
+  SaveAs(BSTR FileName) -> HRESULT
+
+## dispatch IView
+  get LineColor(BSTR* Value) -> HRESULT
+  put LineColor(BSTR ?) -> HRESULT
+  get FillColor(BSTR* Value) -> HRESULT
+  put FillColor(BSTR ?) -> HRESULT
+  get FontFace(BSTR* Value) -> HRESULT
+  put FontFace(BSTR ?) -> HRESULT
+  get FontColor(BSTR* Value) -> HRESULT
+  put FontColor(BSTR ?) -> HRESULT
+  get FontSize(long* Value) -> HRESULT
+  put FontSize(long ?) -> HRESULT
+  get FontStyle(long* Value) -> HRESULT
+  put FontStyle(long ?) -> HRESULT
+  get Visible(bool* Value) -> HRESULT
+  get Enabled(bool* Value) -> HRESULT
+  get Selected(bool* Value) -> HRESULT
+  get Model(IModel** Value) -> HRESULT
+  get ContainerView(IView** Value) -> HRESULT
+  GetContainedViewCount(long* Value) -> HRESULT
+  GetContainedViewAt(long Index, IView** Value) -> HRESULT
+  get OwnerDiagramView(IDiagramView** Value) -> HRESULT
+  BringToFront() -> HRESULT
+  SendToBack() -> HRESULT
+  Update() -> HRESULT
+  GetDiagramView(IDiagramView** ReturnValue) -> HRESULT
+  CanContainView(IView* AView, bool* ReturnValue) -> HRESULT
+  CanContainViewKind(BSTR Kind, bool* ReturnValue) -> HRESULT
+  Move(long DX, long DY) -> HRESULT
+  MoveInto(IView* AContainerView) -> HRESULT
+
+## dispatch IDiagramView
+  GetSelectedViewCount(long* Value) -> HRESULT
+  GetSelectedViewAt(long Index, IView** Value) -> HRESULT
+  get Diagram(IDiagram** Value) -> HRESULT
+  GetOwnedViewCount(long* Value) -> HRESULT
+  GetOwnedViewAt(long Index, IView** Value) -> HRESULT
+  CanOwnView(IView* AView, bool* ReturnValue) -> HRESULT
+  CanOwnViewKind(BSTR Kind, bool* ReturnValue) -> HRESULT
+  CanCopyViews(bool* ReturnValue) -> HRESULT
+  CanDeleteViews(bool* ReturnValue) -> HRESULT
+  CreateViewOf(IModel* AModel, long X, long Y, IView** ReturnValue) -> HRESULT
+  LayoutDiagram() -> HRESULT
+  CopyDiagram() -> HRESULT
+  ExportDiagramAsBitmap(BSTR FileName) -> HRESULT
+  ExportDiagramAsMetafile(BSTR FileName) -> HRESULT
+  ExportDiagramAsJPEG(BSTR FileName) -> HRESULT
+
+## dispatch IDiagram
+  get DefaultDiagram(bool* Value) -> HRESULT
+  put DefaultDiagram(bool ?) -> HRESULT
+  get DiagramOwner(IModel** Value) -> HRESULT
+  get DiagramView(IDiagramView** Value) -> HRESULT
+
+## dispatch IConstraint
+  get Name(BSTR* Value) -> HRESULT
+  put Name(BSTR ?) -> HRESULT
+  get Body(BSTR* Value) -> HRESULT
+  put Body(BSTR ?) -> HRESULT
+  get ConstrainedModel(IExtensibleModel** Value) -> HRESULT
+
+## dispatch ITaggedValue
+  get ProfileName(BSTR* Value) -> HRESULT
+  get TagDefinitionSetName(BSTR* Value) -> HRESULT
+  get Name(BSTR* Value) -> HRESULT
+  get DataValue(BSTR* Value) -> HRESULT
+  get TaggedModel(IExtensibleModel** Value) -> HRESULT
+  GetReferenceValueCount(long* Value) -> HRESULT
+  GetReferenceValueAt(long Index, IExtensibleModel** Value) -> HRESULT
+  GetTagDefinition(ITagDefinition** ReturnValue) -> HRESULT
+  GetTagDefinitionSet(ITagDefinitionSet** ReturnValue) -> HRESULT
+  GetProfile(IProfile** ReturnValue) -> HRESULT
+
+## dispatch ITagDefinition
+  get Name(BSTR* Value) -> HRESULT
+  get TagType(TagTypeKind* Value) -> HRESULT
+  get ReferenceType(BSTR* Value) -> HRESULT
+  get DefaultValue(BSTR* Value) -> HRESULT
+  get TagDefinitionSet(ITagDefinitionSet** Value) -> HRESULT
+  IndexOfLiteral(BSTR ALiteral, long* ReturnValue) -> HRESULT
+  GetLiteralAt(long Index, BSTR* ReturnValue) -> HRESULT
+  GetLiteralCount(long* ReturnValue) -> HRESULT
+
+## enum tagTagTypeKind
+  tkInteger = -1946157056
+  tkBoolean = -1946157055
+  tkString = -1946157054
+  tkReal = -1946157053
+  tkEnumeration = -1946157052
+  tkReference = -1946157051
+  tkCollection = -1946157050
+
+## alias TagTypeKind
+
+## dispatch ITagDefinitionSet
+  get Name(BSTR* Value) -> HRESULT
+  get Profile(IProfile** Value) -> HRESULT
+  GetTagDefinitionCount(long* Value) -> HRESULT
+  GetTagDefinitionAt(long Index, ITagDefinition** Value) -> HRESULT
+  get Stereotype(IStereotype** Value) -> HRESULT
+  GetBaseClassAt(long Index, BSTR* ReturnValue) -> HRESULT
+  GetBaseClassCount(long* ReturnValue) -> HRESULT
+  FindTagDefinition(BSTR Name, ITagDefinition** ReturnValue) -> HRESULT
+  CanApplyTo(BSTR ClassName, bool* ReturnValue) -> HRESULT
+
+## dispatch IProfile
+  get Name(BSTR* Value) -> HRESULT
+  get Description(BSTR* Value) -> HRESULT
+  get Path(BSTR* Value) -> HRESULT
+  get FileName(BSTR* Value) -> HRESULT
+  get IconFile(BSTR* Value) -> HRESULT
+  GetDataTypeCount(long* Value) -> HRESULT
+  GetDataTypeAt(long Index, IDataType** Value) -> HRESULT
+  GetStereotypeCount(long* Value) -> HRESULT
+  GetStereotypeAt(long Index, IStereotype** Value) -> HRESULT
+  GetTagDefinitionSetCount(long* Value) -> HRESULT
+  GetTagDefinitionSetAt(long Index, ITagDefinitionSet** Value) -> HRESULT
+  FindTagDefinition(BSTR TagDefinitionSet, BSTR Name, ITagDefinition** ReturnValue) -> HRESULT
+  FindTagDefinitionSet(BSTR Name, ITagDefinitionSet** ReturnValue) -> HRESULT
+  FindStereotype(BSTR Name, BSTR BaseClass, IStereotype** ReturnValue) -> HRESULT
+  FindDataType(BSTR Name, IDataType** ReturnValue) -> HRESULT
+
+## dispatch IDataType
+  get Name(BSTR* Value) -> HRESULT
+  get Profile(IProfile** Value) -> HRESULT
+
+## dispatch IStereotype
+  get Name(BSTR* Value) -> HRESULT
+  get IconFile(BSTR* Value) -> HRESULT
+  get IconMinWidth(long* Value) -> HRESULT
+  get IconMinHeight(long* Value) -> HRESULT
+  get Description(BSTR* Value) -> HRESULT
+  get Profile(IProfile** Value) -> HRESULT
+  GetChildCount(long* Value) -> HRESULT
+  GetChildAt(long Index, IStereotype** Value) -> HRESULT
+  get Parent(IStereotype** Value) -> HRESULT
+  get TagDefinitionSet(ITagDefinitionSet** Value) -> HRESULT
+  GetBaseClassAt(long Index, BSTR* ReturnValue) -> HRESULT
+  GetBaseClassCount(long* ReturnValue) -> HRESULT
+  CanApplyTo(BSTR ClassName, bool* ReturnValue) -> HRESULT
+
+## enum tagUMLVisibilityKind
+  vkPublic = -1946157056
+  vkProtected = -1946157055
+  vkPrivate = -1946157054
+  vkPackage = -1946157053
+
+## alias UMLVisibilityKind
+
+## dispatch IUMLElementImport
+  get Visibility(UMLVisibilityKind* Value) -> HRESULT
+  put Visibility(UMLVisibilityKind ?) -> HRESULT
+  get Alias(BSTR* Value) -> HRESULT
+  put Alias(BSTR ?) -> HRESULT
+  get IsSpecification(bool* Value) -> HRESULT
+  put IsSpecification(bool ?) -> HRESULT
+  get ImportedElement(IUMLModelElement** Value) -> HRESULT
+  put ImportedElement(IUMLModelElement* ?) -> HRESULT
+  get Package(IUMLPackage** Value) -> HRESULT
+
+## dispatch IUMLClassifier
+  GetOperationCount(long* Value) -> HRESULT
+  GetOperationAt(long Index, IUMLOperation** Value) -> HRESULT
+  AddTypedFeature(IUMLStructuralFeature* Value) -> HRESULT
+  RemoveTypedFeature(IUMLStructuralFeature* Value) -> HRESULT
+  InsertTypedFeature(long Index, IUMLStructuralFeature* Value) -> HRESULT
+  DeleteTypedFeature(long Index) -> HRESULT
+  IndexOfTypedFeature(IUMLStructuralFeature* Value, long* Index) -> HRESULT
+  GetTypedFeatureCount(long* Value) -> HRESULT
+  GetTypedFeatureAt(long Index, IUMLStructuralFeature** Value) -> HRESULT
+  AddTypedParameter(IUMLParameter* Value) -> HRESULT
+  RemoveTypedParameter(IUMLParameter* Value) -> HRESULT
+  InsertTypedParameter(long Index, IUMLParameter* Value) -> HRESULT
+  DeleteTypedParameter(long Index) -> HRESULT
+  IndexOfTypedParameter(IUMLParameter* Value, long* Index) -> HRESULT
+  GetTypedParameterCount(long* Value) -> HRESULT
+  GetTypedParameterAt(long Index, IUMLParameter** Value) -> HRESULT
+  AddAssociation(IUMLAssociationEnd* Value) -> HRESULT
+  RemoveAssociation(IUMLAssociationEnd* Value) -> HRESULT
+  InsertAssociation(long Index, IUMLAssociationEnd* Value) -> HRESULT
+  DeleteAssociation(long Index) -> HRESULT
+  IndexOfAssociation(IUMLAssociationEnd* Value, long* Index) -> HRESULT
+  GetAssociationCount(long* Value) -> HRESULT
+  GetAssociationAt(long Index, IUMLAssociationEnd** Value) -> HRESULT
+  AddPowertypeGeneralization(IUMLGeneralization* Value) -> HRESULT
+  RemovePowertypeGeneralization(IUMLGeneralization* Value) -> HRESULT
+  InsertPowertypeGeneralization(long Index, IUMLGeneralization* Value) -> HRESULT
+  DeletePowertypeGeneralization(long Index) -> HRESULT
+  IndexOfPowertypeGeneralization(IUMLGeneralization* Value, long* Index) -> HRESULT
+  GetPowertypeGeneralizationCount(long* Value) -> HRESULT
+  GetPowertypeGeneralizationAt(long Index, IUMLGeneralization** Value) -> HRESULT
+  GetAttributeCount(long* Value) -> HRESULT
+  GetAttributeAt(long Index, IUMLAttribute** Value) -> HRESULT
+  AddOwnedPort(IUMLPort* Value) -> HRESULT
+  RemoveOwnedPort(IUMLPort* Value) -> HRESULT
+  InsertOwnedPort(long Index, IUMLPort* Value) -> HRESULT
+  DeleteOwnedPort(long Index) -> HRESULT
+  IndexOfOwnedPort(IUMLPort* Value, long* Index) -> HRESULT
+  GetOwnedPortCount(long* Value) -> HRESULT
+  GetOwnedPortAt(long Index, IUMLPort** Value) -> HRESULT
+  AddOwnedConnector(IUMLConnector* Value) -> HRESULT
+  RemoveOwnedConnector(IUMLConnector* Value) -> HRESULT
+  InsertOwnedConnector(long Index, IUMLConnector* Value) -> HRESULT
+  DeleteOwnedConnector(long Index) -> HRESULT
+  IndexOfOwnedConnector(IUMLConnector* Value, long* Index) -> HRESULT
+  GetOwnedConnectorCount(long* Value) -> HRESULT
+  GetOwnedConnectorAt(long Index, IUMLConnector** Value) -> HRESULT
+  AddInstance(IUMLInstance* Value) -> HRESULT
+  RemoveInstance(IUMLInstance* Value) -> HRESULT
+  InsertInstance(long Index, IUMLInstance* Value) -> HRESULT
+  DeleteInstance(long Index) -> HRESULT
+  IndexOfInstance(IUMLInstance* Value, long* Index) -> HRESULT
+  GetInstanceCount(long* Value) -> HRESULT
+  GetInstanceAt(long Index, IUMLInstance** Value) -> HRESULT
+  AddCreateAction(IUMLCreateAction* Value) -> HRESULT
+  RemoveCreateAction(IUMLCreateAction* Value) -> HRESULT
+  InsertCreateAction(long Index, IUMLCreateAction* Value) -> HRESULT
+  DeleteCreateAction(long Index) -> HRESULT
+  IndexOfCreateAction(IUMLCreateAction* Value, long* Index) -> HRESULT
+  GetCreateActionCount(long* Value) -> HRESULT
+  GetCreateActionAt(long Index, IUMLCreateAction** Value) -> HRESULT
+  AddClassifierRole(IUMLClassifierRole* Value) -> HRESULT
+  RemoveClassifierRole(IUMLClassifierRole* Value) -> HRESULT
+  InsertClassifierRole(long Index, IUMLClassifierRole* Value) -> HRESULT
+  DeleteClassifierRole(long Index) -> HRESULT
+  IndexOfClassifierRole(IUMLClassifierRole* Value, long* Index) -> HRESULT
+  GetClassifierRoleCount(long* Value) -> HRESULT
+  GetClassifierRoleAt(long Index, IUMLClassifierRole** Value) -> HRESULT
+  GetOwnedCollaborationCount(long* Value) -> HRESULT
+  GetOwnedCollaborationAt(long Index, IUMLCollaboration** Value) -> HRESULT
+  GetOwnedCollaborationInstanceSetCount(long* Value) -> HRESULT
+  GetOwnedCollaborationInstanceSetAt(long Index, IUMLCollaborationInstanceSet** Value) -> HRESULT
+  AddClassifierInState(IUMLClassifierInState* Value) -> HRESULT
+  RemoveClassifierInState(IUMLClassifierInState* Value) -> HRESULT
+  InsertClassifierInState(long Index, IUMLClassifierInState* Value) -> HRESULT
+  DeleteClassifierInState(long Index) -> HRESULT
+  IndexOfClassifierInState(IUMLClassifierInState* Value, long* Index) -> HRESULT
+  GetClassifierInStateCount(long* Value) -> HRESULT
+  GetClassifierInStateAt(long Index, IUMLClassifierInState** Value) -> HRESULT
+  AddObjectFlowState(IUMLObjectFlowState* Value) -> HRESULT
+  RemoveObjectFlowState(IUMLObjectFlowState* Value) -> HRESULT
+  InsertObjectFlowState(long Index, IUMLObjectFlowState* Value) -> HRESULT
+  DeleteObjectFlowState(long Index) -> HRESULT
+  IndexOfObjectFlowState(IUMLObjectFlowState* Value, long* Index) -> HRESULT
+  GetObjectFlowStateCount(long* Value) -> HRESULT
+  GetObjectFlowStateAt(long Index, IUMLObjectFlowState** Value) -> HRESULT
+
+## dispatch IUMLPackage
+  GetElementImportItemCount(long* Value) -> HRESULT
+  GetElementImportItemAt(long Index, IUMLElementImport** Value) -> HRESULT
+
+## dispatch IUMLFeature
+  get OwnerScope(UMLScopeKind* Value) -> HRESULT
+  put OwnerScope(UMLScopeKind ?) -> HRESULT
+  AddConnectorEnd(IUMLConnectorEnd* Value) -> HRESULT
+  RemoveConnectorEnd(IUMLConnectorEnd* Value) -> HRESULT
+  InsertConnectorEnd(long Index, IUMLConnectorEnd* Value) -> HRESULT
+  DeleteConnectorEnd(long Index) -> HRESULT
+  IndexOfConnectorEnd(IUMLConnectorEnd* Value, long* Index) -> HRESULT
+  GetConnectorEndCount(long* Value) -> HRESULT
+  GetConnectorEndAt(long Index, IUMLConnectorEnd** Value) -> HRESULT
+  AddClassifierRole(IUMLClassifierRole* Value) -> HRESULT
+  RemoveClassifierRole(IUMLClassifierRole* Value) -> HRESULT
+  InsertClassifierRole(long Index, IUMLClassifierRole* Value) -> HRESULT
+  DeleteClassifierRole(long Index) -> HRESULT
+  IndexOfClassifierRole(IUMLClassifierRole* Value, long* Index) -> HRESULT
+  GetClassifierRoleCount(long* Value) -> HRESULT
+  GetClassifierRoleAt(long Index, IUMLClassifierRole** Value) -> HRESULT
+
+## dispatch IUMLBehavioralFeature
+  get IsQuery(bool* Value) -> HRESULT
+  put IsQuery(bool ?) -> HRESULT
+  GetParameterCount(long* Value) -> HRESULT
+  GetParameterAt(long Index, IUMLParameter** Value) -> HRESULT
+  AddRaisedSignal(IUMLSignal* Value) -> HRESULT
+  RemoveRaisedSignal(IUMLSignal* Value) -> HRESULT
+  InsertRaisedSignal(long Index, IUMLSignal* Value) -> HRESULT
+  DeleteRaisedSignal(long Index) -> HRESULT
+  IndexOfRaisedSignal(IUMLSignal* Value, long* Index) -> HRESULT
+  GetRaisedSignalCount(long* Value) -> HRESULT
+  GetRaisedSignalAt(long Index, IUMLSignal** Value) -> HRESULT
+
+## dispatch IUMLOperation
+  get Concurrency(UMLCallConcurrencyKind* Value) -> HRESULT
+  put Concurrency(UMLCallConcurrencyKind ?) -> HRESULT
+  get IsRoot(bool* Value) -> HRESULT
+  put IsRoot(bool ?) -> HRESULT
+  get IsLeaf(bool* Value) -> HRESULT
+  put IsLeaf(bool ?) -> HRESULT
+  get IsAbstract(bool* Value) -> HRESULT
+  put IsAbstract(bool ?) -> HRESULT
+  get Specification(BSTR* Value) -> HRESULT
+  put Specification(BSTR ?) -> HRESULT
+  get Owner(IUMLClassifier** Value) -> HRESULT
+  AddMethod(IUMLMethod* Value) -> HRESULT
+  RemoveMethod(IUMLMethod* Value) -> HRESULT
+  InsertMethod(long Index, IUMLMethod* Value) -> HRESULT
+  DeleteMethod(long Index) -> HRESULT
+  IndexOfMethod(IUMLMethod* Value, long* Index) -> HRESULT
+  GetMethodCount(long* Value) -> HRESULT
+  GetMethodAt(long Index, IUMLMethod** Value) -> HRESULT
+  AddCallAction(IUMLCallAction* Value) -> HRESULT
+  RemoveCallAction(IUMLCallAction* Value) -> HRESULT
+  InsertCallAction(long Index, IUMLCallAction* Value) -> HRESULT
+  DeleteCallAction(long Index) -> HRESULT
+  IndexOfCallAction(IUMLCallAction* Value, long* Index) -> HRESULT
+  GetCallActionCount(long* Value) -> HRESULT
+  GetCallActionAt(long Index, IUMLCallAction** Value) -> HRESULT
+  AddOccurrence(IUMLCallEvent* Value) -> HRESULT
+  RemoveOccurrence(IUMLCallEvent* Value) -> HRESULT
+  InsertOccurrence(long Index, IUMLCallEvent* Value) -> HRESULT
+  DeleteOccurrence(long Index) -> HRESULT
+  IndexOfOccurrence(IUMLCallEvent* Value, long* Index) -> HRESULT
+  GetOccurrenceCount(long* Value) -> HRESULT
+  GetOccurrenceAt(long Index, IUMLCallEvent** Value) -> HRESULT
+  GetOwnedCollaborationCount(long* Value) -> HRESULT
+  GetOwnedCollaborationAt(long Index, IUMLCollaboration** Value) -> HRESULT
+  GetOwnedCollaborationInstanceSetCount(long* Value) -> HRESULT
+  GetOwnedCollaborationInstanceSetAt(long Index, IUMLCollaborationInstanceSet** Value) -> HRESULT
+
+## enum tagUMLScopeKind
+  skInstance = -1946157056
+  skClassifier = -1946157055
+
+## alias UMLScopeKind
+
+## dispatch IUMLConnectorEnd
+  get Multiplicity(BSTR* Value) -> HRESULT
+  put Multiplicity(BSTR ?) -> HRESULT
+  get IsOrdered(bool* Value) -> HRESULT
+  put IsOrdered(bool ?) -> HRESULT
+  get IsUnique(bool* Value) -> HRESULT
+  put IsUnique(bool ?) -> HRESULT
+  get Connector(IUMLConnector** Value) -> HRESULT
+  put Connector(IUMLConnector* ?) -> HRESULT
+  get Role(IUMLFeature** Value) -> HRESULT
+  put Role(IUMLFeature* ?) -> HRESULT
+
+## dispatch IUMLConnector
+  AddEnd(IUMLConnectorEnd* Value) -> HRESULT
+  RemoveEnd(IUMLConnectorEnd* Value) -> HRESULT
+  InsertEnd(long Index, IUMLConnectorEnd* Value) -> HRESULT
+  DeleteEnd(long Index) -> HRESULT
+  IndexOfEnd(IUMLConnectorEnd* Value, long* Index) -> HRESULT
+  GetEndCount(long* Value) -> HRESULT
+  GetEndAt(long Index, IUMLConnectorEnd** Value) -> HRESULT
+  get Owner(IUMLClassifier** Value) -> HRESULT
+  put Owner(IUMLClassifier* ?) -> HRESULT
+
+## dispatch IUMLClassifierRole
+  get Multiplicity(BSTR* Value) -> HRESULT
+  put Multiplicity(BSTR ?) -> HRESULT
+  get Base(IUMLClassifier** Value) -> HRESULT
+  put Base(IUMLClassifier* ?) -> HRESULT
+  AddAvailableFeature(IUMLFeature* Value) -> HRESULT
+  RemoveAvailableFeature(IUMLFeature* Value) -> HRESULT
+  InsertAvailableFeature(long Index, IUMLFeature* Value) -> HRESULT
+  DeleteAvailableFeature(long Index) -> HRESULT
+  IndexOfAvailableFeature(IUMLFeature* Value, long* Index) -> HRESULT
+  GetAvailableFeatureCount(long* Value) -> HRESULT
+  GetAvailableFeatureAt(long Index, IUMLFeature** Value) -> HRESULT
+  AddSenderClientMessage(IUMLMessage* Value) -> HRESULT
+  RemoveSenderClientMessage(IUMLMessage* Value) -> HRESULT
+  InsertSenderClientMessage(long Index, IUMLMessage* Value) -> HRESULT
+  DeleteSenderClientMessage(long Index) -> HRESULT
+  IndexOfSenderClientMessage(IUMLMessage* Value, long* Index) -> HRESULT
+  GetSenderClientMessageCount(long* Value) -> HRESULT
+  GetSenderClientMessageAt(long Index, IUMLMessage** Value) -> HRESULT
+  AddReceiverClientMessage(IUMLMessage* Value) -> HRESULT
+  RemoveReceiverClientMessage(IUMLMessage* Value) -> HRESULT
+  InsertReceiverClientMessage(long Index, IUMLMessage* Value) -> HRESULT
+  DeleteReceiverClientMessage(long Index) -> HRESULT
+  IndexOfReceiverClientMessage(IUMLMessage* Value, long* Index) -> HRESULT
+  GetReceiverClientMessageCount(long* Value) -> HRESULT
+  GetReceiverClientMessageAt(long Index, IUMLMessage** Value) -> HRESULT
+  AddAvailableContent(IUMLModelElement* Value) -> HRESULT
+  RemoveAvailableContent(IUMLModelElement* Value) -> HRESULT
+  InsertAvailableContent(long Index, IUMLModelElement* Value) -> HRESULT
+  DeleteAvailableContent(long Index) -> HRESULT
+  IndexOfAvailableContent(IUMLModelElement* Value, long* Index) -> HRESULT
+  GetAvailableContentCount(long* Value) -> HRESULT
+  GetAvailableContentAt(long Index, IUMLModelElement** Value) -> HRESULT
+  AddConformingInstance(IUMLInstance* Value) -> HRESULT
+  RemoveConformingInstance(IUMLInstance* Value) -> HRESULT
+  InsertConformingInstance(long Index, IUMLInstance* Value) -> HRESULT
+  DeleteConformingInstance(long Index) -> HRESULT
+  IndexOfConformingInstance(IUMLInstance* Value, long* Index) -> HRESULT
+  GetConformingInstanceCount(long* Value) -> HRESULT
+  GetConformingInstanceAt(long Index, IUMLInstance** Value) -> HRESULT
+
+## dispatch IUMLMessage
+  get Arguments(BSTR* Value) -> HRESULT
+  put Arguments(BSTR ?) -> HRESULT
+  get Return(BSTR* Value) -> HRESULT
+  put Return(BSTR ?) -> HRESULT
+  get Iteration(BSTR* Value) -> HRESULT
+  put Iteration(BSTR ?) -> HRESULT
+  get Branch(BSTR* Value) -> HRESULT
+  put Branch(BSTR ?) -> HRESULT
+  get Interaction(IUMLInteraction** Value) -> HRESULT
+  get Activator(IUMLMessage** Value) -> HRESULT
+  put Activator(IUMLMessage* ?) -> HRESULT
+  AddActivatee(IUMLMessage* Value) -> HRESULT
+  RemoveActivatee(IUMLMessage* Value) -> HRESULT
+  InsertActivatee(long Index, IUMLMessage* Value) -> HRESULT
+  DeleteActivatee(long Index) -> HRESULT
+  IndexOfActivatee(IUMLMessage* Value, long* Index) -> HRESULT
+  GetActivateeCount(long* Value) -> HRESULT
+  GetActivateeAt(long Index, IUMLMessage** Value) -> HRESULT
+  get Sender(IUMLClassifierRole** Value) -> HRESULT
+  put Sender(IUMLClassifierRole* ?) -> HRESULT
+  get Receiver(IUMLClassifierRole** Value) -> HRESULT
+  put Receiver(IUMLClassifierRole* ?) -> HRESULT
+  get Successor(IUMLMessage** Value) -> HRESULT
+  put Successor(IUMLMessage* ?) -> HRESULT
+  get Predecessor(IUMLMessage** Value) -> HRESULT
+  put Predecessor(IUMLMessage* ?) -> HRESULT
+  get CommunicationConnection(IUMLAssociationRole** Value) -> HRESULT
+  put CommunicationConnection(IUMLAssociationRole* ?) -> HRESULT
+  get Action(IUMLAction** Value) -> HRESULT
+  AddConformingStimulus(IUMLStimulus* Value) -> HRESULT
+  RemoveConformingStimulus(IUMLStimulus* Value) -> HRESULT
+  InsertConformingStimulus(long Index, IUMLStimulus* Value) -> HRESULT
+  DeleteConformingStimulus(long Index) -> HRESULT
+  IndexOfConformingStimulus(IUMLStimulus* Value, long* Index) -> HRESULT
+  GetConformingStimulusCount(long* Value) -> HRESULT
+  GetConformingStimulusAt(long Index, IUMLStimulus** Value) -> HRESULT
+
+## dispatch IUMLInteraction
+  GetMessageCount(long* Value) -> HRESULT
+  GetMessageAt(long Index, IUMLMessage** Value) -> HRESULT
+  get Context(IUMLCollaboration** Value) -> HRESULT
+  AddInteractionInstanceSet(IUMLInteractionInstanceSet* Value) -> HRESULT
+  RemoveInteractionInstanceSet(IUMLInteractionInstanceSet* Value) -> HRESULT
+  InsertInteractionInstanceSet(long Index, IUMLInteractionInstanceSet* Value) -> HRESULT
+  DeleteInteractionInstanceSet(long Index) -> HRESULT
+  IndexOfInteractionInstanceSet(IUMLInteractionInstanceSet* Value, long* Index) -> HRESULT
+  GetInteractionInstanceSetCount(long* Value) -> HRESULT
+  GetInteractionInstanceSetAt(long Index, IUMLInteractionInstanceSet** Value) -> HRESULT
+  AddFragment(IUMLInteractionFragment* Value) -> HRESULT
+  RemoveFragment(IUMLInteractionFragment* Value) -> HRESULT
+  InsertFragment(long Index, IUMLInteractionFragment* Value) -> HRESULT
+  DeleteFragment(long Index) -> HRESULT
+  IndexOfFragment(IUMLInteractionFragment* Value, long* Index) -> HRESULT
+  GetFragmentCount(long* Value) -> HRESULT
+  GetFragmentAt(long Index, IUMLInteractionFragment** Value) -> HRESULT
+
+## dispatch IUMLCollaboration
+  GetInteractionCount(long* Value) -> HRESULT
+  GetInteractionAt(long Index, IUMLInteraction** Value) -> HRESULT
+  get RepresentedOperation(IUMLOperation** Value) -> HRESULT
+  AddCollaborationInstanceSet(IUMLCollaborationInstanceSet* Value) -> HRESULT
+  RemoveCollaborationInstanceSet(IUMLCollaborationInstanceSet* Value) -> HRESULT
+  InsertCollaborationInstanceSet(long Index, IUMLCollaborationInstanceSet* Value) -> HRESULT
+  DeleteCollaborationInstanceSet(long Index) -> HRESULT
+  IndexOfCollaborationInstanceSet(IUMLCollaborationInstanceSet* Value, long* Index) -> HRESULT
+  GetCollaborationInstanceSetCount(long* Value) -> HRESULT
+  GetCollaborationInstanceSetAt(long Index, IUMLCollaborationInstanceSet** Value) -> HRESULT
+  AddUserCollaboration(IUMLCollaboration* Value) -> HRESULT
+  RemoveUserCollaboration(IUMLCollaboration* Value) -> HRESULT
+  InsertUserCollaboration(long Index, IUMLCollaboration* Value) -> HRESULT
+  DeleteUserCollaboration(long Index) -> HRESULT
+  IndexOfUserCollaboration(IUMLCollaboration* Value, long* Index) -> HRESULT
+  GetUserCollaborationCount(long* Value) -> HRESULT
+  GetUserCollaborationAt(long Index, IUMLCollaboration** Value) -> HRESULT
+  AddUsedCollaboration(IUMLCollaboration* Value) -> HRESULT
+  RemoveUsedCollaboration(IUMLCollaboration* Value) -> HRESULT
+  InsertUsedCollaboration(long Index, IUMLCollaboration* Value) -> HRESULT
+  DeleteUsedCollaboration(long Index) -> HRESULT
+  IndexOfUsedCollaboration(IUMLCollaboration* Value, long* Index) -> HRESULT
+  GetUsedCollaborationCount(long* Value) -> HRESULT
+  GetUsedCollaborationAt(long Index, IUMLCollaboration** Value) -> HRESULT
+  get RepresentedClassifier(IUMLClassifier** Value) -> HRESULT
+
+## dispatch IUMLCollaborationInstanceSet
+  GetInteractionInstanceSetCount(long* Value) -> HRESULT
+  GetInteractionInstanceSetAt(long Index, IUMLInteractionInstanceSet** Value) -> HRESULT
+  get Collaboration(IUMLCollaboration** Value) -> HRESULT
+  put Collaboration(IUMLCollaboration* ?) -> HRESULT
+  GetParticipatingInstanceCount(long* Value) -> HRESULT
+  GetParticipatingInstanceAt(long Index, IUMLInstance** Value) -> HRESULT
+  GetParticipatingLinkCount(long* Value) -> HRESULT
+  GetParticipatingLinkAt(long Index, IUMLLink** Value) -> HRESULT
+  get RepresentedOperation(IUMLOperation** Value) -> HRESULT
+  get RepresentedClassifier(IUMLClassifier** Value) -> HRESULT
+
+## dispatch IUMLInteractionInstanceSet
+  get Context(IUMLCollaborationInstanceSet** Value) -> HRESULT
+  get Interaction(IUMLInteraction** Value) -> HRESULT
+  put Interaction(IUMLInteraction* ?) -> HRESULT
+  GetParticipatingStimulusCount(long* Value) -> HRESULT
+  GetParticipatingStimulusAt(long Index, IUMLStimulus** Value) -> HRESULT
+  AddFragment(IUMLInteractionFragment* Value) -> HRESULT
+  RemoveFragment(IUMLInteractionFragment* Value) -> HRESULT
+  InsertFragment(long Index, IUMLInteractionFragment* Value) -> HRESULT
+  DeleteFragment(long Index) -> HRESULT
+  IndexOfFragment(IUMLInteractionFragment* Value, long* Index) -> HRESULT
+  GetFragmentCount(long* Value) -> HRESULT
+  GetFragmentAt(long Index, IUMLInteractionFragment** Value) -> HRESULT
+
+## dispatch IUMLStimulus
+  get Arguments(BSTR* Value) -> HRESULT
+  put Arguments(BSTR ?) -> HRESULT
+  get Return(BSTR* Value) -> HRESULT
+  put Return(BSTR ?) -> HRESULT
+  get Iteration(BSTR* Value) -> HRESULT
+  put Iteration(BSTR ?) -> HRESULT
+  get Branch(BSTR* Value) -> HRESULT
+  put Branch(BSTR ?) -> HRESULT
+  get Sender(IUMLInstance** Value) -> HRESULT
+  put Sender(IUMLInstance* ?) -> HRESULT
+  get Receiver(IUMLInstance** Value) -> HRESULT
+  put Receiver(IUMLInstance* ?) -> HRESULT
+  get CommunicationLink(IUMLLink** Value) -> HRESULT
+  put CommunicationLink(IUMLLink* ?) -> HRESULT
+  get Action(IUMLAction** Value) -> HRESULT
+  get Activator(IUMLStimulus** Value) -> HRESULT
+  put Activator(IUMLStimulus* ?) -> HRESULT
+  AddActivatee(IUMLStimulus* Value) -> HRESULT
+  RemoveActivatee(IUMLStimulus* Value) -> HRESULT
+  InsertActivatee(long Index, IUMLStimulus* Value) -> HRESULT
+  DeleteActivatee(long Index) -> HRESULT
+  IndexOfActivatee(IUMLStimulus* Value, long* Index) -> HRESULT
+  GetActivateeCount(long* Value) -> HRESULT
+  GetActivateeAt(long Index, IUMLStimulus** Value) -> HRESULT
+  get Predecessor(IUMLStimulus** Value) -> HRESULT
+  put Predecessor(IUMLStimulus* ?) -> HRESULT
+  get Successor(IUMLStimulus** Value) -> HRESULT
+  put Successor(IUMLStimulus* ?) -> HRESULT
+  AddPlayedRole(IUMLMessage* Value) -> HRESULT
+  RemovePlayedRole(IUMLMessage* Value) -> HRESULT
+  InsertPlayedRole(long Index, IUMLMessage* Value) -> HRESULT
+  DeletePlayedRole(long Index) -> HRESULT
+  IndexOfPlayedRole(IUMLMessage* Value, long* Index) -> HRESULT
+  GetPlayedRoleCount(long* Value) -> HRESULT
+  GetPlayedRoleAt(long Index, IUMLMessage** Value) -> HRESULT
+  get InteractionInstanceSet(IUMLInteractionInstanceSet** Value) -> HRESULT
+
+## dispatch IUMLInstance
+  get IsMultiInstance(bool* Value) -> HRESULT
+  put IsMultiInstance(bool ?) -> HRESULT
+  get Classifier(IUMLClassifier** Value) -> HRESULT
+  put Classifier(IUMLClassifier* ?) -> HRESULT
+  AddAttributeLink(IUMLAttributeLink* Value) -> HRESULT
+  RemoveAttributeLink(IUMLAttributeLink* Value) -> HRESULT
+  InsertAttributeLink(long Index, IUMLAttributeLink* Value) -> HRESULT
+  DeleteAttributeLink(long Index) -> HRESULT
+  IndexOfAttributeLink(IUMLAttributeLink* Value, long* Index) -> HRESULT
+  GetAttributeLinkCount(long* Value) -> HRESULT
+  GetAttributeLinkAt(long Index, IUMLAttributeLink** Value) -> HRESULT
+  AddLinkEnd(IUMLLinkEnd* Value) -> HRESULT
+  RemoveLinkEnd(IUMLLinkEnd* Value) -> HRESULT
+  InsertLinkEnd(long Index, IUMLLinkEnd* Value) -> HRESULT
+  DeleteLinkEnd(long Index) -> HRESULT
+  IndexOfLinkEnd(IUMLLinkEnd* Value, long* Index) -> HRESULT
+  GetLinkEndCount(long* Value) -> HRESULT
+  GetLinkEndAt(long Index, IUMLLinkEnd** Value) -> HRESULT
+  GetSlotCount(long* Value) -> HRESULT
+  GetSlotAt(long Index, IUMLAttributeLink** Value) -> HRESULT
+  AddSendingStimulus(IUMLStimulus* Value) -> HRESULT
+  RemoveSendingStimulus(IUMLStimulus* Value) -> HRESULT
+  InsertSendingStimulus(long Index, IUMLStimulus* Value) -> HRESULT
+  DeleteSendingStimulus(long Index) -> HRESULT
+  IndexOfSendingStimulus(IUMLStimulus* Value, long* Index) -> HRESULT
+  GetSendingStimulusCount(long* Value) -> HRESULT
+  GetSendingStimulusAt(long Index, IUMLStimulus** Value) -> HRESULT
+  get ComponentInstance(IUMLComponentInstance** Value) -> HRESULT
+  put ComponentInstance(IUMLComponentInstance* ?) -> HRESULT
+  AddReceivingStimulus(IUMLStimulus* Value) -> HRESULT
+  RemoveReceivingStimulus(IUMLStimulus* Value) -> HRESULT
+  InsertReceivingStimulus(long Index, IUMLStimulus* Value) -> HRESULT
+  DeleteReceivingStimulus(long Index) -> HRESULT
+  IndexOfReceivingStimulus(IUMLStimulus* Value, long* Index) -> HRESULT
+  GetReceivingStimulusCount(long* Value) -> HRESULT
+  GetReceivingStimulusAt(long Index, IUMLStimulus** Value) -> HRESULT
+  get Owner(IUMLInstance** Value) -> HRESULT
+  GetOwnedInstanceCount(long* Value) -> HRESULT
+  GetOwnedInstanceAt(long Index, IUMLInstance** Value) -> HRESULT
+  GetOwnedLinkCount(long* Value) -> HRESULT
+  GetOwnedLinkAt(long Index, IUMLLink** Value) -> HRESULT
+  AddPlayedRole(IUMLClassifierRole* Value) -> HRESULT
+  RemovePlayedRole(IUMLClassifierRole* Value) -> HRESULT
+  InsertPlayedRole(long Index, IUMLClassifierRole* Value) -> HRESULT
+  DeletePlayedRole(long Index) -> HRESULT
+  IndexOfPlayedRole(IUMLClassifierRole* Value, long* Index) -> HRESULT
+  GetPlayedRoleCount(long* Value) -> HRESULT
+  GetPlayedRoleAt(long Index, IUMLClassifierRole** Value) -> HRESULT
+  get CollaborationInstanceSet(IUMLCollaborationInstanceSet** Value) -> HRESULT
+
+## dispatch IUMLAttributeLink
+  get ValueExpression(BSTR* Value) -> HRESULT
+  put ValueExpression(BSTR ?) -> HRESULT
+  get Attribute(IUMLAttribute** Value) -> HRESULT
+  put Attribute(IUMLAttribute* ?) -> HRESULT
+  get Value_(IUMLInstance** Value) -> HRESULT
+  put Value_(IUMLInstance* ?) -> HRESULT
+  get Instance(IUMLInstance** Value) -> HRESULT
+  get LinkEnd(IUMLLinkEnd** Value) -> HRESULT
+
+## dispatch IUMLStructuralFeature
+  get Multiplicity(BSTR* Value) -> HRESULT
+  put Multiplicity(BSTR ?) -> HRESULT
+  get Changeability(UMLChangeableKind* Value) -> HRESULT
+  put Changeability(UMLChangeableKind ?) -> HRESULT
+  get TargetScope(UMLScopeKind* Value) -> HRESULT
+  put TargetScope(UMLScopeKind ?) -> HRESULT
+  get Ordering(UMLOrderingKind* Value) -> HRESULT
+  put Ordering(UMLOrderingKind ?) -> HRESULT
+  get TypeExpression(BSTR* Value) -> HRESULT
+  put TypeExpression(BSTR ?) -> HRESULT
+  get Type_(IUMLClassifier** Value) -> HRESULT
+  put Type_(IUMLClassifier* ?) -> HRESULT
+  SetType(IUMLClassifier* Value) -> HRESULT
+  SetType2(BSTR Value) -> HRESULT
+
+## dispatch IUMLAttribute
+  get InitialValue(BSTR* Value) -> HRESULT
+  put InitialValue(BSTR ?) -> HRESULT
+  get AssociationEnd(IUMLAssociationEnd** Value) -> HRESULT
+  get Owner(IUMLClassifier** Value) -> HRESULT
+  AddAttributeLink(IUMLAttributeLink* Value) -> HRESULT
+  RemoveAttributeLink(IUMLAttributeLink* Value) -> HRESULT
+  InsertAttributeLink(long Index, IUMLAttributeLink* Value) -> HRESULT
+  DeleteAttributeLink(long Index) -> HRESULT
+  IndexOfAttributeLink(IUMLAttributeLink* Value, long* Index) -> HRESULT
+  GetAttributeLinkCount(long* Value) -> HRESULT
+  GetAttributeLinkAt(long Index, IUMLAttributeLink** Value) -> HRESULT
+  AddAssociationEndRole(IUMLAssociationEndRole* Value) -> HRESULT
+  RemoveAssociationEndRole(IUMLAssociationEndRole* Value) -> HRESULT
+  InsertAssociationEndRole(long Index, IUMLAssociationEndRole* Value) -> HRESULT
+  DeleteAssociationEndRole(long Index) -> HRESULT
+  IndexOfAssociationEndRole(IUMLAssociationEndRole* Value, long* Index) -> HRESULT
+  GetAssociationEndRoleCount(long* Value) -> HRESULT
+  GetAssociationEndRoleAt(long Index, IUMLAssociationEndRole** Value) -> HRESULT
+
+## enum tagUMLChangeableKind
+  ckChangeable = -1946157056
+  ckFrozen = -1946157055
+  ckAddOnly = -1946157054
+
+## alias UMLChangeableKind
+
+## enum tagUMLOrderingKind
+  okUnordered = -1946157056
+  okOrdered = -1946157055
+
+## alias UMLOrderingKind
+
+## dispatch IUMLAssociationEnd
+  get IsNavigable(bool* Value) -> HRESULT
+  put IsNavigable(bool ?) -> HRESULT
+  get Ordering(UMLOrderingKind* Value) -> HRESULT
+  put Ordering(UMLOrderingKind ?) -> HRESULT
+  get Aggregation(UMLAggregationKind* Value) -> HRESULT
+  put Aggregation(UMLAggregationKind ?) -> HRESULT
+  get TargetScope(UMLScopeKind* Value) -> HRESULT
+  put TargetScope(UMLScopeKind ?) -> HRESULT
+  get Multiplicity(BSTR* Value) -> HRESULT
+  put Multiplicity(BSTR ?) -> HRESULT
+  get Changeability(UMLChangeableKind* Value) -> HRESULT
+  put Changeability(UMLChangeableKind ?) -> HRESULT
+  get Association(IUMLAssociation** Value) -> HRESULT
+  GetQualifierCount(long* Value) -> HRESULT
+  GetQualifierAt(long Index, IUMLAttribute** Value) -> HRESULT
+  get Participant(IUMLClassifier** Value) -> HRESULT
+  put Participant(IUMLClassifier* ?) -> HRESULT
+  AddLinkEnd(IUMLLinkEnd* Value) -> HRESULT
+  RemoveLinkEnd(IUMLLinkEnd* Value) -> HRESULT
+  InsertLinkEnd(long Index, IUMLLinkEnd* Value) -> HRESULT
+  DeleteLinkEnd(long Index) -> HRESULT
+  IndexOfLinkEnd(IUMLLinkEnd* Value, long* Index) -> HRESULT
+  GetLinkEndCount(long* Value) -> HRESULT
+  GetLinkEndAt(long Index, IUMLLinkEnd** Value) -> HRESULT
+  AddAssociationEndRole(IUMLAssociationEndRole* Value) -> HRESULT
+  RemoveAssociationEndRole(IUMLAssociationEndRole* Value) -> HRESULT
+  InsertAssociationEndRole(long Index, IUMLAssociationEndRole* Value) -> HRESULT
+  DeleteAssociationEndRole(long Index) -> HRESULT
+  IndexOfAssociationEndRole(IUMLAssociationEndRole* Value, long* Index) -> HRESULT
+  GetAssociationEndRoleCount(long* Value) -> HRESULT
+  GetAssociationEndRoleAt(long Index, IUMLAssociationEndRole** Value) -> HRESULT
+  GetOtherSide(IUMLAssociationEnd** ReturnValue) -> HRESULT
+
+## enum tagUMLAggregationKind
+  akNone = -1946157056
+  akAggregate = -1946157055
+  akComposite = -1946157054
+
+## alias UMLAggregationKind
+
+## dispatch IUMLRelationship
+
+## dispatch IUMLAssociation
+  GetConnectionCount(long* Value) -> HRESULT
+  GetConnectionAt(long Index, IUMLAssociationEnd** Value) -> HRESULT
+  get AssociationClass(IUMLAssociationClass** Value) -> HRESULT
+  put AssociationClass(IUMLAssociationClass* ?) -> HRESULT
+  AddLink(IUMLLink* Value) -> HRESULT
+  RemoveLink(IUMLLink* Value) -> HRESULT
+  InsertLink(long Index, IUMLLink* Value) -> HRESULT
+  DeleteLink(long Index) -> HRESULT
+  IndexOfLink(IUMLLink* Value, long* Index) -> HRESULT
+  GetLinkCount(long* Value) -> HRESULT
+  GetLinkAt(long Index, IUMLLink** Value) -> HRESULT
+  AddAssociationRole(IUMLAssociationRole* Value) -> HRESULT
+  RemoveAssociationRole(IUMLAssociationRole* Value) -> HRESULT
+  InsertAssociationRole(long Index, IUMLAssociationRole* Value) -> HRESULT
+  DeleteAssociationRole(long Index) -> HRESULT
+  IndexOfAssociationRole(IUMLAssociationRole* Value, long* Index) -> HRESULT
+  GetAssociationRoleCount(long* Value) -> HRESULT
+  GetAssociationRoleAt(long Index, IUMLAssociationRole** Value) -> HRESULT
+
+## dispatch IUMLAssociationClass
+  get ClassSide(IUMLClass** Value) -> HRESULT
+  put ClassSide(IUMLClass* ?) -> HRESULT
+  get AssociationSide(IUMLAssociation** Value) -> HRESULT
+  put AssociationSide(IUMLAssociation* ?) -> HRESULT
+
+## dispatch IUMLClass
+  get IsActive(bool* Value) -> HRESULT
+  put IsActive(bool ?) -> HRESULT
+  get AssociationClass(IUMLAssociationClass** Value) -> HRESULT
+  put AssociationClass(IUMLAssociationClass* ?) -> HRESULT
+
+## dispatch IUMLLink
+  get Association(IUMLAssociation** Value) -> HRESULT
+  put Association(IUMLAssociation* ?) -> HRESULT
+  GetConnectionCount(long* Value) -> HRESULT
+  GetConnectionAt(long Index, IUMLLinkEnd** Value) -> HRESULT
+  AddStimulus(IUMLStimulus* Value) -> HRESULT
+  RemoveStimulus(IUMLStimulus* Value) -> HRESULT
+  InsertStimulus(long Index, IUMLStimulus* Value) -> HRESULT
+  DeleteStimulus(long Index) -> HRESULT
+  IndexOfStimulus(IUMLStimulus* Value, long* Index) -> HRESULT
+  GetStimulusCount(long* Value) -> HRESULT
+  GetStimulusAt(long Index, IUMLStimulus** Value) -> HRESULT
+  get Owner(IUMLInstance** Value) -> HRESULT
+  get LinkObject(IUMLLinkObject** Value) -> HRESULT
+  put LinkObject(IUMLLinkObject* ?) -> HRESULT
+  AddPlayedRole(IUMLAssociationRole* Value) -> HRESULT
+  RemovePlayedRole(IUMLAssociationRole* Value) -> HRESULT
+  InsertPlayedRole(long Index, IUMLAssociationRole* Value) -> HRESULT
+  DeletePlayedRole(long Index) -> HRESULT
+  IndexOfPlayedRole(IUMLAssociationRole* Value, long* Index) -> HRESULT
+  GetPlayedRoleCount(long* Value) -> HRESULT
+  GetPlayedRoleAt(long Index, IUMLAssociationRole** Value) -> HRESULT
+  get CollaborationInstanceSet(IUMLCollaborationInstanceSet** Value) -> HRESULT
+
+## dispatch IUMLLinkEnd
+  get Instance(IUMLInstance** Value) -> HRESULT
+  put Instance(IUMLInstance* ?) -> HRESULT
+  get Link(IUMLLink** Value) -> HRESULT
+  get AssociationEnd(IUMLAssociationEnd** Value) -> HRESULT
+  put AssociationEnd(IUMLAssociationEnd* ?) -> HRESULT
+  GetQualifiedValueCount(long* Value) -> HRESULT
+  GetQualifiedValueAt(long Index, IUMLAttributeLink** Value) -> HRESULT
+  GetOtherSide(IUMLLinkEnd** ReturnValue) -> HRESULT
+
+## dispatch IUMLLinkObject
+  get LinkSide(IUMLLink** Value) -> HRESULT
+  put LinkSide(IUMLLink* ?) -> HRESULT
+  get ObjectSide(IUMLObject** Value) -> HRESULT
+  put ObjectSide(IUMLObject* ?) -> HRESULT
+
+## dispatch IUMLObject
+  get LinkObject(IUMLLinkObject** Value) -> HRESULT
+  put LinkObject(IUMLLinkObject* ?) -> HRESULT
+
+## dispatch IUMLAssociationRole
+  get Multiplicity(BSTR* Value) -> HRESULT
+  put Multiplicity(BSTR ?) -> HRESULT
+  get Base(IUMLAssociation** Value) -> HRESULT
+  put Base(IUMLAssociation* ?) -> HRESULT
+  AddMessage(IUMLMessage* Value) -> HRESULT
+  RemoveMessage(IUMLMessage* Value) -> HRESULT
+  InsertMessage(long Index, IUMLMessage* Value) -> HRESULT
+  DeleteMessage(long Index) -> HRESULT
+  IndexOfMessage(IUMLMessage* Value, long* Index) -> HRESULT
+  GetMessageCount(long* Value) -> HRESULT
+  GetMessageAt(long Index, IUMLMessage** Value) -> HRESULT
+  AddConformingLink(IUMLLink* Value) -> HRESULT
+  RemoveConformingLink(IUMLLink* Value) -> HRESULT
+  InsertConformingLink(long Index, IUMLLink* Value) -> HRESULT
+  DeleteConformingLink(long Index) -> HRESULT
+  IndexOfConformingLink(IUMLLink* Value, long* Index) -> HRESULT
+  GetConformingLinkCount(long* Value) -> HRESULT
+  GetConformingLinkAt(long Index, IUMLLink** Value) -> HRESULT
+
+## dispatch IUMLAssociationEndRole
+  get CollaborationMultiplicity(BSTR* Value) -> HRESULT
+  put CollaborationMultiplicity(BSTR ?) -> HRESULT
+  get Base(IUMLAssociationEnd** Value) -> HRESULT
+  put Base(IUMLAssociationEnd* ?) -> HRESULT
+  AddAvailableQualifier(IUMLAttribute* Value) -> HRESULT
+  RemoveAvailableQualifier(IUMLAttribute* Value) -> HRESULT
+  InsertAvailableQualifier(long Index, IUMLAttribute* Value) -> HRESULT
+  DeleteAvailableQualifier(long Index) -> HRESULT
+  IndexOfAvailableQualifier(IUMLAttribute* Value, long* Index) -> HRESULT
+  GetAvailableQualifierCount(long* Value) -> HRESULT
+  GetAvailableQualifierAt(long Index, IUMLAttribute** Value) -> HRESULT
+
+## dispatch IUMLComponentInstance
+  get NodeInstance(IUMLNodeInstance** Value) -> HRESULT
+  put NodeInstance(IUMLNodeInstance* ?) -> HRESULT
+  AddResident(IUMLInstance* Value) -> HRESULT
+  RemoveResident(IUMLInstance* Value) -> HRESULT
+  InsertResident(long Index, IUMLInstance* Value) -> HRESULT
+  DeleteResident(long Index) -> HRESULT
+  IndexOfResident(IUMLInstance* Value, long* Index) -> HRESULT
+  GetResidentCount(long* Value) -> HRESULT
+  GetResidentAt(long Index, IUMLInstance** Value) -> HRESULT
+
+## dispatch IUMLNodeInstance
+  AddResident(IUMLComponentInstance* Value) -> HRESULT
+  RemoveResident(IUMLComponentInstance* Value) -> HRESULT
+  InsertResident(long Index, IUMLComponentInstance* Value) -> HRESULT
+  DeleteResident(long Index) -> HRESULT
+  IndexOfResident(IUMLComponentInstance* Value, long* Index) -> HRESULT
+  GetResidentCount(long* Value) -> HRESULT
+  GetResidentAt(long Index, IUMLComponentInstance** Value) -> HRESULT
+
+## dispatch IUMLAction
+  get Recurrence(BSTR* Value) -> HRESULT
+  put Recurrence(BSTR ?) -> HRESULT
+  get Target(BSTR* Value) -> HRESULT
+  put Target(BSTR ?) -> HRESULT
+  get IsAsynchronous(bool* Value) -> HRESULT
+  put IsAsynchronous(bool ?) -> HRESULT
+  get Script(BSTR* Value) -> HRESULT
+  put Script(BSTR ?) -> HRESULT
+  GetActualArgumentCount(long* Value) -> HRESULT
+  GetActualArgumentAt(long Index, IUMLArgument** Value) -> HRESULT
+  get ActionSequence(IUMLActionSequence** Value) -> HRESULT
+  get Stimulus(IUMLStimulus** Value) -> HRESULT
+  get EntryState(IUMLState** Value) -> HRESULT
+  get ExitState(IUMLState** Value) -> HRESULT
+  get Transition(IUMLTransition** Value) -> HRESULT
+  get DoActivityState(IUMLState** Value) -> HRESULT
+  get Message(IUMLMessage** Value) -> HRESULT
+
+## dispatch IUMLArgument
+  get Value(BSTR* Value) -> HRESULT
+  put Value(BSTR ?) -> HRESULT
+  get Action(IUMLAction** Value) -> HRESULT
+
+## dispatch IUMLActionSequence
+  GetActionCount(long* Value) -> HRESULT
+  GetActionAt(long Index, IUMLAction** Value) -> HRESULT
+
+## dispatch IUMLStateVertex
+  get ContainerState(IUMLCompositeState** Value) -> HRESULT
+  AddOutgoing(IUMLTransition* Value) -> HRESULT
+  RemoveOutgoing(IUMLTransition* Value) -> HRESULT
+  InsertOutgoing(long Index, IUMLTransition* Value) -> HRESULT
+  DeleteOutgoing(long Index) -> HRESULT
+  IndexOfOutgoing(IUMLTransition* Value, long* Index) -> HRESULT
+  GetOutgoingCount(long* Value) -> HRESULT
+  GetOutgoingAt(long Index, IUMLTransition** Value) -> HRESULT
+  AddIncoming(IUMLTransition* Value) -> HRESULT
+  RemoveIncoming(IUMLTransition* Value) -> HRESULT
+  InsertIncoming(long Index, IUMLTransition* Value) -> HRESULT
+  DeleteIncoming(long Index) -> HRESULT
+  IndexOfIncoming(IUMLTransition* Value, long* Index) -> HRESULT
+  GetIncomingCount(long* Value) -> HRESULT
+  GetIncomingAt(long Index, IUMLTransition** Value) -> HRESULT
+
+## dispatch IUMLState
+  GetEntryActionCount(long* Value) -> HRESULT
+  GetEntryActionAt(long Index, IUMLAction** Value) -> HRESULT
+  GetExitActionCount(long* Value) -> HRESULT
+  GetExitActionAt(long Index, IUMLAction** Value) -> HRESULT
+  get StateMachine(IUMLStateMachine** Value) -> HRESULT
+  AddDeferrableEvent(IUMLEvent* Value) -> HRESULT
+  RemoveDeferrableEvent(IUMLEvent* Value) -> HRESULT
+  InsertDeferrableEvent(long Index, IUMLEvent* Value) -> HRESULT
+  DeleteDeferrableEvent(long Index) -> HRESULT
+  IndexOfDeferrableEvent(IUMLEvent* Value, long* Index) -> HRESULT
+  GetDeferrableEventCount(long* Value) -> HRESULT
+  GetDeferrableEventAt(long Index, IUMLEvent** Value) -> HRESULT
+  GetInternalTransitionCount(long* Value) -> HRESULT
+  GetInternalTransitionAt(long Index, IUMLTransition** Value) -> HRESULT
+  GetDoActivityCount(long* Value) -> HRESULT
+  GetDoActivityAt(long Index, IUMLAction** Value) -> HRESULT
+  AddClassifierState(IUMLClassifierInState* Value) -> HRESULT
+  RemoveClassifierState(IUMLClassifierInState* Value) -> HRESULT
+  InsertClassifierState(long Index, IUMLClassifierInState* Value) -> HRESULT
+  DeleteClassifierState(long Index) -> HRESULT
+  IndexOfClassifierState(IUMLClassifierInState* Value, long* Index) -> HRESULT
+  GetClassifierStateCount(long* Value) -> HRESULT
+  GetClassifierStateAt(long Index, IUMLClassifierInState** Value) -> HRESULT
+
+## dispatch IUMLCompositeState
+  get IsConcurrent(bool* Value) -> HRESULT
+  put IsConcurrent(bool ?) -> HRESULT
+  GetSubvertexCount(long* Value) -> HRESULT
+  GetSubvertexAt(long Index, IUMLStateVertex** Value) -> HRESULT
+
+## dispatch IUMLTransition
+  get GuardCondition(BSTR* Value) -> HRESULT
+  put GuardCondition(BSTR ?) -> HRESULT
+  GetEffectCount(long* Value) -> HRESULT
+  GetEffectAt(long Index, IUMLAction** Value) -> HRESULT
+  get State(IUMLState** Value) -> HRESULT
+  GetTriggerCount(long* Value) -> HRESULT
+  GetTriggerAt(long Index, IUMLEvent** Value) -> HRESULT
+  get StateMachine(IUMLStateMachine** Value) -> HRESULT
+  get Source(IUMLStateVertex** Value) -> HRESULT
+  put Source(IUMLStateVertex* ?) -> HRESULT
+  get Target(IUMLStateVertex** Value) -> HRESULT
+  put Target(IUMLStateVertex* ?) -> HRESULT
+
+## dispatch IUMLEvent
+  GetParameterCount(long* Value) -> HRESULT
+  GetParameterAt(long Index, IUMLParameter** Value) -> HRESULT
+  AddState(IUMLState* Value) -> HRESULT
+  RemoveState(IUMLState* Value) -> HRESULT
+  InsertState(long Index, IUMLState* Value) -> HRESULT
+  DeleteState(long Index) -> HRESULT
+  IndexOfState(IUMLState* Value, long* Index) -> HRESULT
+  GetStateCount(long* Value) -> HRESULT
+  GetStateAt(long Index, IUMLState** Value) -> HRESULT
+  get Transition(IUMLTransition** Value) -> HRESULT
+
+## dispatch IUMLParameter
+  get DefaultValue(BSTR* Value) -> HRESULT
+  put DefaultValue(BSTR ?) -> HRESULT
+  get DirectionKind(UMLParameterDirectionKind* Value) -> HRESULT
+  put DirectionKind(UMLParameterDirectionKind ?) -> HRESULT
+  get TypeExpression(BSTR* Value) -> HRESULT
+  put TypeExpression(BSTR ?) -> HRESULT
+  get BehavioralFeature(IUMLBehavioralFeature** Value) -> HRESULT
+  get Type_(IUMLClassifier** Value) -> HRESULT
+  put Type_(IUMLClassifier* ?) -> HRESULT
+  get Event(IUMLEvent** Value) -> HRESULT
+  AddState(IUMLObjectFlowState* Value) -> HRESULT
+  RemoveState(IUMLObjectFlowState* Value) -> HRESULT
+  InsertState(long Index, IUMLObjectFlowState* Value) -> HRESULT
+  DeleteState(long Index) -> HRESULT
+  IndexOfState(IUMLObjectFlowState* Value, long* Index) -> HRESULT
+  GetStateCount(long* Value) -> HRESULT
+  GetStateAt(long Index, IUMLObjectFlowState** Value) -> HRESULT
+  SetType(IUMLClassifier* Value) -> HRESULT
+  SetType2(BSTR Value) -> HRESULT
+
+## enum tagUMLParameterDirectionKind
+  pdkIn = -1946157056
+  pdkInout = -1946157055
+  pdkOut = -1946157054
+  pdkReturn = -1946157053
+
+## alias UMLParameterDirectionKind
+
+## dispatch IUMLSimpleState
+
+## dispatch IUMLObjectFlowState
+  get IsSynch(bool* Value) -> HRESULT
+  put IsSynch(bool ?) -> HRESULT
+  AddParameter(IUMLParameter* Value) -> HRESULT
+  RemoveParameter(IUMLParameter* Value) -> HRESULT
+  InsertParameter(long Index, IUMLParameter* Value) -> HRESULT
+  DeleteParameter(long Index) -> HRESULT
+  IndexOfParameter(IUMLParameter* Value, long* Index) -> HRESULT
+  GetParameterCount(long* Value) -> HRESULT
+  GetParameterAt(long Index, IUMLParameter** Value) -> HRESULT
+  get Type_(IUMLClassifier** Value) -> HRESULT
+  put Type_(IUMLClassifier* ?) -> HRESULT
+
+## dispatch IUMLStateMachine
+  get Context(IUMLModelElement** Value) -> HRESULT
+  get Top(IUMLState** Value) -> HRESULT
+  GetTransitionCount(long* Value) -> HRESULT
+  GetTransitionAt(long Index, IUMLTransition** Value) -> HRESULT
+  AddSubmachineState(IUMLSubmachineState* Value) -> HRESULT
+  RemoveSubmachineState(IUMLSubmachineState* Value) -> HRESULT
+  InsertSubmachineState(long Index, IUMLSubmachineState* Value) -> HRESULT
+  DeleteSubmachineState(long Index) -> HRESULT
+  IndexOfSubmachineState(IUMLSubmachineState* Value, long* Index) -> HRESULT
+  GetSubmachineStateCount(long* Value) -> HRESULT
+  GetSubmachineStateAt(long Index, IUMLSubmachineState** Value) -> HRESULT
+
+## dispatch IUMLSubmachineState
+  get Submachine(IUMLStateMachine** Value) -> HRESULT
+  put Submachine(IUMLStateMachine* ?) -> HRESULT
+
+## dispatch IUMLClassifierInState
+  get Type_(IUMLClassifier** Value) -> HRESULT
+  put Type_(IUMLClassifier* ?) -> HRESULT
+  AddInState(IUMLState* Value) -> HRESULT
+  RemoveInState(IUMLState* Value) -> HRESULT
+  InsertInState(long Index, IUMLState* Value) -> HRESULT
+  DeleteInState(long Index) -> HRESULT
+  IndexOfInState(IUMLState* Value, long* Index) -> HRESULT
+  GetInStateCount(long* Value) -> HRESULT
+  GetInStateAt(long Index, IUMLState** Value) -> HRESULT
+
+## dispatch IUMLInteractionFragment
+  get EnclosingOperand(IUMLInteractionOperand** Value) -> HRESULT
+  put EnclosingOperand(IUMLInteractionOperand* ?) -> HRESULT
+  get EnclosingInteraction(IUMLInteraction** Value) -> HRESULT
+  put EnclosingInteraction(IUMLInteraction* ?) -> HRESULT
+  get EnclosingInteractionInstanceSet(IUMLInteractionInstanceSet** Value) -> HRESULT
+  put EnclosingInteractionInstanceSet(IUMLInteractionInstanceSet* ?) -> HRESULT
+
+## dispatch IUMLInteractionOperand
+  get Guard(BSTR* Value) -> HRESULT
+  put Guard(BSTR ?) -> HRESULT
+  get CombinedFragment(IUMLCombinedFragment** Value) -> HRESULT
+  put CombinedFragment(IUMLCombinedFragment* ?) -> HRESULT
+  AddFragment(IUMLInteractionFragment* Value) -> HRESULT
+  RemoveFragment(IUMLInteractionFragment* Value) -> HRESULT
+  InsertFragment(long Index, IUMLInteractionFragment* Value) -> HRESULT
+  DeleteFragment(long Index) -> HRESULT
+  IndexOfFragment(IUMLInteractionFragment* Value, long* Index) -> HRESULT
+  GetFragmentCount(long* Value) -> HRESULT
+  GetFragmentAt(long Index, IUMLInteractionFragment** Value) -> HRESULT
+
+## dispatch IUMLCombinedFragment
+  get InteractionOperator(UMLInteractionOperatorKind* Value) -> HRESULT
+  put InteractionOperator(UMLInteractionOperatorKind ?) -> HRESULT
+  AddOperand(IUMLInteractionOperand* Value) -> HRESULT
+  RemoveOperand(IUMLInteractionOperand* Value) -> HRESULT
+  InsertOperand(long Index, IUMLInteractionOperand* Value) -> HRESULT
+  DeleteOperand(long Index) -> HRESULT
+  IndexOfOperand(IUMLInteractionOperand* Value, long* Index) -> HRESULT
+  GetOperandCount(long* Value) -> HRESULT
+  GetOperandAt(long Index, IUMLInteractionOperand** Value) -> HRESULT
+
+## enum tagUMLInteractionOperatorKind
+  iokSeq = -1946157056
+  iokAlt = -1946157055
+  iokOpt = -1946157054
+  iokBreak = -1946157053
+  iokPar = -1946157052
+  iokStrict = -1946157051
+  iokLoop = -1946157050
+  iokRegion = -1946157049
+  iokNeg = -1946157048
+  iokAssert = -1946157047
+  iokIgnore = -1946157046
+  iokConsider = -1946157045
+
+## alias UMLInteractionOperatorKind
+
+## dispatch IUMLSignal
+  AddReception(IUMLReception* Value) -> HRESULT
+  RemoveReception(IUMLReception* Value) -> HRESULT
+  InsertReception(long Index, IUMLReception* Value) -> HRESULT
+  DeleteReception(long Index) -> HRESULT
+  IndexOfReception(IUMLReception* Value, long* Index) -> HRESULT
+  GetReceptionCount(long* Value) -> HRESULT
+  GetReceptionAt(long Index, IUMLReception** Value) -> HRESULT
+  AddContext(IUMLBehavioralFeature* Value) -> HRESULT
+  RemoveContext(IUMLBehavioralFeature* Value) -> HRESULT
+  InsertContext(long Index, IUMLBehavioralFeature* Value) -> HRESULT
+  DeleteContext(long Index) -> HRESULT
+  IndexOfContext(IUMLBehavioralFeature* Value, long* Index) -> HRESULT
+  GetContextCount(long* Value) -> HRESULT
+  GetContextAt(long Index, IUMLBehavioralFeature** Value) -> HRESULT
+  AddSendAction(IUMLSendAction* Value) -> HRESULT
+  RemoveSendAction(IUMLSendAction* Value) -> HRESULT
+  InsertSendAction(long Index, IUMLSendAction* Value) -> HRESULT
+  DeleteSendAction(long Index) -> HRESULT
+  IndexOfSendAction(IUMLSendAction* Value, long* Index) -> HRESULT
+  GetSendActionCount(long* Value) -> HRESULT
+  GetSendActionAt(long Index, IUMLSendAction** Value) -> HRESULT
+  AddOccurrence(IUMLSignalEvent* Value) -> HRESULT
+  RemoveOccurrence(IUMLSignalEvent* Value) -> HRESULT
+  InsertOccurrence(long Index, IUMLSignalEvent* Value) -> HRESULT
+  DeleteOccurrence(long Index) -> HRESULT
+  IndexOfOccurrence(IUMLSignalEvent* Value, long* Index) -> HRESULT
+  GetOccurrenceCount(long* Value) -> HRESULT
+  GetOccurrenceAt(long Index, IUMLSignalEvent** Value) -> HRESULT
+
+## dispatch IUMLReception
+  get Specification(BSTR* Value) -> HRESULT
+  put Specification(BSTR ?) -> HRESULT
+  get IsRoot(bool* Value) -> HRESULT
+  put IsRoot(bool ?) -> HRESULT
+  get IsLeaf(bool* Value) -> HRESULT
+  put IsLeaf(bool ?) -> HRESULT
+  get IsAbstract(bool* Value) -> HRESULT
+  put IsAbstract(bool ?) -> HRESULT
+  get Signal(IUMLSignal** Value) -> HRESULT
+  put Signal(IUMLSignal* ?) -> HRESULT
+
+## dispatch IUMLSendAction
+  get Signal(IUMLSignal** Value) -> HRESULT
+  put Signal(IUMLSignal* ?) -> HRESULT
+
+## dispatch IUMLSignalEvent
+  get Signal(IUMLSignal** Value) -> HRESULT
+  put Signal(IUMLSignal* ?) -> HRESULT
+
+## enum tagUMLCallConcurrencyKind
+  cckSequential = -1946157056
+  cckGuarded = -1946157055
+  cckConcurrent = -1946157054
+
+## alias UMLCallConcurrencyKind
+
+## dispatch IUMLMethod
+  get Body(BSTR* Value) -> HRESULT
+  put Body(BSTR ?) -> HRESULT
+  get Specification(IUMLOperation** Value) -> HRESULT
+  put Specification(IUMLOperation* ?) -> HRESULT
+
+## dispatch IUMLCallAction
+  get Operation(IUMLOperation** Value) -> HRESULT
+  put Operation(IUMLOperation* ?) -> HRESULT
+
+## dispatch IUMLCallEvent
+  get Operation(IUMLOperation** Value) -> HRESULT
+  put Operation(IUMLOperation* ?) -> HRESULT
+
+## dispatch IUMLGeneralization
+  get Discriminator(BSTR* Value) -> HRESULT
+  put Discriminator(BSTR ?) -> HRESULT
+  get Child(IUMLGeneralizableElement** Value) -> HRESULT
+  put Child(IUMLGeneralizableElement* ?) -> HRESULT
+  get Parent(IUMLGeneralizableElement** Value) -> HRESULT
+  put Parent(IUMLGeneralizableElement* ?) -> HRESULT
+  get Powertype(IUMLClassifier** Value) -> HRESULT
+  put Powertype(IUMLClassifier* ?) -> HRESULT
+
+## dispatch IUMLPort
+  get IsBehavior(bool* Value) -> HRESULT
+  put IsBehavior(bool ?) -> HRESULT
+  get IsService(bool* Value) -> HRESULT
+  put IsService(bool ?) -> HRESULT
+  get Owner(IUMLClassifier** Value) -> HRESULT
+  put Owner(IUMLClassifier* ?) -> HRESULT
+
+## dispatch IUMLCreateAction
+  get Instantiation(IUMLClassifier** Value) -> HRESULT
+  put Instantiation(IUMLClassifier* ?) -> HRESULT
+
+## dispatch IUMLDependency
+  get Mapping(BSTR* Value) -> HRESULT
+  put Mapping(BSTR ?) -> HRESULT
+  get Client(IUMLModelElement** Value) -> HRESULT
+  put Client(IUMLModelElement* ?) -> HRESULT
+  get Supplier(IUMLModelElement** Value) -> HRESULT
+  put Supplier(IUMLModelElement* ?) -> HRESULT
+
+## dispatch IUMLTemplateParameter
+  get ParameterType(BSTR* Value) -> HRESULT
+  put ParameterType(BSTR ?) -> HRESULT
+  get DefaultValue(BSTR* Value) -> HRESULT
+  put DefaultValue(BSTR ?) -> HRESULT
+  get DefaultElement(IUMLModelElement** Value) -> HRESULT
+  put DefaultElement(IUMLModelElement* ?) -> HRESULT
+  get Template(IUMLModelElement** Value) -> HRESULT
+  get Parameter(IUMLModelElement** Value) -> HRESULT
+
+## dispatch IUMLComment
+  get Body(BSTR* Value) -> HRESULT
+  put Body(BSTR ?) -> HRESULT
+  AddAnnotatedElement(IUMLModelElement* Value) -> HRESULT
+  RemoveAnnotatedElement(IUMLModelElement* Value) -> HRESULT
+  InsertAnnotatedElement(long Index, IUMLModelElement* Value) -> HRESULT
+  DeleteAnnotatedElement(long Index) -> HRESULT
+  IndexOfAnnotatedElement(IUMLModelElement* Value, long* Index) -> HRESULT
+  GetAnnotatedElementCount(long* Value) -> HRESULT
+  GetAnnotatedElementAt(long Index, IUMLModelElement** Value) -> HRESULT
+
+## dispatch IUMLComponent
+  AddDeploymentLocation(IUMLNode* Value) -> HRESULT
+  RemoveDeploymentLocation(IUMLNode* Value) -> HRESULT
+  InsertDeploymentLocation(long Index, IUMLNode* Value) -> HRESULT
+  DeleteDeploymentLocation(long Index) -> HRESULT
+  IndexOfDeploymentLocation(IUMLNode* Value, long* Index) -> HRESULT
+  GetDeploymentLocationCount(long* Value) -> HRESULT
+  GetDeploymentLocationAt(long Index, IUMLNode** Value) -> HRESULT
+  AddResident(IUMLModelElement* Value) -> HRESULT
+  RemoveResident(IUMLModelElement* Value) -> HRESULT
+  InsertResident(long Index, IUMLModelElement* Value) -> HRESULT
+  DeleteResident(long Index) -> HRESULT
+  IndexOfResident(IUMLModelElement* Value, long* Index) -> HRESULT
+  GetResidentCount(long* Value) -> HRESULT
+  GetResidentAt(long Index, IUMLModelElement** Value) -> HRESULT
+  AddImplementation(IUMLArtifact* Value) -> HRESULT
+  RemoveImplementation(IUMLArtifact* Value) -> HRESULT
+  InsertImplementation(long Index, IUMLArtifact* Value) -> HRESULT
+  DeleteImplementation(long Index) -> HRESULT
+  IndexOfImplementation(IUMLArtifact* Value, long* Index) -> HRESULT
+  GetImplementationCount(long* Value) -> HRESULT
+  GetImplementationAt(long Index, IUMLArtifact** Value) -> HRESULT
+
+## dispatch IUMLNode
+  AddDeployedComponent(IUMLComponent* Value) -> HRESULT
+  RemoveDeployedComponent(IUMLComponent* Value) -> HRESULT
+  InsertDeployedComponent(long Index, IUMLComponent* Value) -> HRESULT
+  DeleteDeployedComponent(long Index) -> HRESULT
+  IndexOfDeployedComponent(IUMLComponent* Value, long* Index) -> HRESULT
+  GetDeployedComponentCount(long* Value) -> HRESULT
+  GetDeployedComponentAt(long Index, IUMLComponent** Value) -> HRESULT
+  AddDeployedArtifact(IUMLArtifact* Value) -> HRESULT
+  RemoveDeployedArtifact(IUMLArtifact* Value) -> HRESULT
+  InsertDeployedArtifact(long Index, IUMLArtifact* Value) -> HRESULT
+  DeleteDeployedArtifact(long Index) -> HRESULT
+  IndexOfDeployedArtifact(IUMLArtifact* Value, long* Index) -> HRESULT
+  GetDeployedArtifactCount(long* Value) -> HRESULT
+  GetDeployedArtifactAt(long Index, IUMLArtifact** Value) -> HRESULT
+
+## dispatch IUMLArtifact
+  AddImplementationLocation(IUMLComponent* Value) -> HRESULT
+  RemoveImplementationLocation(IUMLComponent* Value) -> HRESULT
+  InsertImplementationLocation(long Index, IUMLComponent* Value) -> HRESULT
+  DeleteImplementationLocation(long Index) -> HRESULT
+  IndexOfImplementationLocation(IUMLComponent* Value, long* Index) -> HRESULT
+  GetImplementationLocationCount(long* Value) -> HRESULT
+  GetImplementationLocationAt(long Index, IUMLComponent** Value) -> HRESULT
+  AddDeploymentLocation(IUMLNode* Value) -> HRESULT
+  RemoveDeploymentLocation(IUMLNode* Value) -> HRESULT
+  InsertDeploymentLocation(long Index, IUMLNode* Value) -> HRESULT
+  DeleteDeploymentLocation(long Index) -> HRESULT
+  IndexOfDeploymentLocation(IUMLNode* Value, long* Index) -> HRESULT
+  GetDeploymentLocationCount(long* Value) -> HRESULT
+  GetDeploymentLocationAt(long Index, IUMLNode** Value) -> HRESULT
+
+## dispatch IUMLTemplateArgument
+  get ModelElement(IUMLModelElement** Value) -> HRESULT
+  put ModelElement(IUMLModelElement* ?) -> HRESULT
+
+## dispatch IUMLPartition
+  AddContent(IUMLModelElement* Value) -> HRESULT
+  RemoveContent(IUMLModelElement* Value) -> HRESULT
+  InsertContent(long Index, IUMLModelElement* Value) -> HRESULT
+  DeleteContent(long Index) -> HRESULT
+  IndexOfContent(IUMLModelElement* Value, long* Index) -> HRESULT
+  GetContentCount(long* Value) -> HRESULT
+  GetContentAt(long Index, IUMLModelElement** Value) -> HRESULT
+  get ActivityGraph(IUMLActivityGraph** Value) -> HRESULT
+
+## dispatch IUMLActivityGraph
+  GetPartitionCount(long* Value) -> HRESULT
+  GetPartitionAt(long Index, IUMLPartition** Value) -> HRESULT
+
+## dispatch IUMLModel
+
+## dispatch IUMLSubsystem
+  get IsInstantiable(bool* Value) -> HRESULT
+  put IsInstantiable(bool ?) -> HRESULT
+
+## dispatch IUMLInterface
+
+## dispatch IUMLDataType
+
+## dispatch IUMLEnumeration
+  GetLiteralCount(long* Value) -> HRESULT
+  GetLiteralAt(long Index, IUMLEnumerationLiteral** Value) -> HRESULT
+
+## dispatch IUMLEnumerationLiteral
+  get Enumeration(IUMLEnumeration** Value) -> HRESULT
+
+## dispatch IUMLException
+
+## dispatch IUMLUseCase
+  AddExtender(IUMLExtend* Value) -> HRESULT
+  RemoveExtender(IUMLExtend* Value) -> HRESULT
+  InsertExtender(long Index, IUMLExtend* Value) -> HRESULT
+  DeleteExtender(long Index) -> HRESULT
+  IndexOfExtender(IUMLExtend* Value, long* Index) -> HRESULT
+  GetExtenderCount(long* Value) -> HRESULT
+  GetExtenderAt(long Index, IUMLExtend** Value) -> HRESULT
+  AddExtend(IUMLExtend* Value) -> HRESULT
+  RemoveExtend(IUMLExtend* Value) -> HRESULT
+  InsertExtend(long Index, IUMLExtend* Value) -> HRESULT
+  DeleteExtend(long Index) -> HRESULT
+  IndexOfExtend(IUMLExtend* Value, long* Index) -> HRESULT
+  GetExtendCount(long* Value) -> HRESULT
+  GetExtendAt(long Index, IUMLExtend** Value) -> HRESULT
+  AddIncluder(IUMLInclude* Value) -> HRESULT
+  RemoveIncluder(IUMLInclude* Value) -> HRESULT
+  InsertIncluder(long Index, IUMLInclude* Value) -> HRESULT
+  DeleteIncluder(long Index) -> HRESULT
+  IndexOfIncluder(IUMLInclude* Value, long* Index) -> HRESULT
+  GetIncluderCount(long* Value) -> HRESULT
+  GetIncluderAt(long Index, IUMLInclude** Value) -> HRESULT
+  AddInclude(IUMLInclude* Value) -> HRESULT
+  RemoveInclude(IUMLInclude* Value) -> HRESULT
+  InsertInclude(long Index, IUMLInclude* Value) -> HRESULT
+  DeleteInclude(long Index) -> HRESULT
+  IndexOfInclude(IUMLInclude* Value, long* Index) -> HRESULT
+  GetIncludeCount(long* Value) -> HRESULT
+  GetIncludeAt(long Index, IUMLInclude** Value) -> HRESULT
+  GetExtensionPointCount(long* Value) -> HRESULT
+  GetExtensionPointAt(long Index, IUMLExtensionPoint** Value) -> HRESULT
+
+## dispatch IUMLExtend
+  get Condition(BSTR* Value) -> HRESULT
+  put Condition(BSTR ?) -> HRESULT
+  get Base(IUMLUseCase** Value) -> HRESULT
+  put Base(IUMLUseCase* ?) -> HRESULT
+  get Extension(IUMLUseCase** Value) -> HRESULT
+  put Extension(IUMLUseCase* ?) -> HRESULT
+  AddExtensionPoint(IUMLExtensionPoint* Value) -> HRESULT
+  RemoveExtensionPoint(IUMLExtensionPoint* Value) -> HRESULT
+  InsertExtensionPoint(long Index, IUMLExtensionPoint* Value) -> HRESULT
+  DeleteExtensionPoint(long Index) -> HRESULT
+  IndexOfExtensionPoint(IUMLExtensionPoint* Value, long* Index) -> HRESULT
+  GetExtensionPointCount(long* Value) -> HRESULT
+  GetExtensionPointAt(long Index, IUMLExtensionPoint** Value) -> HRESULT
+
+## dispatch IUMLExtensionPoint
+  get Location(BSTR* Value) -> HRESULT
+  put Location(BSTR ?) -> HRESULT
+  get UseCase(IUMLUseCase** Value) -> HRESULT
+  AddExtend(IUMLExtend* Value) -> HRESULT
+  RemoveExtend(IUMLExtend* Value) -> HRESULT
+  InsertExtend(long Index, IUMLExtend* Value) -> HRESULT
+  DeleteExtend(long Index) -> HRESULT
+  IndexOfExtend(IUMLExtend* Value, long* Index) -> HRESULT
+  GetExtendCount(long* Value) -> HRESULT
+  GetExtendAt(long Index, IUMLExtend** Value) -> HRESULT
+
+## dispatch IUMLInclude
+  get Addition(IUMLUseCase** Value) -> HRESULT
+  put Addition(IUMLUseCase* ?) -> HRESULT
+  get Base(IUMLUseCase** Value) -> HRESULT
+  put Base(IUMLUseCase* ?) -> HRESULT
+
+## dispatch IUMLActor
+
+## dispatch IUMLActionState
+  get IsDynamic(bool* Value) -> HRESULT
+  put IsDynamic(bool ?) -> HRESULT
+  get DynamicArguments(BSTR* Value) -> HRESULT
+  put DynamicArguments(BSTR ?) -> HRESULT
+  get DynamicMultiplicity(BSTR* Value) -> HRESULT
+  put DynamicMultiplicity(BSTR ?) -> HRESULT
+
+## dispatch IUMLSubactivityState
+  get IsDynamic(bool* Value) -> HRESULT
+  put IsDynamic(bool ?) -> HRESULT
+  get DynamicArguments(BSTR* Value) -> HRESULT
+  put DynamicArguments(BSTR ?) -> HRESULT
+  get DynamicMultiplicity(BSTR* Value) -> HRESULT
+  put DynamicMultiplicity(BSTR ?) -> HRESULT
+
+## dispatch IUMLPseudostate
+  get PseudostateKind(UMLPseudostateKind* Value) -> HRESULT
+  put PseudostateKind(UMLPseudostateKind ?) -> HRESULT
+
+## enum tagUMLPseudostateKind
+  pkChoice = -1946157056
+  pkDeepHistory = -1946157055
+  pkSynchronization = -1946157054
+  pkInitial = -1946157053
+  pkJunction = -1946157052
+  pkShallowHistory = -1946157051
+  pkDecision = -1946157050
+
+## alias UMLPseudostateKind
+
+## dispatch IUMLFinalState
+
+## dispatch IUMLUninterpretedAction
+
+## dispatch IUMLTimeEvent
+  get When(BSTR* Value) -> HRESULT
+  put When(BSTR ?) -> HRESULT
+
+## dispatch IUMLChangeEvent
+  get ChangeExpression(BSTR* Value) -> HRESULT
+  put ChangeExpression(BSTR ?) -> HRESULT
+
+## enum tagUMLFactoryMessageKind
+  mkCallAction = -1946157056
+  mkSendAction = -1946157055
+  mkReturnAction = -1946157054
+  mkCreateAction = -1946157053
+  mkDestroyAction = -1946157052
+
+## alias UMLFactoryMessageKind
+
+## dispatch IUMLRealization
+
+## dispatch IUMLDiagram
+
+## dispatch IUMLClassDiagram
+
+## dispatch IUMLUseCaseDiagram
+
+## dispatch IUMLSequenceDiagram
+  get ShowSequenceNumber(bool* Value) -> HRESULT
+  put ShowSequenceNumber(bool ?) -> HRESULT
+  get MessageSignature(UMLMessageSignatureKind* Value) -> HRESULT
+  put MessageSignature(UMLMessageSignatureKind ?) -> HRESULT
+  get ShowActivation(bool* Value) -> HRESULT
+  put ShowActivation(bool ?) -> HRESULT
+
+## enum tagUMLMessageSignatureKind
+  mskNone = -1946157056
+  mskTypeOnly = -1946157055
+  mskNameOnly = -1946157054
+  mskNameAndType = -1946157053
+
+## alias UMLMessageSignatureKind
+
+## dispatch IUMLSequenceRoleDiagram
+  get ShowSequenceNumber(bool* Value) -> HRESULT
+  put ShowSequenceNumber(bool ?) -> HRESULT
+  get MessageSignature(UMLMessageSignatureKind* Value) -> HRESULT
+  put MessageSignature(UMLMessageSignatureKind ?) -> HRESULT
+  get ShowActivation(bool* Value) -> HRESULT
+  put ShowActivation(bool ?) -> HRESULT
+
+## dispatch IUMLCollaborationDiagram
+  get ShowSequenceNumber(bool* Value) -> HRESULT
+  put ShowSequenceNumber(bool ?) -> HRESULT
+  get MessageSignature(UMLMessageSignatureKind* Value) -> HRESULT
+  put MessageSignature(UMLMessageSignatureKind ?) -> HRESULT
+
+## dispatch IUMLCollaborationRoleDiagram
+  get ShowSequenceNumber(bool* Value) -> HRESULT
+  put ShowSequenceNumber(bool ?) -> HRESULT
+  get MessageSignature(UMLMessageSignatureKind* Value) -> HRESULT
+  put MessageSignature(UMLMessageSignatureKind ?) -> HRESULT
+
+## dispatch IUMLStatechartDiagram
+
+## dispatch IUMLActivityDiagram
+
+## dispatch IUMLComponentDiagram
+
+## dispatch IUMLDeploymentDiagram
+
+## dispatch INodeView
+  get Left(long* Value) -> HRESULT
+  put Left(long ?) -> HRESULT
+  get Top(long* Value) -> HRESULT
+  put Top(long ?) -> HRESULT
+  get Width(long* Value) -> HRESULT
+  put Width(long ?) -> HRESULT
+  get Height(long* Value) -> HRESULT
+  put Height(long ?) -> HRESULT
+  get MinWidth(long* Value) -> HRESULT
+  get MinHeight(long* Value) -> HRESULT
+  get AutoResize(bool* Value) -> HRESULT
+  put AutoResize(bool ?) -> HRESULT
+
+## dispatch IUMLCustomTextView
+  get Text(BSTR* Value) -> HRESULT
+  put Text(BSTR ?) -> HRESULT
+
+## dispatch IUMLNoteView
+
+## dispatch IEdgeView
+  get LineStyle(LineStyleKind* Value) -> HRESULT
+  put LineStyle(LineStyleKind ?) -> HRESULT
+  get Points(IPoints** Value) -> HRESULT
+  get Tail(IView** Value) -> HRESULT
+  get Head(IView** Value) -> HRESULT
+
+## dispatch IUMLNoteLinkView
+
+## enum tagLineStyleKind
+  lsRectilinear = -1946157056
+  lsOblique = -1946157055
+
+## alias LineStyleKind
+
+## dispatch IPoints
+  ClearPoints() -> HRESULT
+  AddPoint(long X, long Y) -> HRESULT
+  InsertPoint(long Index, long X, long Y) -> HRESULT
+  DeletePoint(long Index) -> HRESULT
+  BeginUpdate() -> HRESULT
+  EndUpdate() -> HRESULT
+  GetPointX(long Index, long* ReturnValue) -> HRESULT
+  GetPointY(long Index, long* ReturnValue) -> HRESULT
+  GetPointCount(long* ReturnValue) -> HRESULT
+
+## dispatch IUMLTextView
+
+## dispatch IUMLGeneralNodeView
+  get StereotypeDisplay(UMLStereotypeDisplayKind* Value) -> HRESULT
+  put StereotypeDisplay(UMLStereotypeDisplayKind ?) -> HRESULT
+  get ShowParentName(bool* Value) -> HRESULT
+  put ShowParentName(bool ?) -> HRESULT
+  get NameCompartment(IUMLNameCompartmentView** Value) -> HRESULT
+
+## dispatch IUMLPackageView
+
+## dispatch IUMLModelView
+
+## enum tagUMLStereotypeDisplayKind
+  sdkLabel = -1946157056
+  sdkIcon = -1946157055
+  sdkNone = -1946157054
+
+## alias UMLStereotypeDisplayKind
+
+## dispatch IUMLNameCompartmentView
+  get NameLabel(ILabelView** Value) -> HRESULT
+  get StereotypeLabel(ILabelView** Value) -> HRESULT
+
+## dispatch ILabelView
+  get Text(BSTR* Value) -> HRESULT
+
+## dispatch IUMLSubsystemView
+  get SuppressOperations(bool* Value) -> HRESULT
+  put SuppressOperations(bool ?) -> HRESULT
+  get ShowOperationSignature(bool* Value) -> HRESULT
+  put ShowOperationSignature(bool ?) -> HRESULT
+  get ShowCompartmentStereotype(bool* Value) -> HRESULT
+  put ShowCompartmentStereotype(bool ?) -> HRESULT
+  get ShowCompartmentVisibility(bool* Value) -> HRESULT
+  put ShowCompartmentVisibility(bool ?) -> HRESULT
+  get OperationCompartment(IUMLOperationCompartmentView** Value) -> HRESULT
+
+## dispatch IUMLListCompartmentView
+
+## dispatch IUMLOperationCompartmentView
+
+## dispatch IUMLClassifierView
+  get SuppressAttributes(bool* Value) -> HRESULT
+  put SuppressAttributes(bool ?) -> HRESULT
+  get SuppressOperations(bool* Value) -> HRESULT
+  put SuppressOperations(bool ?) -> HRESULT
+  get ShowOperationSignature(bool* Value) -> HRESULT
+  put ShowOperationSignature(bool ?) -> HRESULT
+  get ShowCompartmentStereotype(bool* Value) -> HRESULT
+  put ShowCompartmentStereotype(bool ?) -> HRESULT
+  get ShowCompartmentVisibility(bool* Value) -> HRESULT
+  put ShowCompartmentVisibility(bool ?) -> HRESULT
+  get OperationCompartment(IUMLOperationCompartmentView** Value) -> HRESULT
+  get AttributeCompartment(IUMLAttributeCompartmentView** Value) -> HRESULT
+
+## dispatch IUMLClassView
+  get TemplateParameterCompartment(IUMLTemplateParameterCompartmentView** Value) -> HRESULT
+
+## dispatch IUMLAttributeCompartmentView
+
+## dispatch IUMLTemplateParameterCompartmentView
+
+## dispatch IUMLInterfaceView
+
+## dispatch IUMLEnumerationView
+  get SuppressLiterals(bool* Value) -> HRESULT
+  put SuppressLiterals(bool ?) -> HRESULT
+  get SuppressOperations(bool* Value) -> HRESULT
+  put SuppressOperations(bool ?) -> HRESULT
+  get ShowOperationSignature(bool* Value) -> HRESULT
+  put ShowOperationSignature(bool ?) -> HRESULT
+  get ShowCompartmentStereotype(bool* Value) -> HRESULT
+  put ShowCompartmentStereotype(bool ?) -> HRESULT
+  get ShowCompartmentVisibility(bool* Value) -> HRESULT
+  put ShowCompartmentVisibility(bool ?) -> HRESULT
+  get EnumerationLiteralCompartment(IUMLEnumerationLiteralCompartmentView** Value) -> HRESULT
+  get OperationCompartment(IUMLOperationCompartmentView** Value) -> HRESULT
+
+## dispatch IUMLEnumerationLiteralCompartmentView
+
+## dispatch IUMLSignalView
+
+## dispatch IUMLExceptionView
+
+## dispatch IUMLCustomComponentView
+
+## dispatch IUMLComponentView
+
+## dispatch IUMLComponentInstanceView
+
+## dispatch IUMLCustomNodeView
+
+## dispatch IUMLNodeView
+
+## dispatch IUMLNodeInstanceView
+
+## dispatch IUMLActorView
+
+## dispatch IUMLUseCaseView
+
+## dispatch IUMLCollaborationView
+  get TemplateParameterCompartment(IUMLTemplateParameterCompartmentView** Value) -> HRESULT
+
+## dispatch IUMLCollaborationInstanceSetView
+
+## dispatch IUMLGeneralEdgeView
+  get NameLabel(IEdgeLabelView** Value) -> HRESULT
+  get StereotypeLabel(IEdgeLabelView** Value) -> HRESULT
+
+## dispatch IUMLGeneralizationView
+
+## dispatch IParasiticView
+  get Alpha(double* Value) -> HRESULT
+  put Alpha(double ?) -> HRESULT
+  get Distance(double* Value) -> HRESULT
+  put Distance(double ?) -> HRESULT
+
+## dispatch IEdgeParasiticView
+  get EdgePosition(EdgePositionKind* Value) -> HRESULT
+  get HostEdge(IEdgeView** Value) -> HRESULT
+
+## dispatch IEdgeLabelView
+  get Text(BSTR* Value) -> HRESULT
+
+## enum tagEdgePositionKind
+  epHead = -1946157056
+  epMiddle = -1946157055
+  epTail = -1946157054
+
+## alias EdgePositionKind
+
+## dispatch IUMLAssociationView
+  get ShowCompartmentStereotype(bool* Value) -> HRESULT
+  put ShowCompartmentStereotype(bool ?) -> HRESULT
+  get ShowCompartmentVisibility(bool* Value) -> HRESULT
+  put ShowCompartmentVisibility(bool ?) -> HRESULT
+  get HeadRoleNameLabel(IEdgeLabelView** Value) -> HRESULT
+  get TailRoleNameLabel(IEdgeLabelView** Value) -> HRESULT
+  get HeadMultiplicityLabel(IEdgeLabelView** Value) -> HRESULT
+  get TailMultiplicityLabel(IEdgeLabelView** Value) -> HRESULT
+  get TailPropertyLabel(IEdgeLabelView** Value) -> HRESULT
+  get HeadPropertyLabel(IEdgeLabelView** Value) -> HRESULT
+  get HeadQualifierCompartment(IUMLQualifierCompartmentView** Value) -> HRESULT
+  get TailQualifierCompartment(IUMLQualifierCompartmentView** Value) -> HRESULT
+
+## dispatch IUMLQualifierCompartmentView
+
+## dispatch IUMLAssociationClassView
+
+## dispatch IUMLDependencyView
+
+## dispatch IUMLRealizationView
+
+## dispatch IUMLIncludeView
+
+## dispatch IUMLExtendView
+
+## dispatch IUMLCustomColObjectView
+
+## dispatch IUMLColObjectView
+
+## dispatch IUMLDiagramView
+
+## dispatch IUMLSequenceDiagramView
+
+## dispatch IUMLCustomSeqObjectView
+  get LifeLine(IUMLLifeLineView** Value) -> HRESULT
+
+## dispatch IUMLSeqObjectView
+
+## dispatch IUMLLifeLineView
+
+## dispatch IUMLColClassifierRoleView
+
+## dispatch IUMLSequenceRoleDiagramView
+
+## dispatch IUMLSeqClassifierRoleView
+
+## dispatch IUMLLinkView
+  get HeadEndLabel(IEdgeLabelView** Value) -> HRESULT
+  get TailEndLabel(IEdgeLabelView** Value) -> HRESULT
+
+## dispatch IUMLAssociationRoleView
+
+## dispatch IUMLCollaborationDiagramView
+
+## dispatch IEdgeNodeView
+
+## dispatch IUMLCustomColMessageView
+  get NameLabel(INodeLabelView** Value) -> HRESULT
+  get StereotypeLabel(INodeLabelView** Value) -> HRESULT
+
+## dispatch IUMLColStimulusView
+
+## dispatch INodeParasiticView
+  get HostNode(INodeView** Value) -> HRESULT
+
+## dispatch INodeLabelView
+  get Text(BSTR* Value) -> HRESULT
+
+## dispatch IUMLCustomSeqMessageView
+  get Activation(IUMLActivationView** Value) -> HRESULT
+  get NameLabel(IEdgeLabelView** Value) -> HRESULT
+  get StereotypeLabel(IEdgeLabelView** Value) -> HRESULT
+
+## dispatch IUMLSeqStimulusView
+
+## dispatch IUMLActivationView
+
+## dispatch IUMLCollaborationRoleDiagramView
+
+## dispatch IUMLColMessageView
+
+## dispatch IUMLSeqMessageView
+
+## dispatch IUMLStatechartDiagramView
+
+## dispatch IUMLCustomStateView
+  get InternalTransitionCompartment(IUMLInternalTransitionCompartmentView** Value) -> HRESULT
+
+## dispatch IUMLStateView
+
+## dispatch IUMLInternalTransitionCompartmentView
+
+## dispatch IUMLSubmachineStateView
+  get IncludeLabel(ILabelView** Value) -> HRESULT
+
+## dispatch IUMLPseudostateView
+
+## dispatch IUMLFinalStateView
+
+## dispatch IUMLActivityDiagramView
+
+## dispatch IUMLActionStateView
+
+## dispatch IUMLSubactivityStateView
+  get IncludeLabel(ILabelView** Value) -> HRESULT
+
+## dispatch IUMLSwimlaneView
+
+## dispatch IUMLTransitionView
+
+## dispatch IProjectManager
+  get FileName(BSTR* Value) -> HRESULT
+  get Modified(bool* Value) -> HRESULT
+  get UnitsModified(bool* Value) -> HRESULT
+  get Project(IUMLProject** Value) -> HRESULT
+  GetUnitDocumentCount(long* Value) -> HRESULT
+  GetUnitDocumentAt(long Index, IUMLUnitDocument** Value) -> HRESULT
+  get ProjectDocument(IUMLProjectDocument** Value) -> HRESULT
+  NewProject() -> HRESULT
+  NewProjectByApproach(BSTR ApproachName) -> HRESULT
+  OpenProject(BSTR FileName) -> HRESULT
+  SaveProject() -> HRESULT
+  SaveProjectAs(BSTR FileName) -> HRESULT
+  SaveAllUnits() -> HRESULT
+  CloseProject() -> HRESULT
+  ImportFramework(IUMLPackage* OwnerPackage, BSTR FrameworkName) -> HRESULT
+  ImportModelFragment(IUMLPackage* OwnerPackage, BSTR FileName) -> HRESULT
+  ExportModelFragment(IUMLPackage* APackage, BSTR FileName) -> HRESULT
+  SeparateUnit(IUMLPackage* APackage, BSTR FileName, IUMLUnitDocument** ReturnValue) -> HRESULT
+  MergeUnit(IUMLPackage* APackage) -> HRESULT
+  OpenUnit(IUMLPackage* ABasePackage, BSTR FileName, IUMLUnitDocument** ReturnValue) -> HRESULT
+  DeleteUnit(IUMLPackage* APackage) -> HRESULT
+  UpdateDocuments() -> HRESULT
+  GetAvailableFrameworkAt(long Index, BSTR* ReturnValue) -> HRESULT
+  GetAvailableFrameworkCount(long* ReturnValue) -> HRESULT
+  GetAvailableApproachAt(long Index, BSTR* ReturnValue) -> HRESULT
+  GetAvailableApproachCount(long* ReturnValue) -> HRESULT
+
+## dispatch IUMLProject
+  get Title(BSTR* Value) -> HRESULT
+  put Title(BSTR ?) -> HRESULT
+  get Author(BSTR* Value) -> HRESULT
+  put Author(BSTR ?) -> HRESULT
+  get Company(BSTR* Value) -> HRESULT
+  put Company(BSTR ?) -> HRESULT
+  get Copyright(BSTR* Value) -> HRESULT
+  put Copyright(BSTR ?) -> HRESULT
+
+## dispatch IUMLDocument
+
+## dispatch IUMLUnitDocument
+  get ParentUnitDocument(IUMLUnitDocument** Value) -> HRESULT
+  GetSubUnitDocumentCount(long* Value) -> HRESULT
+  GetSubUnitDocumentAt(long Index, IUMLUnitDocument** Value) -> HRESULT
+
+## dispatch IUMLProjectDocument
+
+## dispatch ISelectionManager
+  GetSelectedModelCount(long* Value) -> HRESULT
+  GetSelectedModelAt(long Index, IModel** Value) -> HRESULT
+  GetSelectedViewCount(long* Value) -> HRESULT
+  GetSelectedViewAt(long Index, IView** Value) -> HRESULT
+  get ActiveDiagram(IDiagram** Value) -> HRESULT
+  get ActiveDiagramView(IDiagramView** Value) -> HRESULT
+  SelectAll() -> HRESULT
+  DeselectAll() -> HRESULT
+  SelectModel(IModel* AModel) -> HRESULT
+  SelectView(IView* AView) -> HRESULT
+  SelectAdditionalModel(IModel* AModel) -> HRESULT
+  SelectAdditionalView(IView* AView) -> HRESULT
+  SelectArea(long X1, long Y1, long X2, long Y2) -> HRESULT
+  SelectAdditionalArea(long X1, long Y1, long X2, long Y2) -> HRESULT
+  DeselectModel(IModel* AModel) -> HRESULT
+  DeselectView(IView* AView) -> HRESULT
+  DeselectAllModels() -> HRESULT
+  DeselectAllViews() -> HRESULT
+
+## dispatch IElementSelector
+  get AllowNull(bool* Value) -> HRESULT
+  put AllowNull(bool ?) -> HRESULT
+  Filter(ElementFilteringKind Filtering) -> HRESULT
+  ClearSelectableModels() -> HRESULT
+  AddSelectableModel(BSTR ClassName) -> HRESULT
+  RemoveSelectableModel(BSTR ClassName) -> HRESULT
+  Execute(BSTR Title, bool* ReturnValue) -> HRESULT
+  GetSelectedModel(IModel** ReturnValue) -> HRESULT
+
+## enum tagElementFilteringKind
+  fkAll = -1946157056
+  fkPackages = -1946157055
+  fkClassifiers = -1946157054
+
+## alias ElementFilteringKind
+
+## dispatch IMetaModel
+  GetMetaClassCount(long* Value) -> HRESULT
+  GetMetaClassAt(long Index, IMetaClass** Value) -> HRESULT
+  GetMetaEnumerationCount(long* Value) -> HRESULT
+  GetMetaEnumerationAt(long Index, IMetaEnumeration** Value) -> HRESULT
+  GetMetaDataTypeCount(long* Value) -> HRESULT
+  GetMetaDataTypeAt(long Index, IMetaDataType** Value) -> HRESULT
+  GetMetaPrimitiveTypeCount(long* Value) -> HRESULT
+  GetMetaPrimitiveTypeAt(long Index, IMetaPrimitiveType** Value) -> HRESULT
+  FindInstanceByGuid(BSTR Guid, IElement** ReturnValue) -> HRESULT
+  FindMetaClassifier(BSTR Name, IMetaClassifier** ReturnValue) -> HRESULT
+  FindMetaClass(BSTR Name, IMetaClass** ReturnValue) -> HRESULT
+  FindMetaEnumeration(BSTR Name, IMetaEnumeration** ReturnValue) -> HRESULT
+  FindMetaDataType(BSTR Name, IMetaDataType** ReturnValue) -> HRESULT
+  FindPrimitiveType(BSTR Name, IMetaPrimitiveType** ReturnValue) -> HRESULT
+
+## dispatch IMetaEnumeration
+  GetMetaLiteralCount(long* Value) -> HRESULT
+  GetMetaLiteralAt(long Index, IMetaLiteral** Value) -> HRESULT
+
+## dispatch IMetaLiteral
+
+## dispatch IMetaDataType
+
+## dispatch IMetaPrimitiveType
+
+## dispatch IExtensionManager
+  GetIncludedProfileCount(long* Value) -> HRESULT
+  GetIncludedProfileAt(long Index, IProfile** Value) -> HRESULT
+  GetAvailableProfileCount(long* Value) -> HRESULT
+  GetAvailableProfileAt(long Index, IProfile** Value) -> HRESULT
+  ClearIncludedProfiles() -> HRESULT
+  IncludeProfile(BSTR Profile) -> HRESULT
+  ExcludeProfile(BSTR Profile) -> HRESULT
+  FindAvailableProfile(BSTR Name, IProfile** ReturnValue) -> HRESULT
+  FindIncludedProfile(BSTR Name, IProfile** ReturnValue) -> HRESULT
+  FindStereotype(BSTR Profile, BSTR Name, BSTR BaseClass, IStereotype** ReturnValue) -> HRESULT
+  FindFirstStereotype(BSTR Name, BSTR BaseClass, IStereotype** ReturnValue) -> HRESULT
+  FindTagDefinition(BSTR Profile, BSTR TagDefinitionSet, BSTR Name, ITagDefinition** ReturnValue) -> HRESULT
+  FindTagDefinitionSet(BSTR Profile, BSTR Name, ITagDefinitionSet** ReturnValue) -> HRESULT
+
+## dispatch IElementListSelector
+  get AllowNull(bool* Value) -> HRESULT
+  put AllowNull(bool ?) -> HRESULT
+  ClearListElements() -> HRESULT
+  AddListElement(IModel* AModel) -> HRESULT
+  AddListElementsByCollection(IModel* AModel, BSTR CollectionName, bool ShowInherited) -> HRESULT
+  AddListElementsByClass(BSTR MetaClassName, bool IncludeChildInstances) -> HRESULT
+  Execute(BSTR Title, bool* ReturnValue) -> HRESULT
+  GetSelectedModel(IModel** ReturnValue) -> HRESULT
+
+## dispatch IEventPublisher
+  Subscribe(IEventSubscriber* ASubscriber, EventKind AEvent) -> HRESULT
+  SubscribeAll(IEventSubscriber* ASubscriber) -> HRESULT
+  Unsubscribe(IEventSubscriber* ASubscriber, EventKind AEvent) -> HRESULT
+  UnsubscribeAll(IEventSubscriber* ASubscriber) -> HRESULT
+  GetEventArgModelAt(long Index, IModel** ReturnValue) -> HRESULT
+  GetEventArgModelCount(long* ReturnValue) -> HRESULT
+  GetEventArgViewAt(long Index, IView** ReturnValue) -> HRESULT
+  GetEventArgViewCount(long* ReturnValue) -> HRESULT
+  GetEventArgDocument(IDocument** ReturnValue) -> HRESULT
+  GetEventArgUnit(IUMLUnitDocument** ReturnValue) -> HRESULT
+
+## interface IEventSubscriber
+  NotifyEvent(EventKind AEvent) -> HRESULT
+
+## enum tagEventKind
+  EVK_APPLICATION_ACTIVATE = -1946157056
+  EVK_APPLICATION_DEACTIVATE = -1946157055
+  EVK_APPLICATION_MINIMIZE = -1946157054
+  EVK_APPLICATION_RESTORE = -1946157053
+  EVK_OPTIONS_APPLIED = -1946157052
+  EVK_PROJECT_OPENED = -1946157051
+  EVK_PROJECT_SAVED = -1946157050
+  EVK_PROJECT_CLOSING = -1946157049
+  EVK_PROJECT_CLOSED = -1946157048
+  EVK_DOCUMENT_MODIFIED = -1946157047
+  EVK_DOCUMENT_SAVED = -1946157046
+  EVK_UNIT_SEPARATED = -1946157045
+  EVK_UNIT_MERGED = -1946157044
+  EVK_UNIT_OPENED = -1946157043
+  EVK_SELECTION_CHANGED = -1946157042
+  EVK_DIAGRAM_ACTIVATED = -1946157041
+  EVK_ELEMENTS_ADDED = -1946157040
+  EVK_ELEMENTS_DELETING = -1946157039
+  EVK_ELEMENTS_DELETED = -1946157038
+  EVK_MODELS_CHANGED = -1946157037
+  EVK_VIEWS_CHANGED = -1946157036
+
+## alias EventKind
+
+## enum tagInformationMessageKind
+  mkGeneral = -1946157056
+  mkFindResult = -1946157055
+  mkVerificationResult = -1946157054
+
+## alias InformationMessageKind
+
+## dispatch IUMLClassDiagramView
+
+## dispatch IUMLDeploymentDiagramView
+
+## dispatch IUMLComponentDiagramView
+
+## dispatch IUMLUseCaseDiagramView
+
+## dispatch INodeNodeView
+
+## dispatch IUMLDataValue
+
+## dispatch IUMLSubsystemInstance
+
+## dispatch IUMLUseCaseInstance
+
+## dispatch IUMLSynchState
+  get Bound(long* Value) -> HRESULT
+  put Bound(long ?) -> HRESULT
+
+## dispatch IUMLStubState
+  get ReferenceState(BSTR* Value) -> HRESULT
+  put ReferenceState(BSTR ?) -> HRESULT
+
+## dispatch IUMLSignalAcceptState
+
+## dispatch IUMLCallState
+
+## dispatch IUMLSignalSendState
+
+## dispatch IUMLFlowFinalState
+
+## dispatch IUMLProgrammingLanguageDataType
+  get Expression(BSTR* Value) -> HRESULT
+  put Expression(BSTR ?) -> HRESULT
+
+## dispatch IUMLPrimitive
+
+## dispatch IUMLTerminateAction
+
+## dispatch IUMLDestroyAction
+
+## dispatch IUMLReturnAction
+
+## dispatch IUMLCompositeStructureDiagram
+
+## interface IStarUMLAddIn
+  InitializeAddIn() -> HRESULT
+  FinalizeAddIn() -> HRESULT
+  DoMenuAction(long ActionID) -> HRESULT

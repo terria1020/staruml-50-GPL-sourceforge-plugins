@@ -1,0 +1,39 @@
+classDiagram
+    direction TB
+    class Animal {
+        <<abstract>>
+        +String name
+        -int age
+        +makeSound()* void
+        +getAge() int
+    }
+    class Dog {
+        +String breed
+        +bark() void
+        +fetch(item: String, times: int) bool
+    }
+    class Cat
+    Cat : +boolean indoor
+    Cat : +meow()
+    class IPet {
+        <<interface>>
+        +play() void
+    }
+    class Color {
+        <<enumeration>>
+        RED
+        GREEN
+        BLUE
+    }
+    class Owner {
+        +String 이름
+        +adopt(pet: IPet) void
+    }
+    Animal <|-- Dog
+    Animal <|-- Cat
+    Dog ..|> IPet
+    Owner "1" --> "0..*" IPet : owns
+    Dog *-- Collar
+    Owner o-- Address
+    Dog ..> Color : uses
+    note for Dog "착한 강아지\n두번째 줄"

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ADDIN>
+    <NAME>Mermaid AddIn</NAME>
+    <DISPLAYNAME>Mermaid AddIn</DISPLAYNAME>
+    <COMPANY>staruml-50-GPL-sourceforge-plugins</COMPANY>
+    <COPYRIGHT>GPL-2.0-or-later</COPYRIGHT>
+    <ISACTIVE>True</ISACTIVE>
+    <MENUFILE>MermaidAddIn.mnu</MENUFILE>
+    <VERSION>0.1.0</VERSION>
+</ADDIN>

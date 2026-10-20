@@ -1,0 +1,20 @@
+flowchart TD
+    subgraph 사용자
+        start((시작)) --> A[주문 입력]
+        A --> B{재고 확인}
+        F[주문 취소 안내]
+    end
+    subgraph 주문시스템
+        B -->|재고 있음| C[결제 요청]
+        B -->|재고 없음| F
+        C --> D@{ shape: fork }
+        D --> E1[배송 준비]
+        D --> E2[영수증 발행]
+        E1 --> J@{ shape: join }
+        E2 --> J
+    end
+    subgraph 물류센터
+        J --> G[[출고 처리]]
+        G --> stop(((종료)))
+    end
+    F --> stop
