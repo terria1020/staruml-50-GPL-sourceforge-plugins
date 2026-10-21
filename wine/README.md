@@ -73,6 +73,6 @@ brew install innoextract
 
 | 항목 | 상태 |
 |---|---|
-| `com export` (JPEG/BMP/EMF) | Wine에서 `E_NOTIMPL` 오류. Windows에서는 동작할 것으로 예상합니다. |
+| `com export` (JPEG/BMP/EMF) | Wine에서 `E_NOTIMPL` 오류. Windows(11 ARM VM에서 JPEG 확인)에서는 동작합니다. |
 | 메뉴 애드인 (Tools > Mermaid) | 메뉴 등록은 확인했습니다. 실행하려면 프리픽스 안에 Windows Python이 필요합니다. |
 | 실행 중 크래시 후 무응답 | `wineserver -k` 후 `run-staruml.sh`로 다시 시작합니다. |

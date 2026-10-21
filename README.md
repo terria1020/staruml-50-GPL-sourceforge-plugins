@@ -179,7 +179,7 @@ claude mcp add staruml5-vm -s user --transport http http://<VM-IP>:8765/mcp --he
 - 평문 HTTP이므로 VMware NAT·호스트 전용 네트워크처럼 Mac과 VM 사이에서만 씁니다.
 - Mac의 로컬 stdio 서버(`staruml5`)와 함께 등록해도 됩니다. 변환은 로컬에서 하고 `staruml_com`만 VM으로 보내는 식으로 나눠 쓸 수 있습니다.
 
-Windows 11 ARM VM에서는 아직 검증하지 않았습니다([TODO.md](TODO.md)).
+**Windows 11 ARM VM(VMware Fusion, Apple Silicon Mac)에서 검증**했습니다. StarUML(x86)은 에뮬레이션으로 돌고, ARM64 `cscript`가 그대로 COM에 붙습니다. Mac에서 `status`, `open`, `reload`, `list`, `export`(JPEG), `mermaid_to_staruml`, `/files` 다운로드까지 확인했습니다. `layout`, `show`, `import-fragment`는 아직 확인하지 않았습니다([TODO.md](TODO.md)).
 
 ---
 
@@ -203,10 +203,10 @@ WINEPREFIX=~/.wine-staruml5 LANG=ko_KR.UTF-8 python3 -m staruml5 com status
 |---|---|
 | Linux x86_64 | 검증 완료 (Ubuntu 24.04, wine 9.0, 32비트 프리픽스) |
 | macOS Intel | 미검증: `brew install --cask --no-quarantine wine-stable` + `brew install innoextract` 후 `wine/install.sh` |
-| macOS Apple Silicon | 잠정 불가: StarUML이 시작 중 멈추거나 크래시 (wine-stable 11.0, wine-devel 11.18, macOS 27.2, M4). COM 브리지와 애드인 사용 불가 ([#1](https://github.com/terria1020/staruml-50-GPL-sourceforge-plugins/issues/1)). 대안: Windows VM에 [원격 연결](#원격-연결-vm의-staruml을-macos-에이전트에서-쓰기) |
+| macOS Apple Silicon | 잠정 불가: StarUML이 시작 중 멈추거나 크래시 (wine-stable 11.0, wine-devel 11.18, macOS 27.2, M4). COM 브리지와 애드인 사용 불가 ([#1](https://github.com/terria1020/staruml-50-GPL-sourceforge-plugins/issues/1)). 대안: Windows VM에 [원격 연결](#원격-연결-vm의-staruml을-macos-에이전트에서-쓰기) (Windows 11 ARM에서 검증) |
 
 Wine에서 알려진 제약은 다음과 같습니다.
-- `com export`(이미지 내보내기)가 Wine에서 `E_NOTIMPL`로 실패합니다. Windows에서는 문제없을 것으로 예상합니다. [TODO.md](TODO.md)에서 추적합니다.
+- `com export`(이미지 내보내기)가 Wine에서 `E_NOTIMPL`로 실패합니다. Windows(11 ARM VM에서 JPEG 확인)에서는 동작합니다. [TODO.md](TODO.md)에서 추적합니다.
 - 메뉴 애드인은 프리픽스 안에 Windows용 Python이 있어야 동작합니다. 호스트에서는 CLI와 COM 브리지를 쓰면 됩니다.
 
 ---
