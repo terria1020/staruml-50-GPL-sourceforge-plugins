@@ -56,10 +56,11 @@ def run(*args: str, timeout: int = 180) -> dict:
     """Run one bridge command, return its JSON result (raises BridgeError on failure)."""
     script = SCRIPT
     args = tuple(_esc_arg(a) for a in args)
+    # No //U: with it, cscript writes nothing to a pipe under Wine and on Windows 11 ARM.
+    # The script prints ASCII only, so the console code page does not matter.
     if IS_WINDOWS:
-        cmd = ["cscript", "//nologo", "//U", script] + list(args)
+        cmd = ["cscript", "//nologo", script] + list(args)
     else:
-        # Wine's cscript prints nothing with //U; it writes the console code page instead
         cmd = [_wine(), "cscript", "//nologo", to_windows_path(script)] + list(args)
     env = dict(os.environ)
     env.setdefault("WINEDEBUG", "-all")
@@ -71,7 +72,7 @@ def run(*args: str, timeout: int = 180) -> dict:
         raise BridgeError("StarUML did not answer within %ds (a modal dialog may be open)" % timeout)
     raw = p.stdout
     text = None
-    encs = ("utf-16-le", "mbcs") if IS_WINDOWS else ("utf-8", "cp949", "latin-1")
+    encs = ("utf-8", "mbcs") if IS_WINDOWS else ("utf-8", "cp949", "latin-1")
     for enc in encs:
         try:
             text = raw.decode(enc)

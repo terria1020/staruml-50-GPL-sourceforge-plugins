@@ -1,6 +1,6 @@
 // StarUML 5.0 COM bridge (Windows Script Host / JScript).
 //
-//   cscript //nologo //U staruml_bridge.js <command> [args...]
+//   cscript //nologo staruml_bridge.js <command> [args...]
 //
 // Commands (all paths are Windows paths):
 //   status                              running StarUML / current project
