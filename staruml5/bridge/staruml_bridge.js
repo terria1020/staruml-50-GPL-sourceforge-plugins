@@ -112,7 +112,8 @@ function guardUnsaved() {
 
 try {
   if (cmd == 'status') {
-    done({ file: pm.FileName, modified: pm.Modified, title: app.GetProject().Title });
+    var prj = app.GetProject();   // null while no project is open (e.g. the New Project dialog is up)
+    done({ file: pm.FileName, modified: pm.Modified, title: prj ? prj.Title : null, project: !!prj });
   } else if (cmd == 'open') {
     guardUnsaved();
     pm.CloseProject();
@@ -167,6 +168,7 @@ try {
       target = app.SelectionManager.GetSelectedModelAt(0);
     } else {
       var prj = app.GetProject();
+      if (!prj) fail('no project is open');
       for (var i = 0; i < prj.GetOwnedElementCount(); i++) {
         var e = prj.GetOwnedElementAt(i);
         if (e.IsKindOf('UMLPackage') && (e.Name == 'Design Model' || !target)) target = e;
