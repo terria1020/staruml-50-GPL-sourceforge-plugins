@@ -82,8 +82,9 @@ def run(*args: str, timeout: int = 180) -> dict:
     text = (text or "").replace("﻿", "")
     line = next((l for l in text.splitlines() if l.strip().startswith("{")), None)
     if line is None:
-        raise BridgeError("bridge produced no result (exit %s): %s %s" % (
-            p.returncode, text.strip()[:500], p.stderr.decode("utf-8", "replace")[:500]))
+        raise BridgeError("bridge produced no result (exit %s, %d bytes on stdout): %s %s %r" % (
+            p.returncode, len(raw), text.strip()[:500], p.stderr.decode("utf-8", "replace")[:500],
+            raw[:80] if raw and not text.strip() else b""))
     res = json.loads(line)
     if not res.get("ok"):
         raise BridgeError(res.get("error", "unknown error"))

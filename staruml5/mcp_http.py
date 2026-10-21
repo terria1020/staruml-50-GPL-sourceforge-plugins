@@ -22,8 +22,10 @@ from __future__ import annotations
 import hmac
 import json
 import os
+import queue
 import sys
 import threading
+import traceback
 from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
 from urllib.parse import unquote, urlsplit
 
@@ -34,13 +36,54 @@ LOOPBACK = ("127.0.0.1", "localhost", "::1")
 
 _lock = threading.Lock()   # one tool call / file write at a time: StarUML and .uml files are not shared-safe
 
+# Log lines go through a queue: a write to a Windows console blocks while text is being
+# selected in it, and that must not hold up responses.
+_log = queue.Queue()
+
+
+def _log_writer():
+    while True:
+        line = _log.get()
+        try:
+            sys.stderr.write(line)
+            sys.stderr.flush()
+        except (OSError, ValueError):
+            pass
+
+
+threading.Thread(target=_log_writer, daemon=True).start()
+
+
+def _disable_quick_edit():
+    """Turn off QuickEdit for this Windows console, so a stray click does not start a selection."""
+    if os.name != "nt":
+        return
+    try:
+        import ctypes
+        k = ctypes.windll.kernel32
+        h = k.GetStdHandle(-10)   # STD_INPUT_HANDLE
+        mode = ctypes.c_uint32()
+        if k.GetConsoleMode(h, ctypes.byref(mode)):
+            k.SetConsoleMode(h, (mode.value & ~0x0040) | 0x0080)   # -ENABLE_QUICK_EDIT_MODE, +ENABLE_EXTENDED_FLAGS
+    except (AttributeError, OSError):
+        pass
+
+
+class Server(ThreadingHTTPServer):
+    daemon_threads = True
+
+    def handle_error(self, request, client_address):
+        if isinstance(sys.exc_info()[1], (ConnectionError, TimeoutError)):
+            return   # the client gave up (e.g. its timeout); nothing to report
+        _log.put("error while handling a request from %s:\n%s" % (client_address[0], traceback.format_exc()))
+
 
 class Handler(BaseHTTPRequestHandler):
     server_version = "staruml5"
     token = None
 
     def log_message(self, fmt, *args):
-        sys.stderr.write("%s %s\n" % (self.address_string(), fmt % args))
+        _log.put("%s %s\n" % (self.address_string(), fmt % args))
 
     def _send(self, code, body=b"", ctype="application/json"):
         if isinstance(body, (dict, list)):
@@ -149,25 +192,25 @@ def parse_address(addr: str):
     return (host.strip("[]") if sep else "127.0.0.1"), int(port)
 
 
-def make_server(addr: str, root: str = None, token: str = None) -> ThreadingHTTPServer:
+def make_server(addr: str, root: str = None, token: str = None) -> Server:
     host, port = parse_address(addr)
     token = token or os.environ.get("STARUML5_TOKEN") or None
     if not token and host not in LOOPBACK:
         raise ValueError("refusing to listen on %s without a token: pass --token or set STARUML5_TOKEN" % host)
     mcp_server.ROOT = os.path.realpath(root or os.getcwd())
+    os.makedirs(mcp_server.ROOT, exist_ok=True)
     mcp_server.INSTRUCTIONS = (
         "This server runs on a remote machine. Every path argument is relative to its workspace "
         "(%s); absolute paths outside it are rejected. Move files with HTTP on the same host and token: "
         "GET /files/<path> downloads (a directory gives a JSON listing), PUT /files/<path> uploads."
         % mcp_server.ROOT)
     Handler.token = token
-    httpd = ThreadingHTTPServer((host, port), Handler)
-    httpd.daemon_threads = True
-    return httpd
+    return Server((host, port), Handler)
 
 
 def serve_http(addr: str, root: str = None, token: str = None):
     httpd = make_server(addr, root, token)
+    _disable_quick_edit()
     host, port = httpd.server_address[:2]
     sys.stderr.write("staruml5 MCP on http://%s:%d/mcp  root=%s  token=%s\n"
                      % (host, port, mcp_server.ROOT, "on" if Handler.token else "off"))
