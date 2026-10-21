@@ -63,6 +63,11 @@ try { app = new ActiveXObject('StarUML.StarUMLApplication'); }
 catch (e) { fail('cannot start/connect StarUML (is StarUML 5 installed and registered?): ' + e.message); }
 var pm = app.ProjectManager;
 
+// Started through COM, StarUML keeps its main window hidden, and opening a project then
+// pops up a modal "Cannot focus a disabled or invisible window" that blocks this call.
+var wasHidden = false;
+try { wasHidden = !app.Visible; if (wasHidden) app.Visible = true; } catch (e) {}
+
 function pathOf(m) {
   // (no try/break inside loops: Wine's JScript engine crashes on that pattern)
   var names = [];
@@ -113,7 +118,8 @@ function guardUnsaved() {
 try {
   if (cmd == 'status') {
     var prj = app.GetProject();   // null while no project is open (e.g. the New Project dialog is up)
-    done({ file: pm.FileName, modified: pm.Modified, title: prj ? prj.Title : null, project: !!prj });
+    done({ file: pm.FileName, modified: pm.Modified, title: prj ? prj.Title : null, project: !!prj,
+           was_hidden: wasHidden });
   } else if (cmd == 'open') {
     guardUnsaved();
     pm.CloseProject();
