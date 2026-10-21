@@ -316,6 +316,66 @@ class McpTests(unittest.TestCase):
         self.assertIn("A->>B: hi", res[3]["result"]["content"][0]["text"])
 
 
+class McpHttpTests(unittest.TestCase):
+    def setUp(self):
+        import threading
+        from staruml5 import mcp_http
+        self.root = tempfile.mkdtemp()
+        self.httpd = mcp_http.make_server("127.0.0.1:0", root=self.root, token="t0ken")
+        self.base = "http://127.0.0.1:%d" % self.httpd.server_address[1]
+        threading.Thread(target=self.httpd.serve_forever, daemon=True).start()
+
+    def tearDown(self):
+        from staruml5 import mcp_server
+        self.httpd.shutdown()
+        self.httpd.server_close()
+        mcp_server.ROOT = mcp_server.INSTRUCTIONS = None
+
+    def req(self, method, path, body=None, token="t0ken", headers=None):
+        import urllib.error
+        import urllib.request
+        data = body if isinstance(body, bytes) or body is None else json.dumps(body).encode("utf-8")
+        r = urllib.request.Request(self.base + path, data=data, method=method, headers=dict(headers or {}))
+        if token:
+            r.add_header("Authorization", "Bearer " + token)
+        try:
+            with urllib.request.urlopen(r) as resp:
+                return resp.status, resp.read()
+        except urllib.error.HTTPError as e:
+            return e.code, e.read()
+
+    def call(self, rid, name, args):
+        code, body = self.req("POST", "/mcp", {"jsonrpc": "2.0", "id": rid, "method": "tools/call",
+                                               "params": {"name": name, "arguments": args}})
+        self.assertEqual(code, 200)
+        return json.loads(body)["result"]
+
+    def test_auth_and_origin(self):
+        msg = {"jsonrpc": "2.0", "id": 1, "method": "ping"}
+        self.assertEqual(self.req("POST", "/mcp", msg, token=None)[0], 401)
+        self.assertEqual(self.req("POST", "/mcp", msg, token="wrong")[0], 401)
+        self.assertEqual(self.req("POST", "/mcp", msg, headers={"Origin": "http://evil.example"})[0], 403)
+        self.assertEqual(self.req("POST", "/mcp", msg)[0], 200)
+        self.assertEqual(self.req("POST", "/mcp", {"jsonrpc": "2.0", "method": "notifications/initialized"})[0], 202)
+        self.assertEqual(self.req("GET", "/mcp")[0], 405)
+
+    def test_convert_and_files_stay_in_root(self):
+        res = self.call(1, "mermaid_to_staruml", {"mermaid": "sequenceDiagram\n A->>B: 안녕",
+                                                  "output_path": "sub/m.uml", "diagram_name": "T"})
+        self.assertFalse(res["isError"], res)
+        code, data = self.req("GET", "/files/sub/m.uml")
+        self.assertEqual(code, 200)
+        self.assertEqual(data, open(os.path.join(self.root, "sub", "m.uml"), "rb").read())
+        self.assertEqual(self.req("PUT", "/files/up/c.uml", data)[0], 201)
+        res = self.call(2, "staruml_to_mermaid", {"path": "up/c.uml", "diagram_name": "T"})
+        self.assertIn("A->>B: 안녕", res["content"][0]["text"])
+        self.assertTrue(self.call(3, "staruml_validate", {"path": "../outside.uml"})["isError"])
+        self.assertTrue(self.call(4, "staruml_validate", {"path": os.path.abspath(__file__)})["isError"])
+        self.assertEqual(self.req("GET", "/files/%2e%2e/x")[0], 403)
+        names = [i["name"] for i in json.loads(self.req("GET", "/files/")[1])]
+        self.assertEqual(names, ["sub", "up"])
+
+
 def _count_msgs(items):
     n = 0
     for it in items:

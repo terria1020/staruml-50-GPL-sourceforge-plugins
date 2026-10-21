@@ -97,6 +97,10 @@ def cmd_com(a):
 
 
 def cmd_mcp(a):
+    if a.http:
+        from .mcp_http import serve_http
+        serve_http(a.http, root=a.root, token=a.token)
+        return 0
     from .mcp_server import serve
     serve()
     return 0
@@ -156,7 +160,11 @@ def main(argv=None):
     p.add_argument("--force", action="store_true", help="discard unsaved changes in StarUML")
     p.set_defaults(func=cmd_com)
 
-    p = sub.add_parser("mcp", help="run the MCP server on stdio (for AI agents)")
+    p = sub.add_parser("mcp", help="run the MCP server on stdio, or on HTTP with --http (for AI agents)")
+    p.add_argument("--http", metavar="[HOST:]PORT", help="serve MCP over HTTP instead of stdio, e.g. 0.0.0.0:8765")
+    p.add_argument("--root", help="HTTP: workspace directory that tool paths and /files are confined to (default: cwd)")
+    p.add_argument("--token", help="HTTP: bearer token clients must send (default: $STARUML5_TOKEN; "
+                                   "required unless listening on localhost)")
     p.set_defaults(func=cmd_mcp)
 
     a = ap.parse_args(argv)

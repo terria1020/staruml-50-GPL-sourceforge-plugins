@@ -16,6 +16,8 @@
 ## Features
 
 - [ ] Verify `com export` / `com layout` on real Windows.
+- [ ] Verify `mcp --http` end to end from macOS against a Windows 11 ARM VM (VMware Fusion):
+      StarUML (x86) under emulation, ARM64 `cscript` -> x86 COM server activation.
 - [ ] Sequence: `create participant` positioning polish, `activate/deactivate` mapped
       to explicit activation lengths, notes over several lifelines.
 - [ ] Class: generic parameters, association class, qualifiers, package views for `namespace`.

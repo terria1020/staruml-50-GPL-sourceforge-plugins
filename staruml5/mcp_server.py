@@ -146,31 +146,52 @@ TOOLS = [
 ]
 
 
+# Set by the HTTP server (mcp_http): tool paths are then relative to ROOT and may not leave it.
+ROOT = None
+INSTRUCTIONS = None
+
+
+def resolve(path):
+    """Map a tool path into ROOT (identity when no ROOT is set)."""
+    if ROOT is None or not path:
+        return path
+    full = os.path.realpath(os.path.join(ROOT, path))
+    try:
+        inside = os.path.normcase(os.path.commonpath([full, ROOT])) == os.path.normcase(ROOT)
+    except ValueError:   # different drives on Windows
+        inside = False
+    if not inside:
+        raise ValueError("path is outside the server root %s: %s" % (ROOT, path))
+    return full
+
+
 def _call(name: str, a: dict):
     if name == "mermaid_to_staruml":
-        out = a.get("output_path") or a.get("into_path")
+        out = resolve(a.get("output_path") or a.get("into_path"))
         if not out:
             raise ValueError("output_path or into_path is required")
-        into = a.get("into_path")
+        into = resolve(a.get("into_path"))
         if into and not os.path.exists(into):
             raise ValueError("into_path does not exist: %s" % into)
+        os.makedirs(os.path.dirname(os.path.abspath(out)), exist_ok=True)
         return api.convert(a["mermaid"], output=out, into=into, package=a.get("package", "Design Model"),
                            names=[a["diagram_name"]] if a.get("diagram_name") else None,
                            style=a.get("style"), replace=a.get("replace", True), kind=a.get("diagram_type"))
     if name == "staruml_list_diagrams":
-        return api.list_diagrams(Project.load(a["path"]))
+        return api.list_diagrams(Project.load(resolve(a["path"])))
     if name == "staruml_to_mermaid":
-        return api.to_mermaid(Project.load(a["path"]), a["diagram_name"], a.get("package"))
+        return api.to_mermaid(Project.load(resolve(a["path"])), a["diagram_name"], a.get("package"))
     if name == "staruml_remove_diagram":
-        prj = Project.load(a["path"])
+        path = resolve(a["path"])
+        prj = Project.load(path)
         d = api.find_diagram(prj, a["diagram_name"], a.get("package"))
         if d is None:
             raise ValueError("diagram not found: %s" % a["diagram_name"])
         n = api.remove_diagram(prj, d)
-        prj.save(a["path"])
+        prj.save(path)
         return {"removed": a["diagram_name"], "objects": n}
     if name == "staruml_validate":
-        return {"problems": validate(Project.load(a["path"]))}
+        return {"problems": validate(Project.load(resolve(a["path"])))}
     if name == "mermaid_syntax_help":
         return SYNTAX_HELP[{"flowchart": "activity"}.get(a["diagram_type"], a["diagram_type"])]
     if name == "staruml_com":
@@ -178,11 +199,11 @@ def _call(name: str, a: dict):
         args = list(a.get("args") or [])
         act = a["action"]
         if act == "open":
-            return bridge.open_project(args[0], force=a.get("force", False))
+            return bridge.open_project(resolve(args[0]), force=a.get("force", False))
         if act == "export":
-            return bridge.export_image(*args)
+            return bridge.export_image(args[0], resolve(args[1]), *args[2:3])
         if act == "import-fragment":
-            return bridge.import_fragment(*args)
+            return bridge.import_fragment(resolve(args[0]), *args[1:2])
         return bridge.run(act, *args, *(["--force"] if a.get("force") else []))
     raise ValueError("unknown tool %s" % name)
 
@@ -191,9 +212,12 @@ def _handle(msg: dict):
     mid = msg.get("id")
     method = msg.get("method")
     if method == "initialize":
-        return {"protocolVersion": msg.get("params", {}).get("protocolVersion", PROTOCOL),
-                "capabilities": {"tools": {}},
-                "serverInfo": {"name": "staruml5", "version": __version__}}
+        res = {"protocolVersion": msg.get("params", {}).get("protocolVersion", PROTOCOL),
+               "capabilities": {"tools": {}},
+               "serverInfo": {"name": "staruml5", "version": __version__}}
+        if INSTRUCTIONS:
+            res["instructions"] = INSTRUCTIONS
+        return res
     if method == "tools/list":
         return {"tools": TOOLS}
     if method == "tools/call":
@@ -209,6 +233,21 @@ def _handle(msg: dict):
     if mid is None:
         return None   # notification
     raise KeyError(method)
+
+
+def dispatch(msg: dict):
+    """Handle one JSON-RPC message; returns the response object, or None for notifications."""
+    mid = msg.get("id")
+    try:
+        result = _handle(msg)
+        if mid is None:
+            return None
+        return {"jsonrpc": "2.0", "id": mid, "result": result}
+    except KeyError as e:
+        return {"jsonrpc": "2.0", "id": mid, "error": {"code": -32601, "message": "method not found: %s" % e}}
+    except Exception as e:
+        traceback.print_exc(file=sys.stderr)
+        return {"jsonrpc": "2.0", "id": mid, "error": {"code": -32603, "message": str(e)}}
 
 
 def serve(stdin=None, stdout=None):
@@ -227,17 +266,9 @@ def serve(stdin=None, stdout=None):
             msg = json.loads(line)
         except json.JSONDecodeError:
             continue
-        mid = msg.get("id")
-        try:
-            result = _handle(msg)
-            if mid is None:
-                continue
-            out = {"jsonrpc": "2.0", "id": mid, "result": result}
-        except KeyError as e:
-            out = {"jsonrpc": "2.0", "id": mid, "error": {"code": -32601, "message": "method not found: %s" % e}}
-        except Exception as e:
-            traceback.print_exc(file=sys.stderr)
-            out = {"jsonrpc": "2.0", "id": mid, "error": {"code": -32603, "message": str(e)}}
+        out = dispatch(msg)
+        if out is None:
+            continue
         stdout.write(json.dumps(out, ensure_ascii=False) + "\n")
         stdout.flush()
 

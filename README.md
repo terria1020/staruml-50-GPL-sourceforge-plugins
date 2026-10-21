@@ -25,7 +25,7 @@
 | `fragment` | Mermaid → 모델 프래그먼트 `.mfj` (StarUML *File > Import > Model Fragment*) | 아니요 |
 | `list` / `remove` / `validate` | 다이어그램 목록, 삭제, 참조 무결성 검사 | 아니요 |
 | `com ...` | 실행 중인 StarUML 제어 (열기, 다시 열기, 자동 레이아웃, 이미지 내보내기, 프래그먼트 가져오기) | 예 |
-| `mcp` | AI 에이전트용 MCP 서버 (stdio) | `staruml_com` 도구만 필요 |
+| `mcp` | AI 에이전트용 MCP 서버 (stdio, 또는 `--http`로 원격 연결) | `staruml_com` 도구만 필요 |
 | StarUML 애드인 | StarUML의 *Tools > Mermaid* 메뉴에서 가져오기와 내보내기 | 예 |
 
 "StarUML 필요: 아니요"인 기능은 Python만 있으면 Windows, Linux, macOS 어디서나 동작합니다. 실행 중인 StarUML이 필요한 것은 `com ...`, MCP `staruml_com`, 메뉴 애드인뿐입니다.
@@ -144,6 +144,43 @@ Claude Desktop이나 기타 MCP 클라이언트(`claude_desktop_config.json` 등
 
 자세한 매핑은 각 플러그인의 README(`staruml5/plugins/*/README.md`)에 있습니다.
 
+### 원격 연결 (VM의 StarUML을 macOS 에이전트에서 쓰기)
+
+StarUML이 돌지 않는 Mac(예: Apple Silicon)에서는 Windows VM(VMware Fusion 등)에서 StarUML과 MCP 서버를 띄우고, Mac의 에이전트가 HTTP로 붙습니다. MCP의 Streamable HTTP 전송(JSON 응답)을 표준 라이브러리만으로 구현했습니다.
+
+```
+Mac (Claude Code) --HTTP--> VM: python -m staruml5 mcp --http --> cscript --COM--> StarUML
+```
+
+VM(Windows)에서는 **로그인한 데스크톱 세션의 명령 프롬프트**에서 실행합니다. 서비스나 SSH 세션에서 띄우면 COM이 화면에 보이는 StarUML이 아닌 다른 세션에 붙습니다.
+
+```bat
+set PYTHONPATH=C:\path\to\staruml5-plugins
+python -m staruml5 mcp --http 0.0.0.0:8765 --root C:\uml --token <토큰>
+
+:: 처음 한 번, 관리자 권한으로 방화벽 열기
+netsh advfirewall firewall add rule name="staruml5 MCP" dir=in action=allow protocol=TCP localport=8765
+```
+
+Mac에서는 VM의 IP(VM에서 `ipconfig`)로 등록합니다. 토큰은 `python3 -c "import secrets; print(secrets.token_urlsafe(24))"`처럼 만들면 됩니다.
+
+```bash
+claude mcp add staruml5-vm -s user --transport http http://<VM-IP>:8765/mcp --header "Authorization: Bearer <토큰>"
+```
+
+- 도구의 경로 인자는 모두 `--root` 기준 상대 경로입니다. `--root` 밖(절대 경로, `..`)은 거부합니다.
+- 파일은 같은 주소와 토큰으로 주고받습니다. `GET /files/<경로>`는 다운로드(디렉터리는 JSON 목록), `PUT /files/<경로>`는 업로드입니다.
+
+  ```bash
+  curl -H "Authorization: Bearer $STARUML5_TOKEN" -T MyProject.uml http://<VM-IP>:8765/files/MyProject.uml
+  curl -H "Authorization: Bearer $STARUML5_TOKEN" http://<VM-IP>:8765/files/out/login.jpg -o login.jpg
+  ```
+- 토큰이 없으면 localhost 외의 주소로는 서버를 띄우지 않습니다(`--token` 또는 `STARUML5_TOKEN`). 브라우저 요청(`Origin` 헤더)은 거부합니다.
+- 평문 HTTP이므로 VMware NAT·호스트 전용 네트워크처럼 Mac과 VM 사이에서만 씁니다.
+- Mac의 로컬 stdio 서버(`staruml5`)와 함께 등록해도 됩니다. 변환은 로컬에서 하고 `staruml_com`만 VM으로 보내는 식으로 나눠 쓸 수 있습니다.
+
+Windows 11 ARM VM에서는 아직 검증하지 않았습니다([TODO.md](TODO.md)).
+
 ---
 
 ## Linux / macOS에서 Wine으로 실행
@@ -189,7 +226,7 @@ staruml5/
     sequence_diagram/
     activity_diagram/      (flowchart 포함)
   bridge/                  COM 브리지 (staruml_bridge.js + Python 래퍼)
-  api.py  cli.py  mcp_server.py
+  api.py  cli.py  mcp_server.py  mcp_http.py
 staruml-addin/             StarUML 5 메뉴 애드인 (Tools > Mermaid) + install.bat
 wine/                      Linux/macOS 설치·실행 스크립트와 가이드
 examples/                  예제 Mermaid
