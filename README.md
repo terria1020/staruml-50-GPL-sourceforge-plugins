@@ -186,7 +186,7 @@ Windows 11 ARM VM에서는 아직 검증하지 않았습니다([TODO.md](TODO.md
 ## Linux / macOS에서 Wine으로 실행
 
 이 레포는 **Linux(Ubuntu 24.04, wine 9.0)에서 실제로 검증**했습니다. 설치, 실행, 한글 표시, COM 브리지(open/list/show/import-fragment), 애드인 메뉴 등록까지 확인했습니다.
-macOS Apple Silicon에서는 StarUML이 Wine에서 시작하지 못해서 **COM 브리지(`com ...`, MCP `staruml_com`)와 메뉴 애드인을 잠정적으로 쓸 수 없습니다** ([#1](https://github.com/terria1020/staruml-50-GPL-sourceforge-plugins/issues/1)). `convert`, `export`, `fragment`, `list`/`remove`/`validate`와 나머지 MCP 도구는 StarUML 없이 Python만으로 동작하므로 macOS에서도 그대로 쓸 수 있습니다. 자세한 내용은 [wine/README.md](wine/README.md)에 있습니다.
+macOS Apple Silicon에서는 StarUML이 Wine에서 시작하지 못해서 **COM 브리지(`com ...`, MCP `staruml_com`)와 메뉴 애드인을 잠정적으로 쓸 수 없습니다** ([#1](https://github.com/terria1020/staruml-50-GPL-sourceforge-plugins/issues/1)). `convert`, `export`, `fragment`, `list`/`remove`/`validate`와 나머지 MCP 도구는 StarUML 없이 Python만으로 동작하므로 macOS에서도 그대로 쓸 수 있습니다. 자세한 내용은 [wine/README.md](wine/README.md)에 있습니다. COM 브리지가 필요하면 Windows VM에서 StarUML과 MCP 서버를 띄우고 Mac에서 HTTP로 붙습니다([원격 연결](#원격-연결-vm의-staruml을-macos-에이전트에서-쓰기)).
 
 ```bash
 # Ubuntu / Debian
@@ -203,7 +203,7 @@ WINEPREFIX=~/.wine-staruml5 LANG=ko_KR.UTF-8 python3 -m staruml5 com status
 |---|---|
 | Linux x86_64 | 검증 완료 (Ubuntu 24.04, wine 9.0, 32비트 프리픽스) |
 | macOS Intel | 미검증: `brew install --cask --no-quarantine wine-stable` + `brew install innoextract` 후 `wine/install.sh` |
-| macOS Apple Silicon | 잠정 불가: StarUML이 시작 중 멈추거나 크래시 (wine-stable 11.0, wine-devel 11.18, macOS 27.2, M4). COM 브리지와 애드인 사용 불가 ([#1](https://github.com/terria1020/staruml-50-GPL-sourceforge-plugins/issues/1)) |
+| macOS Apple Silicon | 잠정 불가: StarUML이 시작 중 멈추거나 크래시 (wine-stable 11.0, wine-devel 11.18, macOS 27.2, M4). COM 브리지와 애드인 사용 불가 ([#1](https://github.com/terria1020/staruml-50-GPL-sourceforge-plugins/issues/1)). 대안: Windows VM에 [원격 연결](#원격-연결-vm의-staruml을-macos-에이전트에서-쓰기) |
 
 Wine에서 알려진 제약은 다음과 같습니다.
 - `com export`(이미지 내보내기)가 Wine에서 `E_NOTIMPL`로 실패합니다. Windows에서는 문제없을 것으로 예상합니다. [TODO.md](TODO.md)에서 추적합니다.

@@ -53,6 +53,8 @@ Apple Silicon에서는 설치(`install.sh`)는 끝나지만 StarUML이 시작하
 
 `convert`, `export`, `fragment`, `list`, `remove`, `validate`와 나머지 MCP 도구는 `.uml` 파일만 다루므로 macOS에서도 그대로 동작합니다. 만든 `.uml`은 Windows나 Linux(Wine)의 StarUML에서 열어 확인하면 됩니다.
 
+Mac에서 COM 브리지까지 쓰려면 Windows VM(VMware Fusion 등)에서 StarUML과 `python -m staruml5 mcp --http`를 띄우고, Mac의 에이전트가 HTTP로 붙으면 됩니다. 설정 방법은 [README의 원격 연결](../README.md#원격-연결-vm의-staruml을-macos-에이전트에서-쓰기)에 있습니다.
+
 시도해 보려면 다음 순서로 합니다. Intel Mac과 CrossOver는 아직 확인하지 않았습니다.
 
 ```bash
